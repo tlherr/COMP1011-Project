@@ -14,7 +14,7 @@ public abstract class Employee {
 
     public Employee() {
         this.idNumber = ServiceClass.getId();
-    };
+    }
 
     public Employee(String firstName, String lastName, String position, String department) {
         this.firstName = firstName;
@@ -126,10 +126,6 @@ public abstract class Employee {
 
     public int getIdNumber() {
         return idNumber;
-    }
-
-    public void setIdNumber(int idNumber) {
-        this.idNumber = idNumber;
     }
 
     public int getVacationsDays() {
