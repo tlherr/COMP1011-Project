@@ -8,7 +8,8 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
         super();
     }
 
-    public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department, float commissionRates, float sales, float baseSalary) {
+    public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department,
+                                      float commissionRates, float sales, float baseSalary) {
         super(firstName, lastName, position, department, commissionRates, sales);
         this.baseSalary = baseSalary;
     }
