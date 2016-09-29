@@ -2,7 +2,11 @@ package com.tlherr.Model;
 
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
-    private float commissionRate, sales, baseSalary;
+    private float baseSalary;
+
+    public BasePlusCommissionEmployee() {
+        super();
+    }
 
     public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department, float commissionRates, float sales, float baseSalary) {
         super(firstName, lastName, position, department, commissionRates, sales);
@@ -22,22 +26,6 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
         return baseSalary + (sales * commissionRate);
     }
 
-
-    public float getCommissionRate() {
-        return commissionRate;
-    }
-
-    public void setCommissionRate(float commissionRate) {
-        this.commissionRate = commissionRate;
-    }
-
-    public float getSales() {
-        return sales;
-    }
-
-    public void setSales(float sales) {
-        this.sales = sales;
-    }
 
     public float getBaseSalary() {
         return baseSalary;
