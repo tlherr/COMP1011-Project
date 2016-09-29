@@ -10,8 +10,6 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department, float commissionRates, float sales, float baseSalary) {
         super(firstName, lastName, position, department, commissionRates, sales);
-        this.commissionRate = commissionRates;
-        this.sales = sales;
         this.baseSalary = baseSalary;
     }
 
@@ -23,7 +21,7 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     @Override
     public float calculatePay() {
-        return baseSalary + (sales * commissionRate);
+        return baseSalary + (super.getSales() * super.getCommissionRate());
     }
 
 
