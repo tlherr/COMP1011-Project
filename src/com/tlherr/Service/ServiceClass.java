@@ -1,10 +1,8 @@
 package com.tlherr.Service;
 
-import java.util.UUID;
-
 public final class ServiceClass {
 
-    private static int count = 1;
+    private static int count = 0;
 
     private ServiceClass(){};
 
