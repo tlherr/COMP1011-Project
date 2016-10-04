@@ -1,4 +1,4 @@
-package com.tlherr.Model;
+package com.tlherr.Model.Employee;
 
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 

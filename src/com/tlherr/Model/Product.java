@@ -4,14 +4,22 @@ import java.util.Date;
 
 public class Product {
 
-    private String productName, description, manufacturer, modelNumber;
+    private Manufacturer manufacturer;
+    private String productName, description, modelNumber;
     private Integer sku;
     private float msrp, weight, depth, price;
     private Date dateProduced;
 
     public Product() {}
 
-    public Product(String productName, String description, String manufacturer, String modelNumber, Integer sku, float msrp, float weight, float depth, float price, Date dateProduced) {
+    public Product(String productName, Manufacturer manufacturer, String modelNumber) {
+        this.productName = productName;
+        this.manufacturer = manufacturer;
+        this.modelNumber = modelNumber;
+    }
+
+
+    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, Integer sku, float msrp, float weight, float depth, float price, Date dateProduced) {
         this.productName = productName;
         this.description = description;
         this.manufacturer = manufacturer;
@@ -40,11 +48,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getManufacturer() {
+    public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
 

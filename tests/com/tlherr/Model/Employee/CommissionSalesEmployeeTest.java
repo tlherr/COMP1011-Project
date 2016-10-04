@@ -1,10 +1,8 @@
-package com.tlherr.Model;
+package com.tlherr.Model.Employee;
 
-import org.junit.After;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 

@@ -1,10 +1,10 @@
-package com.tlherr.Model;
+package com.tlherr.Model.Employee;
 
 import com.tlherr.Service.ServiceClass;
 
 import java.util.Date;
 
-public abstract class Employee {
+public abstract class AbstractEmployee {
 
     private String firstName, lastName, position, department,
             socialInsuranceNumber, email, phoneNumber, address, gender;
@@ -12,11 +12,11 @@ public abstract class Employee {
     private float salary;
     private Date dateHired, dateOfBirth;
 
-    public Employee() {
+    public AbstractEmployee() {
         this.idNumber = ServiceClass.getId();
     }
 
-    public Employee(String firstName, String lastName, String position, String department) {
+    public AbstractEmployee(String firstName, String lastName, String position, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -24,7 +24,7 @@ public abstract class Employee {
         this.idNumber = ServiceClass.getId();
     }
 
-    public Employee(String firstName, String lastName, String position, String department, String socialInsuranceNumber,
+    public AbstractEmployee(String firstName, String lastName, String position, String department, String socialInsuranceNumber,
                     String email, String phoneNumber, String address, String gender, int vacationsDays,
                     float salary, Date dateHired, Date dateOfBirth) {
         this.firstName = firstName;

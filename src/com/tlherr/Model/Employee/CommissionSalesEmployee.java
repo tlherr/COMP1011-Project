@@ -1,6 +1,6 @@
-package com.tlherr.Model;
+package com.tlherr.Model.Employee;
 
-public class CommissionSalesEmployee extends Employee {
+public class CommissionSalesEmployee extends AbstractEmployee {
 
     private float commissionRate, sales;
 
