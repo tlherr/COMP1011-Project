@@ -1,21 +1,19 @@
-package com.tlherr.Manager;
+package com.tlherr.Repository;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class EmployeeManager {
+public class EmployeeRepository {
 
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
-
-    private EmployeeManager() {}
 
     public static void addEmployee(AbstractEmployee employee) {
         employees.add(employee);
     }
 
-    public static AbstractEmployee searchEmployees(String firstName) {
+    public static AbstractEmployee findByFirstName(String firstName) {
         for (AbstractEmployee employee : employees) {
             if(employee.getFirstName().equals(firstName)) {
                 return employee;
@@ -24,8 +22,7 @@ public class EmployeeManager {
         return null;
     }
 
-
-    public static AbstractEmployee searchEmployees(String field, Object value) throws NoSuchFieldException {
+    public static AbstractEmployee findBy(String field, Object value) throws NoSuchFieldException {
         for (AbstractEmployee employee : employees) {
 
             Class<?> c = employee.getClass();
@@ -42,7 +39,4 @@ public class EmployeeManager {
         }
         return null;
     }
-
-
-
 }

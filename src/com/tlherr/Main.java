@@ -1,6 +1,8 @@
 package com.tlherr;
 
 import com.tlherr.Menu.ConsoleMenu;
+import com.tlherr.Service.EmployeeService;
+import com.tlherr.Service.ProductService;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +11,6 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
-        //Make some stuff and run it
 
         HashMap<Integer, String> mainMenuOptions = new HashMap<Integer, String>();
         mainMenuOptions.put(1, "Create a new Employee");
@@ -20,7 +21,17 @@ public class Main {
         mainMenu.setListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Got an event");
+                switch(e.getID()) {
+                    case 1:
+                        EmployeeService.createEmployee();
+                        break;
+                    case 2:
+                        EmployeeService.findEmployee();
+                        break;
+                    case 3:
+                        ProductService.findProduct();
+                        break;
+                }
             }
         });
 

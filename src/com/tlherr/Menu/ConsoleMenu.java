@@ -1,11 +1,10 @@
 package com.tlherr.Menu;
 
+import com.tlherr.Service.ConsoleService;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleMenu {
 
@@ -17,29 +16,26 @@ public class ConsoleMenu {
         this.options = options;
     }
 
-    public ConsoleMenu(HashMap<Integer, String> options, ActionListener listener) {
-        this.options = options;
+    public ConsoleMenu(HashMap<Integer, String> options, Scanner scanner, ActionListener listener) {
+        this(options);
         this.listener = listener;
     }
 
     public void render() {
+        String instructions = "";
         for (Map.Entry<Integer, String> menuItem  : options.entrySet()) {
-            System.out.println(menuItem.getKey().toString() + ") "+menuItem.getValue());
+            instructions+=menuItem.getKey().toString() + ") "+menuItem.getValue()+"\n";
         }
-        System.out.println("Please type the number of the menu option you wish to select");
+        instructions+="Please type the number of the menu option you wish to select\n";
 
         try {
-            Integer selection = scanner.nextInt();
-            scanner.nextLine();
-
-            if(options.get(selection)!=null) {
-                //Action was selected, inform anything that was listening
-                listener.actionPerformed(new ActionEvent(this, selection, options.get(selection)));
-            } else {
-                throw new InputMismatchException();
+            Integer index = Integer.parseInt(ConsoleService.getInput(instructions, ConsoleService.generateRegex(options)));
+            if(options.get(index)!=null) {
+                listener.actionPerformed(new ActionEvent(this, index, options.get(index)));
             }
-        } catch(InputMismatchException | IllegalStateException ex) {
-            System.out.println("Invalid input was entered ("+ex.getMessage()+"). Please retry selection");
+        } catch(NumberFormatException ex) {
+            //We were unable to parse the integer from the console service. Redo menu capture
+            System.out.println("Capture Error. Please try menu input again");
             render();
         }
     }
