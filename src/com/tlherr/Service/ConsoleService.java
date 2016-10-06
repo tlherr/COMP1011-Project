@@ -56,7 +56,8 @@ public class ConsoleService {
                 if(m.matches()) {
                     return input;
                 } else {
-                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
+                    System.out.println("Input provided was not as expected, please retry. Expecting format similar to: "
+                            +hint);
                 }
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 System.out.println(
@@ -82,7 +83,8 @@ public class ConsoleService {
                 if(result>0) {
                     return result;
                 } else {
-                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
+                    System.out.println("Input provided was not as expected, please retry. Expecting format similar to: "
+                            +hint);
 
 
                 }
@@ -127,7 +129,7 @@ public class ConsoleService {
 
             } catch(InputMismatchException | IllegalStateException | NumberFormatException | ParseException ex) {
                 System.out.println(
-                        "Input Error (Expecting format: "+hint+"), please retry"
+                        "Input Error (Expecting format similar to: "+hint+"), please retry"
                 );
             }
         }
