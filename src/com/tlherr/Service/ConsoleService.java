@@ -1,5 +1,6 @@
 package com.tlherr.Service;
 
+import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +9,9 @@ public class ConsoleService {
 
     public static String NUMBERS_ONLY = "^[0-9]*$";
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
+    public static String ALPHANUMERIC_WORDS = "([A-Za-z]|[0-9])\\w+";
     public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
+    public static String GENDER = "([M|m|F|f]{1})";
     public static String EMAIL_BASIC = "@.*?\\.";
     public static String CURRENCY = "(?:\\d*\\.)?\\d+";
 
@@ -40,7 +43,7 @@ public class ConsoleService {
      * It is up to other methods to type check, this method will only run a regex check
      * @return String text the user has entered.
      */
-    public static String getInput(String instructions, String regex) {
+    public static String getInput(String instructions, String regex, String hint) {
 
         //Keep this loop running while we are looking for user input. It will keep running until our conditions are
         //satisfied
@@ -58,7 +61,9 @@ public class ConsoleService {
                 if(m.matches()) {
                     return input;
                 } else {
-                    System.out.println("Input provided was not as expected, please retry");
+                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
+
+
                 }
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 System.out.println(
