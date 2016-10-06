@@ -88,9 +88,9 @@ public class EmployeeService {
             employee.setVacationsDays(Integer.parseInt(ConsoleService.getInput(
                     "Enter the vacation days of the Employee", ConsoleService.NUMBERS_ONLY, "23 (Non negative whole numbers)")));
             employee.setDateHired(new Date(ConsoleService.getInput(
-                    "Enter the date the Employee was hired", ConsoleService.CHARACTERS_ONLY, "2002-01-01")));
+                    "Enter the date the Employee was hired", ConsoleService.DATE, "2002-01-01")));
             employee.setDateOfBirth(new Date(ConsoleService.getInput(
-                    "Enter the date of birth of the Employee", ConsoleService.CHARACTERS_ONLY, "2002-01-01")));
+                    "Enter the date of birth of the Employee", ConsoleService.DATE, "2002-01-01")));
 
             //Dat polymorphism
             if(employee instanceof HourlyEmployee) {

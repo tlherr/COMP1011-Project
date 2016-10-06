@@ -12,8 +12,10 @@ public class ConsoleService {
     public static String ALPHANUMERIC_WORDS = "([A-Za-z]|[0-9])\\w+";
     public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
     public static String GENDER = "([M|m|F|f]{1})";
+    //@TODO: Fix email validation. Just need to check for chars+numbers@chars.chars
     public static String EMAIL_BASIC = "@.*?\\.";
     public static String CURRENCY = "(?:\\d*\\.)?\\d+";
+    public static String DATE = "\\b\\d{4}[-.]?\\d{2}[-.]?\\d{2}\\b";
 
     /**
      * Given a hashmap (data structure for menu options
