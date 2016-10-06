@@ -1,21 +1,19 @@
 package com.tlherr.Service;
 
-import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConsoleService {
 
-    public static String NUMBERS_ONLY = "^[0-9]*$";
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
-    public static String ALPHANUMERIC_WORDS = "([A-Za-z]|[0-9])\\w+";
+    public static String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,])+";
     public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
     public static String GENDER = "([M|m|F|f]{1})";
     //@TODO: Fix email validation. Just need to check for chars+numbers@chars.chars
-    public static String EMAIL_BASIC = "@.*?\\.";
-    public static String CURRENCY = "(?:\\d*\\.)?\\d+";
-    public static String DATE = "\\b\\d{4}[-.]?\\d{2}[-.]?\\d{2}\\b";
+    public static String EMAIL_BASIC = ".+\\@.+\\..+";
 
     /**
      * Given a hashmap (data structure for menu options
@@ -39,16 +37,12 @@ public class ConsoleService {
         return regex;
     }
 
-
     /**
      * This method will create a scanner and get user input until it matches specified conditions.
      * It is up to other methods to type check, this method will only run a regex check
      * @return String text the user has entered.
      */
-    public static String getInput(String instructions, String regex, String hint) {
-
-        //Keep this loop running while we are looking for user input. It will keep running until our conditions are
-        //satisfied
+    public static String getStringInput(String instructions, String regex, String hint) {
         while(true) {
             System.out.println(instructions);
             Scanner scanner = new Scanner(System.in);
@@ -77,6 +71,71 @@ public class ConsoleService {
         }
     }
 
+    public static Integer getIntegerInput(String instructions, String hint) {
+        while(true) {
+            System.out.println(instructions);
+            Scanner scanner = new Scanner(System.in);
+            try {
+                //Get some value from the user
+                String input = scanner.nextLine();
+
+                Integer result = Integer.parseInt(input);
+
+                //Check if this value matches our regex
+                if(result>0) {
+                    return result;
+                } else {
+                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
+
+
+                }
+            } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
+                System.out.println(
+                        "Input Error ("+
+                                ex.getMessage()!=null?ex.getMessage():"No Further Details"+
+                                "), please retry"
+                );
+            }
+        }
+    }
+
+    public static Float getFloatInput(String instructions, String hint) {
+        while(true) {
+            System.out.println(instructions);
+            Scanner scanner = new Scanner(System.in);
+            try {
+                //Get some value from the user
+                String input = scanner.nextLine();
+                return Float.parseFloat(input);
+            } catch(InputMismatchException | IllegalStateException | NumberFormatException | NullPointerException ex) {
+                System.out.println(
+                        "Input Error (Expecting format similar to: "+hint+"), please retry"
+                );
+            }
+        }
+    }
+
+
+    public static Date getDateInput(String instructions, String hint) {
+        System.out.println(instructions);
+        Scanner scanner = new Scanner(System.in);
+
+        while(true) {
+            try {
+                String input = scanner.nextLine();
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                dateFormat.setLenient(false);
+                return dateFormat.parse(input);
+
+            } catch(InputMismatchException | IllegalStateException | NumberFormatException | ParseException ex) {
+                System.out.println(
+                        "Input Error (Expecting format: "+hint+"), please retry"
+                );
+            }
+        }
+
+    }
 
 
 

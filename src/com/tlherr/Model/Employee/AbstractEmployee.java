@@ -7,8 +7,8 @@ import java.util.Date;
 public abstract class AbstractEmployee {
 
     private String firstName, lastName, position, department,
-            socialInsuranceNumber, email, phoneNumber, address, gender;
-    private int idNumber, vacationsDays;
+            email, phoneNumber, address, gender;
+    private int idNumber, vacationsDays, socialInsuranceNumber;
     private Date dateHired, dateOfBirth;
 
     protected AbstractEmployee() {
@@ -23,7 +23,7 @@ public abstract class AbstractEmployee {
         this.idNumber = ServiceClass.getId();
     }
 
-    protected AbstractEmployee(String firstName, String lastName, String position, String department, String socialInsuranceNumber,
+    protected AbstractEmployee(String firstName, String lastName, String position, String department, Integer socialInsuranceNumber,
                     String email, String phoneNumber, String address, String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,11 +81,11 @@ public abstract class AbstractEmployee {
         this.department = department;
     }
 
-    public String getSocialInsuranceNumber() {
+    public Integer getSocialInsuranceNumber() {
         return socialInsuranceNumber;
     }
 
-    public void setSocialInsuranceNumber(String socialInsuranceNumber) {
+    public void setSocialInsuranceNumber(Integer socialInsuranceNumber) {
         this.socialInsuranceNumber = socialInsuranceNumber;
     }
 
