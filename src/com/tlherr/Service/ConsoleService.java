@@ -12,7 +12,6 @@ public class ConsoleService {
     public static String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,])+";
     public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
     public static String GENDER = "([M|m|F|f]{1})";
-    //@TODO: Fix email validation. Just need to check for chars+numbers@chars.chars
     public static String EMAIL_BASIC = ".+\\@.+\\..+";
 
     /**
@@ -57,9 +56,7 @@ public class ConsoleService {
                 if(m.matches()) {
                     return input;
                 } else {
-                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
-
-
+                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);Fixe
                 }
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 System.out.println(
