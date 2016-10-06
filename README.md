@@ -13,23 +13,23 @@ The Employee class inheritance model by adding two classes - CommissionSalesEmpl
 
 ### Week 4
 
-*Create appropriate packages for all classes;
-*Create the following classes that will inherit from the Employee class:
-..*Hourly Employee
-..*Salary Employee
-..*Commission Employee
-..*Add functional methods for all employee types
-..*Each sub-class will have some unique features to salary/pay
-*Calculating methods that differentiate from the super class;
-*Create product class with functional methods
-*Create a manufacturer class and add a composition (HAS-A) reference to the
-*Product class for each Product Object created. Add option to display
-*Manufacturer info when reviewing a product.
-*Complete the menu driven code in the main method in the Main class so it
+* Create appropriate packages for all classes;
+* Create the following classes that will inherit from the Employee class:
+..* Hourly Employee
+..* Salary Employee
+..* Commission Employee
+..* Add functional methods for all employee types
+..* Each sub-class will have some unique features to salary/pay
+* Calculating methods that differentiate from the super class;
+* Create product class with functional methods
+* Create a manufacturer class and add a composition (HAS-A) reference to the
+* Product class for each Product Object created. Add option to display
+* Manufacturer info when reviewing a product.
+* Complete the menu driven code in the main method in the Main class so it
 will:
-..*Read user input and create a new employee object. This needs to be
+..* Read user input and create a new employee object. This needs to be
 added to an ArrayList for storage;
-..*Allow for a search of an employee and display the result;
-..*Allow for a search for a product and display the result;
-*Add validation to ALL user input (Note: NOT error handling/try-catch);
-*Implement class abstraction where applicable.
+..* Allow for a search of an employee and display the result;
+..* Allow for a search for a product and display the result;
+* Add validation to ALL user input (Note: NOT error handling/try-catch);
+* Implement class abstraction where applicable.
