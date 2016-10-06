@@ -9,14 +9,13 @@ public abstract class AbstractEmployee {
     private String firstName, lastName, position, department,
             socialInsuranceNumber, email, phoneNumber, address, gender;
     private int idNumber, vacationsDays;
-    private float salary;
     private Date dateHired, dateOfBirth;
 
-    public AbstractEmployee() {
+    protected AbstractEmployee() {
         this.idNumber = ServiceClass.getId();
     }
 
-    public AbstractEmployee(String firstName, String lastName, String position, String department) {
+    protected AbstractEmployee(String firstName, String lastName, String position, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -24,9 +23,8 @@ public abstract class AbstractEmployee {
         this.idNumber = ServiceClass.getId();
     }
 
-    public AbstractEmployee(String firstName, String lastName, String position, String department, String socialInsuranceNumber,
-                    String email, String phoneNumber, String address, String gender, int vacationsDays,
-                    float salary, Date dateHired, Date dateOfBirth) {
+    protected AbstractEmployee(String firstName, String lastName, String position, String department, String socialInsuranceNumber,
+                    String email, String phoneNumber, String address, String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -37,7 +35,6 @@ public abstract class AbstractEmployee {
         this.address = address;
         this.gender = gender;
         this.vacationsDays = vacationsDays;
-        this.salary = salary;
         this.dateHired = dateHired;
         this.dateOfBirth = dateOfBirth;
 
@@ -134,14 +131,6 @@ public abstract class AbstractEmployee {
 
     public void setVacationsDays(int vacationsDays) {
         this.vacationsDays = vacationsDays;
-    }
-
-    public float getSalary() {
-        return salary;
-    }
-
-    public void setSalary(float salary) {
-        this.salary = salary;
     }
 
     public Date getDateHired() {

@@ -21,12 +21,13 @@ public class Main {
         mainMenu.setListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                EmployeeService employeeService = new EmployeeService();
                 switch(e.getID()) {
                     case 1:
-                        EmployeeService.createEmployee();
+                        employeeService.createEmployee();
                         break;
                     case 2:
-                        EmployeeService.findEmployee();
+                        employeeService.findEmployee();
                         break;
                     case 3:
                         ProductService.findProduct();

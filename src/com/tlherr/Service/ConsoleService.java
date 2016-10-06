@@ -8,6 +8,9 @@ public class ConsoleService {
 
     public static String NUMBERS_ONLY = "^[0-9]*$";
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
+    public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
+    public static String EMAIL_BASIC = "@.*?\\.";
+    public static String CURRENCY = "(?:\\d*\\.)?\\d+";
 
     /**
      * Given a hashmap (data structure for menu options

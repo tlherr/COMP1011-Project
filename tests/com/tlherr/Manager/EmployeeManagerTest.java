@@ -17,14 +17,14 @@ public class EmployeeManagerTest {
     public void setUp() throws Exception {
 
         emp1 = new BasePlusCommissionEmployee("Tom", "Herr", "CEO", "Management", 0.10f, 4000.00f, 40000.00f);
-        EmployeeRepository.addEmployee(emp1);
+        EmployeeRepository.getInstance().addEmployee(emp1);
 
         emp2 = new CommissionSalesEmployee("Some", "Guy", "Janitor", "Maintenance", 0.10f, 4000.00f);
-        EmployeeRepository.addEmployee(emp2);
+        EmployeeRepository.getInstance().addEmployee(emp2);
     }
 
     @Test
     public void testSearchEmployees() throws Exception {
-        assertEquals(EmployeeRepository.findByFirstName("Tom") instanceof BasePlusCommissionEmployee, true);
+        assertEquals(EmployeeRepository.getInstance().findByFirstName("Tom") instanceof BasePlusCommissionEmployee, true);
     }
 }

@@ -7,13 +7,22 @@ import java.util.ArrayList;
 
 public class EmployeeRepository {
 
+    private static EmployeeRepository instance = new EmployeeRepository();
+
+    public static EmployeeRepository getInstance() {
+        return instance;
+    }
+
+    private EmployeeRepository(){};
+
+
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 
-    public static void addEmployee(AbstractEmployee employee) {
+    public void addEmployee(AbstractEmployee employee) {
         employees.add(employee);
     }
 
-    public static AbstractEmployee findByFirstName(String firstName) {
+    public AbstractEmployee findByFirstName(String firstName) {
         for (AbstractEmployee employee : employees) {
             if(employee.getFirstName().equals(firstName)) {
                 return employee;
@@ -22,7 +31,7 @@ public class EmployeeRepository {
         return null;
     }
 
-    public static AbstractEmployee findBy(String field, Object value) throws NoSuchFieldException {
+    public AbstractEmployee findBy(String field, Object value) throws NoSuchFieldException {
         for (AbstractEmployee employee : employees) {
 
             Class<?> c = employee.getClass();
