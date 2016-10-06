@@ -15,7 +15,6 @@ public class EmployeeRepository {
 
     private EmployeeRepository(){};
 
-
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 
     public void addEmployee(AbstractEmployee employee) {
@@ -26,24 +25,6 @@ public class EmployeeRepository {
         for (AbstractEmployee employee : employees) {
             if(employee.getFirstName().equals(firstName)) {
                 return employee;
-            }
-        }
-        return null;
-    }
-
-    public AbstractEmployee findBy(String field, Object value) throws NoSuchFieldException {
-        for (AbstractEmployee employee : employees) {
-
-            Class<?> c = employee.getClass();
-            Field f = c.getDeclaredField(field);
-            f.setAccessible(true);
-
-            try {
-                if (f.get(0) == value) {
-                    return employee;
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
             }
         }
         return null;
