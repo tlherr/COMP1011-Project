@@ -56,7 +56,7 @@ public class ConsoleService {
                 if(m.matches()) {
                     return input;
                 } else {
-                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);Fixe
+                    System.out.println("Input provided was not as expected, please retry. Expecting: "+hint);
                 }
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 System.out.println(
