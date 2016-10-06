@@ -29,7 +29,8 @@ public class ConsoleMenu {
         instructions+="Please type the number of the menu option you wish to select\n";
 
         try {
-            Integer index = Integer.parseInt(ConsoleService.getInput(instructions, ConsoleService.generateRegex(options)));
+            Integer index = Integer.parseInt(ConsoleService.getInput(
+                    instructions, ConsoleService.generateRegex(options), "Enter a valid integer matching a menu item"));
             if(options.get(index)!=null) {
                 listener.actionPerformed(new ActionEvent(this, index, options.get(index)));
             }
