@@ -6,7 +6,6 @@ public class Product {
 
     private Manufacturer manufacturer;
     private String productName, description, modelNumber;
-    private Integer sku;
     private float msrp, weight, depth, price;
     private Date dateProduced;
 
@@ -19,12 +18,11 @@ public class Product {
     }
 
 
-    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, Integer sku, float msrp, float weight, float depth, float price, Date dateProduced) {
+    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, float msrp, float weight, float depth, float price, Date dateProduced) {
         this.productName = productName;
         this.description = description;
         this.manufacturer = manufacturer;
         this.modelNumber = modelNumber;
-        this.sku = sku;
         this.msrp = msrp;
         this.weight = weight;
         this.depth = depth;
@@ -62,14 +60,6 @@ public class Product {
 
     public void setModelNumber(String modelNumber) {
         this.modelNumber = modelNumber;
-    }
-
-    public Integer getSku() {
-        return sku;
-    }
-
-    public void setSku(Integer sku) {
-        this.sku = sku;
     }
 
     public float getMsrp() {

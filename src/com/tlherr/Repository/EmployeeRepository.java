@@ -19,7 +19,7 @@ public class EmployeeRepository {
 
     private EmployeeRepository(){}
 
-    private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
+    private ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 
     public void addEmployee(AbstractEmployee employee) {
         employees.add(employee);
@@ -32,5 +32,13 @@ public class EmployeeRepository {
             }
         }
         return null;
+    }
+
+    public ArrayList<AbstractEmployee> getEmployees() {
+        if(employees==null) {
+            employees = new ArrayList<AbstractEmployee>();
+        }
+
+        return employees;
     }
 }

@@ -29,7 +29,15 @@ public class ManufacturerRepository {
         return manufacturers;
     }
 
-    public Manufacturer findByProductName(String manufacturerName) {
+    public void addProductToManufacturer(String manufacturerName, Product product) {
+        for(Manufacturer manufacturer:manufacturers) {
+            if(manufacturer.getName().equals(manufacturerName)) {
+                manufacturer.addProduct(product);
+            }
+        }
+    }
+
+    public Manufacturer findByName(String manufacturerName) {
         for (Manufacturer manufacturer : manufacturers) {
             if(manufacturer.getName().equals(manufacturerName)) {
                 return manufacturer;

@@ -32,6 +32,11 @@ public class HourlyEmployee extends AbstractEmployee {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + String.format(" Hourly Rate: %1$f, Hours Worked: %2$f", this.getHourlyRate(), this.getHoursWorked());
+    }
+
     public Float getHoursWorked() {
         return hoursWorked;
     }

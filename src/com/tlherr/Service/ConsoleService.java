@@ -45,6 +45,13 @@ public class ConsoleService {
      */
     public static String EMAIL_BASIC = ".+\\@.+\\..+";
 
+
+
+    public static String DEFAULT_HINT_DATE = "2002-02-20";
+
+    public static String DEFAULT_HINT_FLOAT = "203.50";
+
+
     /**
      * Given a hashmap (data structure for menu options) generate a regex expression that will only match when one of the
      * keys from the map is used. Example if our keys are 1,2,3 the following will be generated "^[1|2|3]{1}$"

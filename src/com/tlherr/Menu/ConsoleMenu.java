@@ -28,15 +28,16 @@ public class ConsoleMenu {
      * Fire listener action performed event, the ID given is the key of the menu item selected
      */
     public void render() {
-        String instructions = "";
+        String instructions = "==========================\n";
         for (Map.Entry<Integer, String> menuItem  : options.entrySet()) {
             instructions+=menuItem.getKey().toString() + ") "+menuItem.getValue()+"\n";
         }
-        instructions+="Please type the number of the menu option you wish to select\n";
+        instructions+="==========================\n";
+        instructions+="Please type the number of the menu option you wish to select";
 
         try {
             Integer index = Integer.parseInt(ConsoleService.getStringInput(
-                    instructions, ConsoleService.generateRegex(options), "Enter a valid integer matching a menu item"));
+                    instructions, ConsoleService.generateRegex(options), " a valid integer matching a menu item"));
             if(options.get(index)!=null && listener!=null) {
                 listener.actionPerformed(new ActionEvent(this, index, options.get(index)));
             }

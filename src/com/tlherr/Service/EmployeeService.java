@@ -20,9 +20,14 @@ import java.util.HashMap;
  */
 public class EmployeeService {
 
-    private AbstractEmployee employee;
 
-    public EmployeeService() {}
+    private static EmployeeService instance = new EmployeeService();
+
+    public static EmployeeService getInstance() {
+        return instance;
+    }
+
+    private EmployeeService() {}
 
     /**
      * Begin the process of creating a new user
@@ -40,6 +45,7 @@ public class EmployeeService {
         employeeMenu.setListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                AbstractEmployee employee = null;
                 switch(e.getID()) {
                     case 1:
                             employee = new HourlyEmployee();
@@ -56,7 +62,7 @@ public class EmployeeService {
                         break;
                 }
 
-                getInformation();
+                getInformation(employee);
             }
         });
 
@@ -66,7 +72,7 @@ public class EmployeeService {
     /**
      * This method is called to get employee information
      */
-    private void getInformation() {
+    private void getInformation(AbstractEmployee employee) {
         if(employee!=null) {
             employee.setFirstName(ConsoleService.getStringInput(
                     "Enter the firstname of the Employee", ConsoleService.CHARACTERS_ONLY, "John"));
@@ -119,6 +125,7 @@ public class EmployeeService {
 
             EmployeeRepository.getInstance().addEmployee(employee);
             System.out.println("Employee Saved (ID: "+employee.getIdNumber()+")");
+
             String[] args = {};
             Main.main(args);
         } else {
@@ -135,6 +142,15 @@ public class EmployeeService {
             System.out.println("Found a matching employee ID:"+foundEmployee.getIdNumber());
         } else {
             System.out.println("No Matching Record Found");
+        }
+
+        String[] args = {};
+        Main.main(args);
+    }
+
+    public void listAll() {
+        for(AbstractEmployee employee:EmployeeRepository.getInstance().getEmployees()) {
+            System.out.println(employee.toString());
         }
 
         String[] args = {};
