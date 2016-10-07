@@ -1,16 +1,19 @@
 package com.tlherr.Model;
 
-import com.tlherr.Model.Employee.AbstractEmployee;
-
 import java.util.ArrayList;
 
+/**
+ * Manufacturers are the producers of products
+ */
 public class Manufacturer {
 
+    private String name;
     private ArrayList<Product> products;
 
     public Manufacturer() {}
 
-    public Manufacturer(ArrayList<Product> products) {
+    public Manufacturer(String name, ArrayList<Product> products) {
+        this.name = name;
         this.products = products;
     }
 
@@ -20,5 +23,13 @@ public class Manufacturer {
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

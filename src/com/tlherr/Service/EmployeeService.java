@@ -25,8 +25,8 @@ public class EmployeeService {
     public EmployeeService() {}
 
     /**
-     * Read user input and create a new employee object.
-     *
+     * Begin the process of creating a new user
+     * Type of user is specified so creation can populate all data
      */
     public void createEmployee() {
         //Which type of employee are we planning to create
@@ -42,21 +42,20 @@ public class EmployeeService {
             public void actionPerformed(ActionEvent e) {
                 switch(e.getID()) {
                     case 1:
-                        employee = new HourlyEmployee();
+                            employee = new HourlyEmployee();
                         break;
-
                     case 2:
-                        employee = new BasePlusCommissionEmployee();
+                            employee = new BasePlusCommissionEmployee();
                         break;
-
                     case 3:
-                        employee = new CommissionSalesEmployee();
+                            employee = new CommissionSalesEmployee();
                         break;
                     default:
-                        //If we have arrived here, invalid input was sent in, crash shit
-                        //@TODO: Handle this
+                            System.out.println("Invalid Menu Input. Please retry selection");
+                            createEmployee();
                         break;
                 }
+
                 getInformation();
             }
         });
@@ -96,8 +95,6 @@ public class EmployeeService {
             employee.setDateOfBirth(ConsoleService.getDateInput(
                     "Enter the date of birth of the Employee", "2002-01-01"));
 
-
-            //Dat polymorphism
             if(employee instanceof HourlyEmployee) {
                 ((HourlyEmployee) employee).setHourlyRate(ConsoleService.getFloatInput(
                         "Enter the hourly rate of the Employee", "42343.00"));
@@ -113,18 +110,20 @@ public class EmployeeService {
 
             if(employee instanceof CommissionSalesEmployee) {
                 ((CommissionSalesEmployee) employee).setCommissionRate(ConsoleService.getFloatInput(
-                        "Enter the commision rate of the Employee", "42343.00"));
+                        "Enter the commision rate of the Employee", "10%"));
                 ((CommissionSalesEmployee) employee).setSales(ConsoleService.getFloatInput(
-                        "Enter the sales percentage of the Employee", "10%"));
+                        "Enter the sales of the Employee", "42343.00"));
             }
 
             //At this point we should have a full employee, save it
 
             EmployeeRepository.getInstance().addEmployee(employee);
             System.out.println("Employee Saved (ID: "+employee.getIdNumber()+")");
-
             String[] args = {};
             Main.main(args);
+        } else {
+            System.out.println("Invalid Menu Input, please retry");
+            createEmployee();
         }
     }
 

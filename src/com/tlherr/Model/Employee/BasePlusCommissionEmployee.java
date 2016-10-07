@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * Employee that has a base salary as well as commission based on sales
+ */
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     private float baseSalary;
@@ -20,11 +23,14 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
                 this.getSales(), this.getBaseSalary());
     }
 
+    /**
+     * Calculate pay as the base salary + commission earned from sales
+     * @return float amount user should be paid
+     */
     @Override
     public float calculatePay() {
         return baseSalary + (super.getSales() * super.getCommissionRate());
     }
-
 
     public float getBaseSalary() {
         return baseSalary;

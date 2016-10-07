@@ -5,6 +5,10 @@ import com.tlherr.Model.Employee.AbstractEmployee;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+/**
+ * Singleton Repository class for Employees
+ * Manages saving/searching employees
+ */
 public class EmployeeRepository {
 
     private static EmployeeRepository instance = new EmployeeRepository();
@@ -13,7 +17,7 @@ public class EmployeeRepository {
         return instance;
     }
 
-    private EmployeeRepository(){};
+    private EmployeeRepository(){}
 
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 

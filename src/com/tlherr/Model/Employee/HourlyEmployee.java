@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * Hourly employees are paid based on a fixed hourly rate and only for the hours they worked.
+ */
 public class HourlyEmployee extends AbstractEmployee {
 
     private Float hoursWorked;
@@ -15,9 +18,14 @@ public class HourlyEmployee extends AbstractEmployee {
         this.hourlyRate = hourlyRate;
     }
 
+    /**
+     * Multiply hours worked by the hourly rate
+     * If the user has no rate or hours they get no money
+     * @return float amount employee should be paid
+     */
     @Override
     public float calculatePay() {
-        if(hourlyRate!=null && hourlyRate!=null) {
+        if(hourlyRate!=null && hoursWorked!=null) {
             return (hoursWorked*hourlyRate);
         } else {
             return 0.00f;

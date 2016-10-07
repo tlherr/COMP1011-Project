@@ -4,6 +4,11 @@ import com.tlherr.Service.ServiceClass;
 
 import java.util.Date;
 
+/**
+ * Base class for employees
+ * Contains all base properties
+ * One abstract method: calculatePay
+ */
 public abstract class AbstractEmployee {
 
     private String firstName, lastName, position, department,
