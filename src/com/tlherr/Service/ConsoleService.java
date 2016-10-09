@@ -22,7 +22,7 @@ public class ConsoleService {
      * Matches only upper/lower case characters
      * Used mostly for names
      */
-    public static final String CHARACTERS_ONLY = "^[a-zA-Z]*$";
+    public static final String CHARACTERS_ONLY = "[a-zA-Z]+";
     /**
      * Matches only upper/lower case characters as well as numeric digits including commas and periods
      * Used for addresses ex (123 Fake Street RR#1 Barrie ON OHO2HO)
@@ -135,9 +135,7 @@ public class ConsoleService {
                 }
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 System.out.println(
-                        "Input Error ("+
-                                ex.getMessage()!=null?ex.getMessage():"No Further Details"+
-                                "), please retry"
+                        "Input Error, please retry"
                 );
             }
         }
