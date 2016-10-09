@@ -6,7 +6,7 @@ public class Product {
 
     private Manufacturer manufacturer;
     private String productName, description, modelNumber;
-    private float msrp, weight, depth, price;
+    private float msrp, weight, depth, height, price, width;
     private Date dateProduced;
 
     public Product() {}
@@ -18,14 +18,16 @@ public class Product {
     }
 
 
-    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, float msrp, float weight, float depth, float price, Date dateProduced) {
+    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, float msrp, float weight, float depth, float width, float height, float price, Date dateProduced) {
         this.productName = productName;
         this.description = description;
         this.manufacturer = manufacturer;
         this.modelNumber = modelNumber;
         this.msrp = msrp;
         this.weight = weight;
+        this.width = width;
         this.depth = depth;
+        this.height = height;
         this.price = price;
         this.dateProduced = dateProduced;
     }
@@ -60,6 +62,22 @@ public class Product {
 
     public void setModelNumber(String modelNumber) {
         this.modelNumber = modelNumber;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
     }
 
     public float getMsrp() {

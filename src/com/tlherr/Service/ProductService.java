@@ -75,6 +75,14 @@ public class ProductService {
                 "Enter the depth of the product in cm", ConsoleService.DEFAULT_HINT_FLOAT
         ));
 
+        product.setHeight(ConsoleService.getFloatInput(
+                "Enter the height of the product in cm", ConsoleService.DEFAULT_HINT_FLOAT
+        ));
+
+        product.setWidth(ConsoleService.getFloatInput(
+                "Enter the width of the product in cm", ConsoleService.DEFAULT_HINT_FLOAT
+        ));
+
         product.setModelNumber(ConsoleService.getStringInput(
                 "Enter the Model Number", ConsoleService.ALPHANUMERIC_WORDS, "DW713"
         ));

@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This class exists to inject a product and manufacturers into a menu response event
+ */
 public class ProductAwareActionListener implements ActionListener {
 
     private Product product;

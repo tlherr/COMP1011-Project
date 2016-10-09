@@ -22,34 +22,34 @@ public class ConsoleService {
      * Matches only upper/lower case characters
      * Used mostly for names
      */
-    public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
+    public static final String CHARACTERS_ONLY = "^[a-zA-Z]*$";
     /**
      * Matches only upper/lower case characters as well as numeric digits including commas and periods
      * Used for addresses ex (123 Fake Street RR#1 Barrie ON OHO2HO)
      */
-    public static String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,#])+";
+    public static final String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,#])+";
     /**
      * Matches only on the following format 111-111-1111 or 111.111.1111
      * Used exclusively for phone numbers
      */
-    public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
+    public static final String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
     /**
      * Matches only on upper/lower case M or F
      * Used exclusively for gender description
      */
-    public static String GENDER = "([M|m|F|f]{1})";
+    public static final String GENDER = "([M|m|F|f]{1})";
     /**
      * Matches any characters + @ symbol + any characters + period + any characters
      * ex. test@test.com   3243243@234234.com
      * Used exclusively for email addresses
      */
-    public static String EMAIL_BASIC = ".+\\@.+\\..+";
+    public static final String EMAIL_BASIC = ".+\\@.+\\..+";
 
 
 
-    public static String DEFAULT_HINT_DATE = "2002-02-20";
+    public static final String DEFAULT_HINT_DATE = "2002-02-20";
 
-    public static String DEFAULT_HINT_FLOAT = "203.50";
+    public static final String DEFAULT_HINT_FLOAT = "203.50";
 
 
     /**
