@@ -34,7 +34,7 @@ added to an ArrayList for storage;
 * Add validation to ALL user input (Note: NOT error handling/try-catch);
 * Implement class abstraction where applicable.
 
-# Week 8
+### Week 8
 
 * Build a graphical user interface (GUI) that replaces the menu-based system we worked
 on in our assignment 1. The GUI will need to have a presentable user interface that
