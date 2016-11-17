@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ConsoleService {
+public class InputService {
 
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
     public static String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,])+";
@@ -15,7 +15,7 @@ public class ConsoleService {
     public static String EMAIL_BASIC = ".+\\@.+\\..+";
 
     /**
-     * Given a hashmap (data structure for menu options
+     * Given a hashmap (data structur for menu options
      * @param map Map of options (key value pair)
      * @return String regular expression that matches only the given keys from the hashmap
      */

@@ -33,3 +33,24 @@ added to an ArrayList for storage;
 ..* Allow for a search for a product and display the result;
 * Add validation to ALL user input (Note: NOT error handling/try-catch);
 * Implement class abstraction where applicable.
+
+# Week 8
+
+* Build a graphical user interface (GUI) that replaces the menu-based system we worked
+on in our assignment 1. The GUI will need to have a presentable user interface that
+includes all the features included in assignment 1. Below is a list of some requirements
+for this assignment.
+..* An outer JFrame to house the all sub-components
+..* A top panel that has a greeting label
+..* A bottom panel that has a button panel that includes an exit button
+..* A center panel that contains tabbed interface. The tabbed interface must have the
+following tabs:
+* HR tab that has the ability to collect all the information of all types of
+Employees
+* Inventory tab that has the ability to collect all the information about a
+Product (including manufacturer information – HINT: Information to create
+two separate objects might be required when you create a Product object)
+* Search tab that allows for searching Employees and/or a Product
+(separately) and have the potential to display the result in a JTextArea
+component (no functionality is required for part 1 of the assignment).
+* The GUI must have the proper default closing operations.

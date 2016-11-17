@@ -8,8 +8,8 @@ import com.tlherr.Repository.ProductRepository;
 public class ProductService {
 
     public static void findProduct() {
-        Product foundProduct = ProductRepository.getInstance().findByProductName(ConsoleService.getStringInput(
-                "Enter the name of the Product", ConsoleService.CHARACTERS_ONLY, "Productname"));
+        Product foundProduct = ProductRepository.getInstance().findByProductName(InputService.getStringInput(
+                "Enter the name of the Product", InputService.CHARACTERS_ONLY, "Productname"));
 
         if(foundProduct!=null) {
             System.out.println("Found a matching product Model Number:"+foundProduct.getModelNumber());
