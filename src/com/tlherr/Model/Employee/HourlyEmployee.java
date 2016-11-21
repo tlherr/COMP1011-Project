@@ -39,4 +39,9 @@ public class HourlyEmployee extends AbstractEmployee {
     public void setHourlyRate(Float hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
+
+    @Override
+    public Integer getRowCount() {
+        return getClass().getDeclaredFields().length;
+    }
 }

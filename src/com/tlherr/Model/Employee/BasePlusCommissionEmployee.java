@@ -33,4 +33,9 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
     public void setBaseSalary(float baseSalary) {
         this.baseSalary = baseSalary;
     }
+
+    @Override
+    public Integer getRowCount() {
+        return getClass().getDeclaredFields().length;
+    }
 }

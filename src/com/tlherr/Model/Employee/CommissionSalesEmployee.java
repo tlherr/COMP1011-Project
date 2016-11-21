@@ -39,4 +39,9 @@ public class CommissionSalesEmployee extends AbstractEmployee {
     public void setSales(float sales) {
         this.sales = sales;
     }
+
+    @Override
+    public Integer getRowCount() {
+        return getClass().getDeclaredFields().length;
+    }
 }

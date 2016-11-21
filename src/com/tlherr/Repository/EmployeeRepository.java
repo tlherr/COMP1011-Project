@@ -21,6 +21,10 @@ public class EmployeeRepository {
         employees.add(employee);
     }
 
+    public Integer getCount() {
+        return employees.size();
+    }
+
     public AbstractEmployee findByFirstName(String firstName) {
         for (AbstractEmployee employee : employees) {
             if(employee.getFirstName().equals(firstName)) {

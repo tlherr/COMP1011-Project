@@ -1,10 +1,11 @@
 package com.tlherr.Model.Employee;
 
+import com.tlherr.Model.IsTabular;
 import com.tlherr.Service.ServiceClass;
 
 import java.util.Date;
 
-public abstract class AbstractEmployee {
+public abstract class AbstractEmployee implements IsTabular {
 
     private String firstName, lastName, position, department,
             email, phoneNumber, address, gender;
