@@ -10,8 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class ContainerFrame extends JFrame {
+
+    private JMenuBar menuBar;
 
     private JPanel topPanel;
     private JPanel middlePanel;
@@ -28,14 +31,26 @@ public class ContainerFrame extends JFrame {
         super(Strings.APPLICATION_TITLE);
         this.setLayout(new BorderLayout());
 
+        buildMenuBar();
         buildTopPanel(Strings.WELCOME_MESSAGE);
         buildMiddlePanel();
         buildBottomPanel();
 
+        add(menuBar, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.NORTH);
         add(middlePanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
         pack();
+    }
+
+    private void buildMenuBar() {
+        menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+
+        fileMenu.add(new JMenuItem("Populate Test Data", 't'));
+
+        menuBar.add(fileMenu);
     }
 
     private void buildTopPanel(String labelMessage) {

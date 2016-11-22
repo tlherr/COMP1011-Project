@@ -42,6 +42,22 @@ public class Strings {
     public static final String DELETE_MANUFACTURERS_BUTTON = "Delete";
     public static final String EDIT_MANUFACTURERS_BUTTON = "Edit";
 
+    /**
+     * Products Panel
+     */
+    public static final String PRODUCTS_TITLE = "Products";
+    public static final String ADD_PRODUCTS_BUTTON = "Add";
+    public static final String DELETE_PRODUCTS_BUTTON = "Delete";
+    public static final String EDIT_PRODUCTS_BUTTON = "Edit";
+
+    /**
+     * Search Page
+     */
+    public static final String SEARCH_TYPE_EMPLOYEE = "Employee";
+    public static final String SEARCH_TYPE_MANUFACTURER = "Manufacturer";
+    public static final String SEARCH_TYPE_PRODUCT = "Product";
+    public static final String SEARCH_LABEL = "Enter Search Text";
+
 
     private Strings() {
     }

@@ -11,13 +11,14 @@ import java.awt.*;
 public class InventoryPanel extends JPanel {
 
     private JPanel manufacturerPanel;
-    private JTable productPanel;
+    private JPanel productPanel;
 
     public InventoryPanel() {
         setLayout(new BorderLayout());
         manufacturerPanel = new ManufacturerPanel();
         add(manufacturerPanel, BorderLayout.NORTH);
 
-
+        productPanel = new ProductPanel();
+        add(productPanel, BorderLayout.SOUTH);
     }
 }
