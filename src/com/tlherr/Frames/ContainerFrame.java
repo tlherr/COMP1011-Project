@@ -4,6 +4,7 @@ package com.tlherr.Frames;
 import com.tlherr.Panels.HumanResourcesPanel;
 import com.tlherr.Panels.InventoryPanel;
 import com.tlherr.Panels.SearchPanel;
+import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,13 +21,14 @@ public class ContainerFrame extends JFrame {
 
     private JTabbedPane tabbedPane;
 
+
     private JButton exitButton;
 
     public ContainerFrame() {
-        super("COMP1011 Employee System");
+        super(Strings.APPLICATION_TITLE);
         this.setLayout(new BorderLayout());
 
-        buildTopPanel("Welcome");
+        buildTopPanel(Strings.WELCOME_MESSAGE);
         buildMiddlePanel();
         buildBottomPanel();
 
@@ -47,12 +49,13 @@ public class ContainerFrame extends JFrame {
     }
 
     private void buildMiddlePanel() {
-        middlePanel = new JPanel(new GridLayout());
+        middlePanel = new JPanel(new BorderLayout());
         tabbedPane = new JTabbedPane();
-        tabbedPane.add("Human Resources", new HumanResourcesPanel());
-        tabbedPane.add("Inventory", new InventoryPanel());
-        tabbedPane.add("Search", new SearchPanel());
-        middlePanel.add(tabbedPane);
+        tabbedPane.add(Strings.HUMAN_RESOURCES_TAB, new HumanResourcesPanel());
+        tabbedPane.add(Strings.INVENTORY_TAB, new InventoryPanel());
+        tabbedPane.add(Strings.SEARCH_TAB, new SearchPanel());
+        middlePanel.add(tabbedPane, BorderLayout.NORTH);
+
     }
 
     private void buildBottomPanel() {
