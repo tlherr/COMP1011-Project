@@ -48,6 +48,23 @@ public abstract class AbstractEmployee implements IsTabular {
                 this.getFirstName(), this.getLastName(), this.getIdNumber(), this.getDepartment(), this.getPosition());
     }
 
+    public String getProp(int index) {
+        switch(index) {
+            case 0:
+                return this.firstName;
+            case 1:
+                return this.lastName;
+            case 2:
+                return this.position;
+            case 3:
+                return this.department;
+            case 4:
+                return String.valueOf(this.idNumber);
+        }
+
+        return this.firstName;
+    }
+
     public abstract float calculatePay();
 
     public String getFirstName() {
