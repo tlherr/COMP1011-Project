@@ -21,12 +21,13 @@ public class HumanResourcesPanel extends Panel {
     private JButton deleteEmployeeButton;
     private JButton editEmployeeButton;
 
+    private JFrame frameReference;
 
     public HumanResourcesPanel() {
         setLayout(new BorderLayout());
 
         //Handy if frame reference is needed from panel
-        //frameReference = (JFrame) SwingUtilities.getWindowAncestor(this);
+        frameReference = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         employeeTable = new JTable(new EmployeeTableModel());
         employeeTable.setFillsViewportHeight(true);
@@ -52,7 +53,7 @@ public class HumanResourcesPanel extends Panel {
             //Spawn a new selection window asking the user what type of Employee they want to add
 
             EmployeeTypeSelection typeSelection = new EmployeeTypeSelection();
-            int result = JOptionPane.showConfirmDialog(null, typeSelection.build(), Strings.EMPLOYEE_TYPE_SELECTION_TITLE, JOptionPane.PLAIN_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(frameReference, typeSelection.build(), Strings.EMPLOYEE_TYPE_SELECTION_TITLE, JOptionPane.PLAIN_MESSAGE);
 
             if(result==JOptionPane.OK_OPTION) {
                 System.out.println(typeSelection.getSelection());
