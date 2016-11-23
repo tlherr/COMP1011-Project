@@ -11,6 +11,5 @@ public class Main {
         containerFrame.setSize(400, 400);
         containerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         containerFrame.setVisible(true);
-
     }
 }

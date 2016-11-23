@@ -58,6 +58,13 @@ public class Strings {
     public static final String SEARCH_TYPE_PRODUCT = "Product";
     public static final String SEARCH_LABEL = "Enter Search Text";
 
+    /**
+     * Employee Selection Type
+     */
+    public static final String EMPLOYEE_TYPE_SELECTION_TITLE = "Select Employee Type";
+    public static final String EMPLOYEE_TYPE_SELECTION_LABEL = "Please select the employee type to create";
+
+
 
     private Strings() {
     }
