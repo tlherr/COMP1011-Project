@@ -30,9 +30,9 @@ public class EmployeeService {
         //Which type of employee are we planning to create
 
         HashMap<Integer, String> employeeMenuOptions = new HashMap<Integer, String>();
-        employeeMenuOptions.put(1, "Hourly Employee");
-        employeeMenuOptions.put(2, "Base+Commission Employee");
-        employeeMenuOptions.put(3, "Commission Employee");
+        employeeMenuOptions.put(1, "Hourly AbstractEmployeeForm");
+        employeeMenuOptions.put(2, "Base+Commission AbstractEmployeeForm");
+        employeeMenuOptions.put(3, "Commission AbstractEmployeeForm");
         ConsoleMenu employeeMenu = new ConsoleMenu(employeeMenuOptions);
 
         employeeMenu.setListener(new ActionListener() {
@@ -68,58 +68,58 @@ public class EmployeeService {
     private void getInformation() {
         if(employee!=null) {
             employee.setFirstName(InputService.getStringInput(
-                    "Enter the firstname of the Employee", InputService.CHARACTERS_ONLY, "John"));
+                    "Enter the firstname of the AbstractEmployeeForm", InputService.CHARACTERS_ONLY, "John"));
             employee.setLastName(InputService.getStringInput(
-                    "Enter the lastname of the Employee", InputService.CHARACTERS_ONLY, "Smith"));
+                    "Enter the lastname of the AbstractEmployeeForm", InputService.CHARACTERS_ONLY, "Smith"));
             employee.setPosition(InputService.getStringInput(
-                    "Enter the position of the Employee", InputService.CHARACTERS_ONLY, "Position"));
+                    "Enter the position of the AbstractEmployeeForm", InputService.CHARACTERS_ONLY, "Position"));
             employee.setDepartment(InputService.getStringInput(
-                    "Enter the department of the Employee", InputService.CHARACTERS_ONLY, "Department"));
+                    "Enter the department of the AbstractEmployeeForm", InputService.CHARACTERS_ONLY, "Department"));
             employee.setSocialInsuranceNumber(InputService.getIntegerInput(
-                    "Enter the social insurance number of the Employee", "123456789 (No dashes)"));
+                    "Enter the social insurance number of the AbstractEmployeeForm", "123456789 (No dashes)"));
             employee.setEmail(InputService.getStringInput(
-                    "Enter the email of the Employee", InputService.EMAIL_BASIC, "user@address.tld"));
+                    "Enter the email of the AbstractEmployeeForm", InputService.EMAIL_BASIC, "user@address.tld"));
             employee.setPhoneNumber(InputService.getStringInput(
-                    "Enter the phone number of the Employee", InputService.PHONE_NUMBER, "111-222-3333 or 111.222.3333"));
+                    "Enter the phone number of the AbstractEmployeeForm", InputService.PHONE_NUMBER, "111-222-3333 or 111.222.3333"));
             employee.setAddress(InputService.getStringInput(
-                    "Enter the address of the Employee", InputService.ALPHANUMERIC_WORDS, "123 Fake St (No special characters)"));
+                    "Enter the address of the AbstractEmployeeForm", InputService.ALPHANUMERIC_WORDS, "123 Fake St (No special characters)"));
             employee.setGender(InputService.getStringInput(
-                    "Enter the gender of the Employee", InputService.GENDER, "M m or F f"));
+                    "Enter the gender of the AbstractEmployeeForm", InputService.GENDER, "M m or F f"));
             employee.setVacationsDays(InputService.getIntegerInput(
-                    "Enter the vacation days of the Employee", "23 (Non negative whole numbers)"));
+                    "Enter the vacation days of the AbstractEmployeeForm", "23 (Non negative whole numbers)"));
 
             employee.setDateHired(InputService.getDateInput(
-                    "Enter the date the Employee was hired", "2002-01-01"));
+                    "Enter the date the AbstractEmployeeForm was hired", "2002-01-01"));
 
             employee.setDateOfBirth(InputService.getDateInput(
-                    "Enter the date of birth of the Employee", "2002-01-01"));
+                    "Enter the date of birth of the AbstractEmployeeForm", "2002-01-01"));
 
 
             //Dat polymorphism
             if(employee instanceof HourlyEmployee) {
                 ((HourlyEmployee) employee).setHourlyRate(InputService.getFloatInput(
-                        "Enter the hourly rate of the Employee", "42343.00"));
+                        "Enter the hourly rate of the AbstractEmployeeForm", "42343.00"));
                 ((HourlyEmployee) employee).setHoursWorked(InputService.getFloatInput(
-                        "Enter the hours worked by the Employee", "42343.00"));
+                        "Enter the hours worked by the AbstractEmployeeForm", "42343.00"));
             }
 
             if (employee instanceof BasePlusCommissionEmployee) {
                 ((BasePlusCommissionEmployee) employee).setBaseSalary(InputService.getFloatInput(
-                        "Enter the base salary of the Employee", "42343.00"));
+                        "Enter the base salary of the AbstractEmployeeForm", "42343.00"));
             }
 
 
             if(employee instanceof CommissionSalesEmployee) {
                 ((CommissionSalesEmployee) employee).setCommissionRate(InputService.getFloatInput(
-                        "Enter the commision rate of the Employee", "42343.00"));
+                        "Enter the commision rate of the AbstractEmployeeForm", "42343.00"));
                 ((CommissionSalesEmployee) employee).setSales(InputService.getFloatInput(
-                        "Enter the sales percentage of the Employee", "10%"));
+                        "Enter the sales percentage of the AbstractEmployeeForm", "10%"));
             }
 
             //At this point we should have a full employee, save it
 
             EmployeeRepository.getInstance().addEmployee(employee);
-            System.out.println("Employee Saved (ID: "+employee.getIdNumber()+")");
+            System.out.println("AbstractEmployeeForm Saved (ID: "+employee.getIdNumber()+")");
 
             String[] args = {};
             Main.main(args);
@@ -128,7 +128,7 @@ public class EmployeeService {
 
     public void findEmployee() {
         AbstractEmployee foundEmployee = EmployeeRepository.getInstance().findByFirstName(InputService.getStringInput(
-                "Enter the firstname of the Employee", InputService.CHARACTERS_ONLY, "John"));
+                "Enter the firstname of the AbstractEmployeeForm", InputService.CHARACTERS_ONLY, "John"));
 
         if(foundEmployee!=null) {
             System.out.println("Found a matching employee ID:"+foundEmployee.getIdNumber());

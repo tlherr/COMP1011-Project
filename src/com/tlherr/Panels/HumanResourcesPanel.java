@@ -1,5 +1,6 @@
 package com.tlherr.Panels;
 
+import com.tlherr.Form.BasePlusCommissionEmployeeForm;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Resources.Strings;
 
@@ -29,8 +30,9 @@ public class HumanResourcesPanel extends Panel {
         //frameReference = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         employeeTable = new JTable(new EmployeeTableModel());
+        employeeTable.setPreferredScrollableViewportSize(employeeTable.getPreferredSize());
         employeeTable.setFillsViewportHeight(true);
-        add(employeeTable, BorderLayout.NORTH);
+        add(new JScrollPane(employeeTable), BorderLayout.CENTER);
 
         employeeOperationsButtons = new JPanel(new FlowLayout());
         addEmployeeButton = new JButton(Strings.ADD_EMPLOYEE);
@@ -53,18 +55,20 @@ public class HumanResourcesPanel extends Panel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //Spawn a new selection window asking the user what type of Employee they want to add
+            //Spawn a new selection window asking the user what type of AbstractEmployeeForm they want to add
             switch(employeeTypeSelector.getSelectedIndex()) {
                 case 0:
-                    //Create a new Base+Commission Employee
+                    //Create a new Base+Commission EmployeeForm
+                    BasePlusCommissionEmployeeForm bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm();
+                    bpcComissionEmployeeForm.build();
                     break;
 
                 case 1:
-                    //Create a new Commission Employee
+                    //Create a new Commission EmployeeForm
                     break;
 
                 case 2:
-                    //Create a new Hourly Employee
+                    //Create a new Hourly EmployeeForm
                     break;
             }
         }

@@ -28,7 +28,7 @@ public class Strings {
     public static final String SEARCH_TAB = "Search";
 
     /**
-     * Employee Buttons
+     * AbstractEmployeeForm Buttons
      */
     public static final String ADD_EMPLOYEE = "Add";
     public static final String DELETE_EMPLOYEE = "Delete";
@@ -64,6 +64,12 @@ public class Strings {
     public static final String EMPLOYEE_TYPE_SELECTION_TITLE = "Select Employee Type";
     public static final String EMPLOYEE_TYPE_SELECTION_LABEL = "Please select the employee type to create";
 
+    /**
+     * Employee Form
+     */
+    public static final String EMPLOYEE_FORM_TITLE = " Employee";
+    public static final String EMPLOYEE_FORM_LABEL_FIRSTNAME = "First Name: ";
+    public static final String EMPLOYEE_FORM_LABEL_LASTNAME = "Last Name: ";
 
 
     private Strings() {

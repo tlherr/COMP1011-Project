@@ -9,8 +9,8 @@ import javax.swing.table.TableModel;
 
 public class EmployeeTableModel extends AbstractTableModel {
 
-    private String[] columnNames = { "Employee Type", "First Name", "Sport",
-            "# of Years", "Vegetarian" };
+    private String[] columnNames = { "Employee Type", "ID", "First Name", "Last Name", "Position",
+            "Department" };
 
     public int getRowCount() {
         return EmployeeRepository.getInstance().getCount();

@@ -7,6 +7,7 @@ import java.util.Date;
 
 public abstract class AbstractEmployee implements IsTabular {
 
+    private String type;
     private String firstName, lastName, position, department,
             email, phoneNumber, address, gender;
     private int idNumber, vacationsDays, socialInsuranceNumber;
@@ -17,6 +18,7 @@ public abstract class AbstractEmployee implements IsTabular {
     }
 
     protected AbstractEmployee(String firstName, String lastName, String position, String department) {
+        this.type = this.getClass().getSimpleName();
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -26,6 +28,7 @@ public abstract class AbstractEmployee implements IsTabular {
 
     protected AbstractEmployee(String firstName, String lastName, String position, String department, Integer socialInsuranceNumber,
                     String email, String phoneNumber, String address, String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
+        this.type = this.getClass().getSimpleName();
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -51,15 +54,18 @@ public abstract class AbstractEmployee implements IsTabular {
     public String getProp(int index) {
         switch(index) {
             case 0:
-                return this.firstName;
+                return this.type;
             case 1:
-                return this.lastName;
-            case 2:
-                return this.position;
-            case 3:
-                return this.department;
-            case 4:
                 return String.valueOf(this.idNumber);
+            case 2:
+                return this.firstName;
+            case 3:
+                return this.lastName;
+            case 4:
+                return this.position;
+            case 5:
+                return this.department;
+
         }
 
         return this.firstName;
