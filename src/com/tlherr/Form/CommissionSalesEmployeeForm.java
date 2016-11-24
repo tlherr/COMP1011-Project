@@ -1,24 +1,23 @@
 package com.tlherr.Form;
 
-import com.tlherr.Model.Employee.AbstractEmployee;
-import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
 
-public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
+public class CommissionSalesEmployeeForm extends AbstractEmployeeForm {
 
-    public BasePlusCommissionEmployeeForm() {
+    public CommissionSalesEmployeeForm() {
         super();
     }
 
-    public BasePlusCommissionEmployeeForm(BasePlusCommissionEmployee empl) {
+    public CommissionSalesEmployeeForm(CommissionSalesEmployee empl) {
         super(empl);
     }
 
     @Override
     public void addFormElements() {
-        BasePlusCommissionEmployee empl = (BasePlusCommissionEmployee) this.employee;
+        CommissionSalesEmployee empl = (CommissionSalesEmployee) this.employee;
 
         //This adds any extra form elements beyond the base ones provided by abstract employee form
 
@@ -41,18 +40,6 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
             salesTextField.setText(String.valueOf(empl.getSales()));
         }
         addTextField(salesTextField);
-
-        //Base Salary
-        JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
-        addLabel(salaryLabel);
-
-        JTextField salaryTextField = new JTextField();
-        if(this.employee!=null) {
-            salaryTextField.setText(String.valueOf(empl.getBaseSalary()));
-        }
-        addTextField(salaryTextField);
-
-
 
     }
 }

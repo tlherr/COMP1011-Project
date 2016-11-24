@@ -1,8 +1,5 @@
 package com.tlherr.Resources;
 
-/**
- * Created by tom on 2016-11-22.
- */
 public class Strings {
     private static Strings manager = new Strings();
     public static Strings getManager() {
@@ -59,17 +56,30 @@ public class Strings {
     public static final String SEARCH_LABEL = "Enter Search Text";
 
     /**
-     * Employee Selection Type
-     */
-    public static final String EMPLOYEE_TYPE_SELECTION_TITLE = "Select Employee Type";
-    public static final String EMPLOYEE_TYPE_SELECTION_LABEL = "Please select the employee type to create";
-
-    /**
      * Employee Form
      */
-    public static final String EMPLOYEE_FORM_TITLE = " Employee";
     public static final String EMPLOYEE_FORM_LABEL_FIRSTNAME = "First Name: ";
     public static final String EMPLOYEE_FORM_LABEL_LASTNAME = "Last Name: ";
+    public static final String EMPLOYEE_FORM_LABEL_POSITION = "Position: ";
+    public static final String EMPLOYEE_FORM_LABEL_DEPARTMENT = "Department: ";
+    public static final String EMPLOYEE_FORM_LABEL_ID = "Id: ";
+
+    /**
+     * Employee Form Controls
+     */
+    public static final String EMPLOYEE_CONTROL_BUTTON_OK = "Ok";
+    public static final String EMPLOYEE_CONTROL_BUTTON_CANCEL = "Cancel";
+
+    /**
+     * Base Plus Commission Employee Specific Form
+     */
+    public static final String BPC_EMPLOYEE_FORM_LABEL_SALARY = "Salary: ";
+
+    /**
+     * Commission Sales Employee
+     */
+    public static final String C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE = "Commission Rate: ";
+    public static final String C_EMPLOYEE_FORM_LABEL_SALES = "Sales: ";
 
 
     private Strings() {
