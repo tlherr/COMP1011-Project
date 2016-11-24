@@ -7,6 +7,7 @@ import com.tlherr.Panels.SearchPanel;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,6 +66,7 @@ public class ContainerFrame extends JFrame {
 
     private void buildMiddlePanel() {
         middlePanel = new JPanel(new BorderLayout());
+        middlePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         tabbedPane = new JTabbedPane();
         tabbedPane.add(Strings.HUMAN_RESOURCES_TAB, new HumanResourcesPanel());
         tabbedPane.add(Strings.INVENTORY_TAB, new InventoryPanel());
@@ -74,10 +76,11 @@ public class ContainerFrame extends JFrame {
     }
 
     private void buildBottomPanel() {
-        bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel = new JPanel(new FlowLayout());
         exitButton = new JButton("Exit");
+        exitButton.setPreferredSize(new Dimension(60, 20));
         exitButton.addActionListener(new ExitButtonHandler());
-        bottomPanel.add(exitButton, BorderLayout.CENTER);
+        bottomPanel.add(exitButton);
     }
 
     private class ExitButtonHandler implements ActionListener {

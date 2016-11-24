@@ -5,6 +5,7 @@ import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,13 @@ public class HumanResourcesPanel extends Panel {
         employeeTable = new JTable(new EmployeeTableModel());
         employeeTable.setPreferredScrollableViewportSize(employeeTable.getPreferredSize());
         employeeTable.setFillsViewportHeight(true);
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i=0; i<employeeTable.getColumnCount(); i++) {
+            employeeTable.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
+        }
+
         add(new JScrollPane(employeeTable), BorderLayout.CENTER);
 
         employeeOperationsButtons = new JPanel(new FlowLayout());
