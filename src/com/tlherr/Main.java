@@ -14,7 +14,7 @@ public class Main {
         EmployeeRepository.getInstance().addEmployee(new HourlyEmployee("Thomas", "Herr", "Developer", "Information Technology", 40.0f, 20.0f));
 
         ContainerFrame containerFrame = new ContainerFrame();
-        containerFrame.setSize(400, 400);
+        containerFrame.setSize(800, 800);
         containerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         containerFrame.setVisible(true);
     }

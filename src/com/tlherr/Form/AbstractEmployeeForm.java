@@ -6,8 +6,9 @@ import com.tlherr.Resources.Strings;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public abstract class AbstractEmployeeForm extends JFrame {
+public abstract class AbstractEmployeeForm extends JPanel {
 
     protected AbstractEmployee employee;
     //Take a panel argument that contains text info from classes?
@@ -16,13 +17,18 @@ public abstract class AbstractEmployeeForm extends JFrame {
     protected GridBagConstraints labelConstraints;
     protected GridBagConstraints textFieldConstrains;
 
+    protected JTextField firstNameTextField;
+    protected JTextField lastNameTextField;
+    protected JTextField positionTextField;
+    protected JTextField departmentTextField;
+
+
     protected JButton okButton;
     protected JButton cancelButton;
 
     public AbstractEmployeeForm() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(400, 400));
-        setTitle("Employee Form");
+//        setPreferredSize(new Dimension(400, 400));
         //No Employee was given here, make the container panel
         contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -72,7 +78,7 @@ public abstract class AbstractEmployeeForm extends JFrame {
         JLabel firstNameLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_FIRSTNAME);
         addLabel(firstNameLabel);
 
-        JTextField firstNameTextField = new JTextField();
+        firstNameTextField = new JTextField();
         if(this.employee!=null) {
             firstNameTextField.setText(this.employee.getFirstName());
         }
@@ -82,7 +88,7 @@ public abstract class AbstractEmployeeForm extends JFrame {
         JLabel lastNameLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_LASTNAME);
         addLabel(lastNameLabel);
 
-        JTextField lastNameTextField = new JTextField();
+        lastNameTextField = new JTextField();
         if(this.employee!=null) {
             lastNameTextField.setText(this.employee.getLastName());
         }
@@ -92,7 +98,7 @@ public abstract class AbstractEmployeeForm extends JFrame {
         JLabel positionLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_POSITION);
         addLabel(positionLabel);
 
-        JTextField positionTextField = new JTextField();
+        positionTextField = new JTextField();
         if(this.employee!=null) {
             positionTextField.setText(this.employee.getPosition());
         }
@@ -102,21 +108,11 @@ public abstract class AbstractEmployeeForm extends JFrame {
         JLabel departmentLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT);
         addLabel(departmentLabel);
 
-        JTextField departmentTextField = new JTextField();
+        departmentTextField = new JTextField();
         if(this.employee!=null) {
             departmentTextField.setText(this.employee.getDepartment());
         }
         addTextField(departmentTextField);
-
-        //Id Number
-        JLabel idLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_ID);
-        addLabel(idLabel);
-
-        JTextField idTextField = new JTextField();
-        if(this.employee!=null) {
-            departmentTextField.setText(String.valueOf(this.employee.getIdNumber()));
-        }
-        addTextField(idTextField);
     }
 
     /**
@@ -132,6 +128,17 @@ public abstract class AbstractEmployeeForm extends JFrame {
 
     }
 
+    public void setOkButtonActionListener(ActionListener listener) {
+        if(this.okButton!=null) {
+            this.okButton.addActionListener(listener);
+        }
+    }
+
+    public void setCancelButtonActionListener(ActionListener listener) {
+        if(this.cancelButton!=null) {
+            this.cancelButton.addActionListener(listener);
+        }
+    }
 
     public void build() {
         buildBaseFormElements();
@@ -139,9 +146,11 @@ public abstract class AbstractEmployeeForm extends JFrame {
         addFormControls();
         add(contentPanel, BorderLayout.NORTH);
         add(controlsPanel, BorderLayout.SOUTH);
-        pack();
         setVisible(true);
     }
+
+    public abstract AbstractEmployee submit();
+    public abstract Boolean validateForm();
 
     /**
      * Important to note that gridBagConstraits will already have elements in it

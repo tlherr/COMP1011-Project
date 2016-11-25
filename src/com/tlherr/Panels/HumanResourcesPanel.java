@@ -1,7 +1,11 @@
 package com.tlherr.Panels;
 
+import com.tlherr.Form.AbstractEmployeeForm;
 import com.tlherr.Form.BasePlusCommissionEmployeeForm;
+import com.tlherr.Form.CommissionSalesEmployeeForm;
+import com.tlherr.Form.HourlyEmployeeForm;
 import com.tlherr.Model.Employee.EmployeeTableModel;
+import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
@@ -22,13 +26,18 @@ public class HumanResourcesPanel extends Panel {
     private JComboBox<String> employeeTypeSelector;
     private JButton deleteEmployeeButton;
     private JButton editEmployeeButton;
+    private JPanel employeeFormPanel;
+
+    /**
+     * Forms
+     */
+    private BasePlusCommissionEmployeeForm bpcComissionEmployeeForm;
+    private CommissionSalesEmployeeForm commissionSalesEmployeeForm;
+    private HourlyEmployeeForm hourlyEmployeeForm;
 
 
     public HumanResourcesPanel() {
         setLayout(new BorderLayout());
-
-        //Handy if frame reference is needed from panel
-        //frameReference = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         employeeTable = new JTable(new EmployeeTableModel());
         employeeTable.setPreferredScrollableViewportSize(employeeTable.getPreferredSize());
@@ -40,11 +49,11 @@ public class HumanResourcesPanel extends Panel {
             employeeTable.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
         }
 
-        add(new JScrollPane(employeeTable), BorderLayout.CENTER);
+        add(new JScrollPane(employeeTable), BorderLayout.NORTH);
 
         employeeOperationsButtons = new JPanel(new FlowLayout());
         addEmployeeButton = new JButton(Strings.ADD_EMPLOYEE);
-        String[] options = new String[]{"Base + Commission", "Commission", "Hourly"};
+        String[] options = new String[]{"Base + Commission", "Commission", "Hourly", "Salary"};
         employeeTypeSelector = new JComboBox<>(options);
 
         addEmployeeButton.addActionListener(new AddEmployeeButtonListener());
@@ -56,30 +65,111 @@ public class HumanResourcesPanel extends Panel {
         employeeOperationsButtons.add(deleteEmployeeButton);
         employeeOperationsButtons.add(editEmployeeButton);
 
-        add(employeeOperationsButtons, BorderLayout.SOUTH);
+        add(employeeOperationsButtons, BorderLayout.CENTER);
+
+        employeeFormPanel = new JPanel(new BorderLayout());
+        add(employeeFormPanel, BorderLayout.SOUTH);
     }
 
     private class AddEmployeeButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //@TODO: Clear old forms here
+
             //Spawn a new selection window asking the user what type of AbstractEmployeeForm they want to add
             switch(employeeTypeSelector.getSelectedIndex()) {
                 case 0:
                     //Create a new Base+Commission EmployeeForm
-                    BasePlusCommissionEmployeeForm bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm();
+                    bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm();
                     bpcComissionEmployeeForm.build();
+                    bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                    bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                    employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
                     break;
 
                 case 1:
                     //Create a new Commission EmployeeForm
+                    commissionSalesEmployeeForm = new CommissionSalesEmployeeForm();
+                    commissionSalesEmployeeForm.build();
+                    commissionSalesEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                    commissionSalesEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                    employeeFormPanel.add(commissionSalesEmployeeForm, BorderLayout.CENTER);
                     break;
 
                 case 2:
                     //Create a new Hourly EmployeeForm
+                    hourlyEmployeeForm = new HourlyEmployeeForm();
+                    hourlyEmployeeForm.build();
+                    hourlyEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                    hourlyEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                    employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
+                    break;
+
+                case 4:
+                    //Create a new Salary EmployeeForm
+                    break;
+
+
+            }
+            addEmployeeButton.setEnabled(false);
+            employeeTypeSelector.setEnabled(false);
+            repack();
+        }
+    }
+
+    private class OkEmployeeButtonListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Handle the OK button being clicked
+            switch(employeeTypeSelector.getSelectedIndex()) {
+                case 0:
+                    if(bpcComissionEmployeeForm.validateForm()) {
+                        EmployeeRepository.getInstance().save(bpcComissionEmployeeForm.submit());
+                    }
                     break;
             }
+
+            employeeFormPanel.removeAll();
+            addEmployeeButton.setEnabled(true);
+            employeeTypeSelector.setEnabled(true);
+
+            hourlyEmployeeForm = null;
+            bpcComissionEmployeeForm = null;
+            commissionSalesEmployeeForm = null;
         }
+    }
+
+    private class CancelEmployeeButtonListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Clear out the frame
+            employeeFormPanel.removeAll();
+            addEmployeeButton.setEnabled(true);
+            employeeTypeSelector.setEnabled(true);
+
+            hourlyEmployeeForm = null;
+            bpcComissionEmployeeForm = null;
+            commissionSalesEmployeeForm = null;
+        }
+    }
+
+
+
+    public void repack() {
+        SwingUtilities.getWindowAncestor(this).pack();
     }
 
 }

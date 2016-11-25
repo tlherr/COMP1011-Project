@@ -27,6 +27,6 @@ public class EmployeeTableModel extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         //return data[row][col];
-        return EmployeeRepository.getInstance().getAt(row,col);
+        return EmployeeRepository.getInstance().getPropAt(row,col);
     }
 }

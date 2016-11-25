@@ -21,7 +21,7 @@ public class EmployeeRepository {
         employees.add(employee);
     }
 
-    public String getAt(int index, int col) {
+    public String getPropAt(int index, int col) {
         //Check if index is within bounds
         if(!(index>employees.size()) && !(index<0)) {
             return employees.get(index).getProp(col);
@@ -40,5 +40,23 @@ public class EmployeeRepository {
             }
         }
         return null;
+    }
+
+    public void save(AbstractEmployee employee) {
+        Boolean found = false;
+        //Check if the employee exists already
+        for(int i=0; i<employees.size(); i++) {
+            if(employees.get(i).getIdNumber() == employee.getIdNumber()) {
+                //The employee already exists, update the info
+                employees.set(i, employee);
+                found = true;
+            }
+        }
+
+        if(!found) {
+            //This is a new employee, save it
+            addEmployee(employee);
+        }
+
     }
 }

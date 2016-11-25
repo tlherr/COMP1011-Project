@@ -81,6 +81,12 @@ public class Strings {
     public static final String C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE = "Commission Rate: ";
     public static final String C_EMPLOYEE_FORM_LABEL_SALES = "Sales: ";
 
+    /**
+     * Hourly Sales Employee
+     */
+    public static final String H_EMPLOYEE_FORM_LABEL_HOURLY_RATE = "Hourly Rate: ";
+
+
 
     private Strings() {
     }
