@@ -1,11 +1,8 @@
 package com.tlherr.Model.Employee;
 
 import com.tlherr.Repository.EmployeeRepository;
-import com.tlherr.Service.EmployeeService;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 public class EmployeeTableModel extends AbstractTableModel {
 

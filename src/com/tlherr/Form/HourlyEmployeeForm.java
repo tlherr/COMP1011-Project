@@ -1,5 +1,6 @@
 package com.tlherr.Form;
 
+import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Resources.Strings;
@@ -10,6 +11,16 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
 
     public HourlyEmployeeForm() {
         super();
+    }
+
+    @Override
+    public AbstractEmployee submit() {
+        return null;
+    }
+
+    @Override
+    public Boolean validateForm() {
+        return null;
     }
 
     public HourlyEmployeeForm(HourlyEmployee empl) {

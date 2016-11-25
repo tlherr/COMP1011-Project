@@ -3,7 +3,6 @@ package com.tlherr;
 import com.tlherr.Frames.ContainerFrame;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Repository.EmployeeRepository;
-import com.tlherr.Service.EmployeeService;
 
 import javax.swing.*;
 
