@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * This is the main frame of the application. It contains all sub panels
+ */
 public class ContainerFrame extends JFrame {
 
     private JMenuBar menuBar;
@@ -32,12 +35,12 @@ public class ContainerFrame extends JFrame {
         super(Strings.APPLICATION_TITLE);
         this.setLayout(new BorderLayout());
 
-        buildMenuBar();
+        //buildMenuBar();
         buildTopPanel(Strings.WELCOME_MESSAGE);
         buildMiddlePanel();
         buildBottomPanel();
 
-        add(menuBar, BorderLayout.PAGE_START);
+        //add(menuBar, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.NORTH);
         add(middlePanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);

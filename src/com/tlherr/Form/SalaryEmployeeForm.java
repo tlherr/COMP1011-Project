@@ -1,8 +1,7 @@
 package com.tlherr.Form;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
-import com.tlherr.Model.Employee.CommissionSalesEmployee;
-import com.tlherr.Model.Employee.HourlyEmployee;
+import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
@@ -10,9 +9,9 @@ import javax.swing.*;
 /**
  * This class implements a form panel that collects/displays data for an Employee of type CommissionSalesEmployeeForm
  */
-public class HourlyEmployeeForm extends AbstractEmployeeForm {
+public class SalaryEmployeeForm extends AbstractEmployeeForm {
 
-    public HourlyEmployeeForm() {
+    public SalaryEmployeeForm() {
         super();
     }
 
@@ -26,24 +25,24 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         return null;
     }
 
-    public HourlyEmployeeForm(HourlyEmployee empl) {
+    public SalaryEmployeeForm(SalaryEmployee empl) {
         super(empl);
     }
 
     @Override
     public void addFormElements() {
-        HourlyEmployee empl = (HourlyEmployee) this.employee;
+        SalaryEmployee empl = (SalaryEmployee) this.employee;
 
         //This adds any extra form elements beyond the base ones provided by abstract employee form
 
         //Commission Rate
-        JLabel hourlyRateLabel = new JLabel(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE);
-        addLabel(hourlyRateLabel);
+        JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
+        addLabel(salaryLabel);
 
-        JTextField hourlyRateTextField = new JTextField();
+        JTextField salaryTextField = new JTextField();
         if(this.employee!=null) {
-            hourlyRateTextField.setText(String.valueOf(empl.getHourlyRate()));
+            salaryTextField.setText(String.valueOf(empl.getSalary()));
         }
-        addTextField(hourlyRateTextField);
+        addTextField(salaryTextField);
     }
 }

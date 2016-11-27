@@ -7,6 +7,9 @@ import com.tlherr.Service.InputService;
 
 import javax.swing.*;
 
+/**
+ * This class implements a form panel that collects/displays data for an Employee of type BasePlusCommissionEmployee
+ */
 public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
 
     private JTextField commissionRateTextField;
@@ -19,16 +22,18 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
 
     @Override
     public AbstractEmployee submit() {
-        //This is form submission, get the values from the fields then return an employee
-
         BasePlusCommissionEmployee empl;
 
+        //Check if an employee already exists for the form
         if(this.employee==null) {
+            //Employee does not exist, create a new one
             empl = new BasePlusCommissionEmployee();
         } else {
+            //If an employee does exist overwrite the existing values
             empl = (BasePlusCommissionEmployee) this.employee;
         }
 
+        //Add form values to Employee object
         empl.setFirstName(firstNameTextField.getText());
         empl.setLastName(lastNameTextField.getText());
         empl.setPosition(positionTextField.getText());
@@ -39,8 +44,8 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
 
     @Override
     public Boolean validateForm() {
-        //Check form values
-
+        //Check form values to see if they match expectations
+        //@TODO: Modify to return array of failed values so validation messages can be displayed
         return InputService.validate(firstNameTextField.getText(), InputService.CHARACTERS_ONLY)
                 && InputService.validate(lastNameTextField.getText(), InputService.CHARACTERS_ONLY)
                 && InputService.validate(positionTextField.getText(), InputService.CHARACTERS_ONLY)
@@ -56,9 +61,8 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
 
     @Override
     public void addFormElements() {
-        BasePlusCommissionEmployee empl = (BasePlusCommissionEmployee) this.employee;
-
         //This adds any extra form elements beyond the base ones provided by abstract employee form
+        BasePlusCommissionEmployee empl = (BasePlusCommissionEmployee) this.employee;
 
         //Commission Rate
         JLabel commissionRateLabel = new JLabel(Strings.C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE);
@@ -89,8 +93,5 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
             salaryTextField.setText(String.valueOf(empl.getBaseSalary()));
         }
         addTextField(salaryTextField);
-
-
-
     }
 }

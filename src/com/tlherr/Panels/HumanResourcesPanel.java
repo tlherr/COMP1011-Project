@@ -1,9 +1,6 @@
 package com.tlherr.Panels;
 
-import com.tlherr.Form.AbstractEmployeeForm;
-import com.tlherr.Form.BasePlusCommissionEmployeeForm;
-import com.tlherr.Form.CommissionSalesEmployeeForm;
-import com.tlherr.Form.HourlyEmployeeForm;
+import com.tlherr.Form.*;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
@@ -34,6 +31,7 @@ public class HumanResourcesPanel extends Panel {
     private BasePlusCommissionEmployeeForm bpcComissionEmployeeForm;
     private CommissionSalesEmployeeForm commissionSalesEmployeeForm;
     private HourlyEmployeeForm hourlyEmployeeForm;
+    private SalaryEmployeeForm salaryEmployeeForm;
 
 
     public HumanResourcesPanel() {
@@ -75,7 +73,6 @@ public class HumanResourcesPanel extends Panel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //@TODO: Clear old forms here
 
             //Spawn a new selection window asking the user what type of AbstractEmployeeForm they want to add
             switch(employeeTypeSelector.getSelectedIndex()) {
@@ -106,8 +103,13 @@ public class HumanResourcesPanel extends Panel {
                     employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
                     break;
 
-                case 4:
+                case 3:
                     //Create a new Salary EmployeeForm
+                    salaryEmployeeForm = new SalaryEmployeeForm();
+                    salaryEmployeeForm.build();
+                    salaryEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                    salaryEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                    employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
                     break;
 
 
@@ -143,6 +145,8 @@ public class HumanResourcesPanel extends Panel {
             hourlyEmployeeForm = null;
             bpcComissionEmployeeForm = null;
             commissionSalesEmployeeForm = null;
+            salaryEmployeeForm = null;
+            repack();
         }
     }
 
@@ -163,6 +167,8 @@ public class HumanResourcesPanel extends Panel {
             hourlyEmployeeForm = null;
             bpcComissionEmployeeForm = null;
             commissionSalesEmployeeForm = null;
+            salaryEmployeeForm = null;
+            repack();
         }
     }
 

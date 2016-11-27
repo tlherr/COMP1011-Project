@@ -6,6 +6,9 @@ import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
 
+/**
+ * This class implements a form panel that collects/displays data for an Employee of type CommissionSalesEmployeeForm
+ */
 public class CommissionSalesEmployeeForm extends AbstractEmployeeForm {
 
     public CommissionSalesEmployeeForm() {
