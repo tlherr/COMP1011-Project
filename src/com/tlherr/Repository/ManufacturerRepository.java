@@ -1,9 +1,13 @@
 package com.tlherr.Repository;
 
+import com.tlherr.Model.IsTabular;
 import com.tlherr.Model.Manufacturer;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible for storing and accessing manufacturers as they as saved/edited/removed
+ */
 public class ManufacturerRepository {
 
     private static ManufacturerRepository instance = new ManufacturerRepository();

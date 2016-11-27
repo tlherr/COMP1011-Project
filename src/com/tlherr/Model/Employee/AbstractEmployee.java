@@ -5,6 +5,12 @@ import com.tlherr.Service.ServiceClass;
 
 import java.util.Date;
 
+/**
+ * This class contains base elements and functionality for an employee. All employee types inherit from this class
+ *
+ * This class implements IsTablular interface so all child classes will have methods needed to be loaded into JTablel
+ * model
+ */
 public abstract class AbstractEmployee implements IsTabular {
 
     private String type;
@@ -26,8 +32,9 @@ public abstract class AbstractEmployee implements IsTabular {
         this.idNumber = ServiceClass.getId();
     }
 
-    protected AbstractEmployee(String firstName, String lastName, String position, String department, Integer socialInsuranceNumber,
-                    String email, String phoneNumber, String address, String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
+    protected AbstractEmployee(String firstName, String lastName, String position, String department,
+                               Integer socialInsuranceNumber, String email, String phoneNumber, String address,
+                               String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
         this.type = this.getClass().getSimpleName();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,6 +58,12 @@ public abstract class AbstractEmployee implements IsTabular {
                 this.getFirstName(), this.getLastName(), this.getIdNumber(), this.getDepartment(), this.getPosition());
     }
 
+    /**
+     * This method is used by the table model to get values to be displayed in the table
+     *
+     * @param index Integer requested value to get (we map these thus the switch statement)
+     * @return String an employee property
+     */
     public String getProp(int index) {
         switch(index) {
             case 0:
@@ -68,10 +81,18 @@ public abstract class AbstractEmployee implements IsTabular {
 
         }
 
-        return this.firstName;
+        return "Invalid Index";
     }
 
+    /**
+     * Calculate the amount the employee should be paid. Changes based on employee type
+     * @return Float amount of money the employee should be paid
+     */
     public abstract float calculatePay();
+
+    /**
+     * Getters/Setters
+     */
 
     public String getFirstName() {
         return firstName;

@@ -6,6 +6,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Service providing helper methods for validating/checking user input into application
+ */
 public class InputService {
 
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";

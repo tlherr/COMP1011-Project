@@ -1,5 +1,9 @@
 package com.tlherr.Resources;
 
+/**
+ * Contains application strings to make editing easy and in one place.
+ * Also localization is easier using this method
+ */
 public class Strings {
     private static Strings manager = new Strings();
     public static Strings getManager() {

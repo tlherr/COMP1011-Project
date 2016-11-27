@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * This type of employee works on commission (percentage of sales they receive as compensation)
+ */
 public class CommissionSalesEmployee extends AbstractEmployee {
 
     private float commissionRate, sales;

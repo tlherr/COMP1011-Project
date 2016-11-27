@@ -35,7 +35,7 @@ public class SalaryEmployeeForm extends AbstractEmployeeForm {
 
         //This adds any extra form elements beyond the base ones provided by abstract employee form
 
-        //Commission Rate
+        //Salary
         JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
         addLabel(salaryLabel);
 

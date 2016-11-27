@@ -2,6 +2,10 @@ package com.tlherr.Model;
 
 import java.util.Date;
 
+/**
+ * Product Model
+ * Contains various properties of products. Belong to manufacturers
+ */
 public class Product {
 
     private Manufacturer manufacturer;

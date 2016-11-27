@@ -5,7 +5,9 @@ import com.tlherr.Resources.Strings;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * Manufacturer panel, contains table and add/edit/remove buttons
+ */
 public class ManufacturerPanel extends JPanel {
     private JLabel headerLabel;
     private JTable manufacturersTable;

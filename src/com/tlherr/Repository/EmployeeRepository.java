@@ -1,6 +1,7 @@
 package com.tlherr.Repository;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
+import com.tlherr.Model.Employee.EmployeeTableModel;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

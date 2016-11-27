@@ -5,6 +5,9 @@ import com.tlherr.Model.Product;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible for storing and accessing products as they as saved/edited/removed
+ */
 public class ProductRepository {
 
     private static ProductRepository instance = new ProductRepository();

@@ -4,6 +4,7 @@ import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.InputService;
 
 import javax.swing.*;
 
@@ -12,18 +13,41 @@ import javax.swing.*;
  */
 public class HourlyEmployeeForm extends AbstractEmployeeForm {
 
+    private JTextField hourlyRateTextField;
+
     public HourlyEmployeeForm() {
         super();
     }
 
     @Override
     public AbstractEmployee submit() {
-        return null;
+        HourlyEmployee empl;
+
+        //Check if an employee already exists for the form
+        if(this.employee==null) {
+            //Employee does not exist, create a new one
+            empl = new HourlyEmployee();
+        } else {
+            //If an employee does exist overwrite the existing values
+            empl = (HourlyEmployee) this.employee;
+        }
+
+        //Add form values to Employee object
+        empl.setFirstName(firstNameTextField.getText());
+        empl.setLastName(lastNameTextField.getText());
+        empl.setPosition(positionTextField.getText());
+        empl.setDepartment(departmentTextField.getText());
+        empl.setHourlyRate(Float.parseFloat(hourlyRateTextField.getText()));
+        return empl;
     }
 
     @Override
     public Boolean validateForm() {
-        return null;
+        return InputService.validate(firstNameTextField.getText(), InputService.CHARACTERS_ONLY)
+                && InputService.validate(lastNameTextField.getText(), InputService.CHARACTERS_ONLY)
+                && InputService.validate(positionTextField.getText(), InputService.CHARACTERS_ONLY)
+                && InputService.validate(departmentTextField.getText(), InputService.CHARACTERS_ONLY)
+                && InputService.validate(hourlyRateTextField.getText(), InputService.NUMERIC_ONLY);
     }
 
     public HourlyEmployeeForm(HourlyEmployee empl) {
@@ -40,7 +64,7 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         JLabel hourlyRateLabel = new JLabel(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE);
         addLabel(hourlyRateLabel);
 
-        JTextField hourlyRateTextField = new JTextField();
+        hourlyRateTextField = new JTextField();
         if(this.employee!=null) {
             hourlyRateTextField.setText(String.valueOf(empl.getHourlyRate()));
         }

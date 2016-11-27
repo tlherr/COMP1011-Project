@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * HR tab that has the ability to collect all the information of all types of
+ * HR tab that has the ability to collect/display all the information of all types of
  * Employees
  */
 public class HumanResourcesPanel extends Panel {
@@ -26,7 +26,7 @@ public class HumanResourcesPanel extends Panel {
     private JPanel employeeFormPanel;
 
     /**
-     * Forms
+     * Form References
      */
     private BasePlusCommissionEmployeeForm bpcComissionEmployeeForm;
     private CommissionSalesEmployeeForm commissionSalesEmployeeForm;
@@ -40,11 +40,12 @@ public class HumanResourcesPanel extends Panel {
         employeeTable = new JTable(new EmployeeTableModel());
         employeeTable.setPreferredScrollableViewportSize(employeeTable.getPreferredSize());
         employeeTable.setFillsViewportHeight(true);
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
+        //Set all table columns to display text in the center of the column for visual layout
         for (int i=0; i<employeeTable.getColumnCount(); i++) {
-            employeeTable.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
+            employeeTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
         add(new JScrollPane(employeeTable), BorderLayout.NORTH);
@@ -73,8 +74,12 @@ public class HumanResourcesPanel extends Panel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //disable buttons to prevent a user from adding multiple forms
+            addEmployeeButton.setEnabled(false);
+            employeeTypeSelector.setEnabled(false);
 
-            //Spawn a new selection window asking the user what type of AbstractEmployeeForm they want to add
+
+            //Based on user selection create a new user form for the specified type and display it
             switch(employeeTypeSelector.getSelectedIndex()) {
                 case 0:
                     //Create a new Base+Commission EmployeeForm
@@ -112,10 +117,7 @@ public class HumanResourcesPanel extends Panel {
                     employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
                     break;
 
-
             }
-            addEmployeeButton.setEnabled(false);
-            employeeTypeSelector.setEnabled(false);
             repack();
         }
     }
@@ -130,10 +132,30 @@ public class HumanResourcesPanel extends Panel {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Handle the OK button being clicked
+            //Active form will validate and if successful submit data to repository
+
             switch(employeeTypeSelector.getSelectedIndex()) {
                 case 0:
                     if(bpcComissionEmployeeForm.validateForm()) {
                         EmployeeRepository.getInstance().save(bpcComissionEmployeeForm.submit());
+                    }
+                    break;
+
+                case 1:
+                    if(commissionSalesEmployeeForm.validateForm()) {
+                        EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
+                    }
+                    break;
+
+                case 2:
+                    if(hourlyEmployeeForm.validateForm()) {
+                        EmployeeRepository.getInstance().save(hourlyEmployeeForm.submit());
+                    }
+                    break;
+
+                case 3:
+                    if(salaryEmployeeForm.validateForm()) {
+                        EmployeeRepository.getInstance().save(salaryEmployeeForm.submit());
                     }
                     break;
             }
@@ -150,12 +172,15 @@ public class HumanResourcesPanel extends Panel {
         }
     }
 
+    /**
+     * Listener for cancel button, if user wants to discard new employee data entry
+     */
     private class CancelEmployeeButtonListener implements ActionListener {
 
         /**
          * Invoked when an action occurs.
          *
-         * @param e
+         * @param e ActionEvent event
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -173,7 +198,12 @@ public class HumanResourcesPanel extends Panel {
     }
 
 
-
+    /**
+     * @ref https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html#pack--
+     * "Packing"  Causes this Window to be sized to fit the preferred size and layouts of its subcomponents
+     * This can be called when components are added or removed to ensure window is sized correctly
+     * Warning: This may move elements around which is annoying for end users.
+     */
     public void repack() {
         SwingUtilities.getWindowAncestor(this).pack();
     }

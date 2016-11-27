@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * This type of employee is simply paid a flat rate per hour worked
+ */
 public class HourlyEmployee extends AbstractEmployee {
 
     private Float hoursWorked;

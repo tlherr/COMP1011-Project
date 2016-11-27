@@ -4,6 +4,9 @@ import com.tlherr.Model.Employee.AbstractEmployee;
 
 import java.util.ArrayList;
 
+/**
+ * Manufacturer model. Contains a name and a list of products they produce.
+ */
 public class Manufacturer implements IsTabular {
 
     private String name;

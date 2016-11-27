@@ -5,7 +5,9 @@ import com.tlherr.Resources.Strings;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * Product panel contains table, add/edit/delete buttons
+ */
 public class ProductPanel extends JPanel {
     private JLabel headerLabel;
     private JTable productsTable;

@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * This type of employee works on a base salary as well as commission rates
+ */
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     private float baseSalary;

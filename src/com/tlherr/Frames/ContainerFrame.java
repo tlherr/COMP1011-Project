@@ -57,6 +57,11 @@ public class ContainerFrame extends JFrame {
         menuBar.add(fileMenu);
     }
 
+    /**
+     * Builds top panel which contains a welcome greeting message as stated in requirements
+     *
+     * @param labelMessage String message to be displayed as a welcome
+     */
     private void buildTopPanel(String labelMessage) {
         topPanel = new JPanel();
         welcomeLabel = new JLabel(labelMessage);
@@ -67,6 +72,9 @@ public class ContainerFrame extends JFrame {
         topPanel.add(welcomeLabel);
     }
 
+    /**
+     * Builds middle panel which contains tabs
+     */
     private void buildMiddlePanel() {
         middlePanel = new JPanel(new BorderLayout());
         middlePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -78,20 +86,30 @@ public class ContainerFrame extends JFrame {
 
     }
 
+    /**
+     * Adds button panel which defines an exit button as stated by requirements.
+     * This button is part of a button group as stated by requirements
+     */
     private void buildBottomPanel() {
         bottomPanel = new JPanel(new FlowLayout());
+        ButtonGroup mainControlsGroup = new ButtonGroup();
         exitButton = new JButton("Exit");
+        mainControlsGroup.add(exitButton);
         exitButton.setPreferredSize(new Dimension(60, 20));
         exitButton.addActionListener(new ExitButtonHandler());
         bottomPanel.add(exitButton);
     }
 
+    /**
+     * Action listener for exit button.
+     * Ask for user confirmation before actually exiting to avoid accidental shutdown
+     */
     private class ExitButtonHandler implements ActionListener {
 
         /**
          * Invoked when an action occurs.
          *
-         * @param e
+         * @param e ActionEvent event Object
          */
         @Override
         public void actionPerformed(ActionEvent e) {

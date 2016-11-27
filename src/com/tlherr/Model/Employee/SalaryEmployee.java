@@ -1,5 +1,8 @@
 package com.tlherr.Model.Employee;
 
+/**
+ * This type of employee is simply paid a salary regardless of time worked
+ */
 public class SalaryEmployee extends AbstractEmployee {
 
     private float salary;
