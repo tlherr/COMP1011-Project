@@ -13,6 +13,29 @@ import java.util.ArrayList;
 
 public class Main {
 
+    /**
+     * Email Tony with Group Member Roles
+     *
+     * Thomas Herr, thom1810@gmail.com, 7059843263
+     * Spencer Jackson, spencerja8@gmail.com
+     * Jesse Johnston, jesse_dj@live.com
+     * rugvita yagnik , rugvita.yagnik10@gmail.comAdde
+     *
+     *
+     *
+     * Create New Classes+IO
+     * Build db/GUI
+     * Event Handling
+     * Tidy Up
+     * Testing
+     *
+     * UML Diagrams
+     *
+     * @param args
+     */
+
+
+
     public static void main(String[] args) {
         //Add dummy data
         EmployeeRepository.getInstance().addEmployee(new HourlyEmployee("Thomas", "Herr", "Developer", "Information Technology", 40.0f, 20.0f));
