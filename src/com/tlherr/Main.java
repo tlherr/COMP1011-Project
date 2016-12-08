@@ -19,7 +19,7 @@ public class Main {
      * Thomas Herr, thom1810@gmail.com, 7059843263
      * Spencer Jackson, spencerja8@gmail.com
      * Jesse Johnston, jesse_dj@live.com
-     * rugvita yagnik , rugvita.yagnik10@gmail.comAdde
+     * rugvita yagnik , rugvita.yagnik10@gmail.com
      *
      *
      *
