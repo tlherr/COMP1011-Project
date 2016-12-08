@@ -30,8 +30,4 @@ public class EmployeeTableModel extends AbstractTableModel {
         //return data[row][col];
         return EmployeeRepository.getInstance().getPropAt(row,col);
     }
-
-    public void update() {
-        this.fireTableDataChanged();
-    }
 }

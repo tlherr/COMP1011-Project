@@ -48,7 +48,9 @@ public class HumanResourcesPanel extends Panel {
             employeeTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        add(new JScrollPane(employeeTable), BorderLayout.NORTH);
+        JScrollPane tablePanel = new JScrollPane(employeeTable);
+        tablePanel.setPreferredSize(new Dimension(400, 200));
+        add(tablePanel, BorderLayout.NORTH);
 
         employeeOperationsButtons = new JPanel(new FlowLayout());
         addEmployeeButton = new JButton(Strings.ADD_EMPLOYEE);
