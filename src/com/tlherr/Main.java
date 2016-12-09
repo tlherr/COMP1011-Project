@@ -21,8 +21,6 @@ public class Main {
      * Jesse Johnston, jesse_dj@live.com
      * rugvita yagnik , rugvita.yagnik10@gmail.com
      *
-     *Test Comment
-     *test 123
      * Create New Classes+IO
      * Build db/GUI
      * Event Handling
