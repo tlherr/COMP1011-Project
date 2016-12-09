@@ -28,7 +28,7 @@ public class Main {
      * Event Handling
      * Tidy Up
      * Testing
-     *
+     * 
      * UML Diagrams
      *
      * @param args
@@ -42,7 +42,7 @@ public class Main {
         ManufacturerRepository.getInstance().addManufacturer(new Manufacturer("Company"));
         ProductRepository.getInstance().addProduct(new Product("Some Product", ManufacturerRepository.getInstance().findByName("Company"), "001F"));
 
-
+        //created frame
         ContainerFrame containerFrame = new ContainerFrame();
         containerFrame.setSize(800, 800);
         containerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
