@@ -21,14 +21,12 @@ public class Main {
      * Jesse Johnston, jesse_dj@live.com
      * rugvita yagnik , rugvita.yagnik10@gmail.com
      *
-     *Test Comment
-     *
      * Create New Classes+IO
      * Build db/GUI
      * Event Handling
      * Tidy Up
      * Testing
-     *
+     * 
      * UML Diagrams
      *
      * @param args
@@ -42,7 +40,7 @@ public class Main {
         ManufacturerRepository.getInstance().addManufacturer(new Manufacturer("Company"));
         ProductRepository.getInstance().addProduct(new Product("Some Product", ManufacturerRepository.getInstance().findByName("Company"), "001F"));
 
-
+        //created frame
         ContainerFrame containerFrame = new ContainerFrame();
         containerFrame.setSize(800, 800);
         containerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
