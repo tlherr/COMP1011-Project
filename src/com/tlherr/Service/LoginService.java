@@ -54,7 +54,7 @@ public class LoginService {
         //Notify Listeners that a user has successfully logged in
         for (int i = listeners.length-2; i>=0; i-=2) {
             if (listeners[i]==ActionListener.class) {
-                ((ActionListener)listeners[i]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
+                ((ActionListener)listeners[i+1]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
             }
         }
     }

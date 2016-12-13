@@ -48,11 +48,13 @@ public class LoginPanel extends JPanel {
         loginPanel.add(passwordField);
         loginPanel.add(loginButton);
 
-        add(loginPanel);
-
         //Logout Panel elements
         nameLabel = new JLabel();
         logoutButton = new JButton(Strings.LOGIN_FORM_BUTTON_LOGOUT);
+
+        loggedInPanel.add(nameLabel);
+        loggedInPanel.add(logoutButton);
+        loggedInPanel.setVisible(false);
 
         logoutButton.addActionListener(new LogoutButtonListener());
 
@@ -63,18 +65,25 @@ public class LoginPanel extends JPanel {
 
                 //Check what event was given
                 if(e.getID()==LoginService.EVENT_LOGGED_IN) {
+                    System.out.println("LoginPanel processing Login Event");
+
                     //User has logged in. Modify the UI to reflect that
-                    remove(loginPanel);
                     nameLabel.setText(((BaseUser) e.getSource()).getName());
-                    add(loggedInPanel);
+                    loginPanel.setVisible(false);
+                    loggedInPanel.setVisible(true);
                 } else if(e.getID()==LoginService.EVENT_LOGGED_OUT) {
+                    System.out.println("LoginPanel processing Logout Event");
+
                     //User has logged out. Modify the UI to reflect that
-                    remove(loggedInPanel);
                     nameLabel.setText("");
-                    add(loginPanel);
+                    loginPanel.setVisible(true);
+                    loggedInPanel.setVisible(false);
                 }
             }
         });
+
+        add(loginPanel);
+        add(loggedInPanel);
     }
 
     public class LogoutButtonListener implements ActionListener {
