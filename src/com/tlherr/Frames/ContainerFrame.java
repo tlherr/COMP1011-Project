@@ -3,6 +3,7 @@ package com.tlherr.Frames;
 
 import com.tlherr.Panels.HumanResourcesPanel;
 import com.tlherr.Panels.InventoryPanel;
+import com.tlherr.Panels.LoginPanel;
 import com.tlherr.Panels.SearchPanel;
 import com.tlherr.Resources.Strings;
 
@@ -70,6 +71,8 @@ public class ContainerFrame extends JFrame {
         topPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 
         topPanel.add(welcomeLabel);
+
+        topPanel.add(new LoginPanel());
     }
 
     /**

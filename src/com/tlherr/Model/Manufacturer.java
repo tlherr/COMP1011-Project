@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Manufacturer model. Contains a name and a list of products they produce.
  */
-public class Manufacturer implements IsTabular {
+public class Manufacturer {
 
     private String name;
     private ArrayList<Product> products;
@@ -31,23 +31,5 @@ public class Manufacturer implements IsTabular {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public Integer getRowCount() {
-        return getClass().getDeclaredFields().length;
-    }
-
-    @Override
-    public String getProp(int index) {
-        switch(index) {
-            case 0:
-                return this.name;
-
-            case 1:
-                return this.getProducts().toString();
-        }
-
-        return null;
     }
 }

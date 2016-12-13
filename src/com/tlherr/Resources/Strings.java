@@ -90,6 +90,14 @@ public class Strings {
      */
     public static final String H_EMPLOYEE_FORM_LABEL_HOURLY_RATE = "Hourly Rate: ";
 
+    /**
+     * Login Form
+     */
+
+    public static final String LOGIN_FORM_LABEL_USERNAME = "Username";
+    public static final String LOGIN_FORM_LABEL_PASSWORD = "Password";
+    public static final String LOGIN_FORM_BUTTON_LOGIN = "Login";
+
 
 
     private Strings() {

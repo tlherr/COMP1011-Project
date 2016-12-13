@@ -1,6 +1,5 @@
 package com.tlherr.Repository;
 
-import com.tlherr.Model.IsTabular;
 import com.tlherr.Model.Manufacturer;
 
 import java.util.ArrayList;
@@ -22,14 +21,6 @@ public class ManufacturerRepository {
 
     public void addManufacturer(Manufacturer manufacturer) {
         manufacturers.add(manufacturer);
-    }
-
-    public String getPropAt(int index, int col) {
-        //Check if index is within bounds
-        if(!(index>manufacturers.size()) && !(index<0)) {
-            return manufacturers.get(index).getProp(col);
-        }
-        return null;
     }
 
     public Integer getCount() {
