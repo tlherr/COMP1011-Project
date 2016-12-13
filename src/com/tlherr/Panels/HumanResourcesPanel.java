@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * HR tab that has the ability to collect/display all the information of all types of
  * Employees
  */
-public class HumanResourcesPanel extends Panel {
+public class HumanResourcesPanel extends BasePanel {
 
     private JTable employeeTable;
     private JPanel employeeOperationsButtons;
@@ -70,6 +70,9 @@ public class HumanResourcesPanel extends Panel {
 
         employeeFormPanel = new JPanel(new BorderLayout());
         add(employeeFormPanel, BorderLayout.SOUTH);
+
+        //Disable components until we have a logged in user
+        enableComponents(employeeOperationsButtons, false);
     }
 
     private class AddEmployeeButtonListener implements ActionListener {
