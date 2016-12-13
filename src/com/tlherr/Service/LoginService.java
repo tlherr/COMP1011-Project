@@ -4,6 +4,7 @@ import com.tlherr.Users.AdminUser;
 import com.tlherr.Users.BaseUser;
 import com.tlherr.Users.RegularUser;
 
+import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +44,7 @@ public class LoginService {
         //Notify Listeners that a user has successfully logged in
         for (int i = listeners.length-2; i>=0; i-=2) {
             if (listeners[i]==ActionListener.class) {
-                ((ActionListener)listeners[i]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_IN, LoginService.COMMAND_LOGGED_IN));
+                ((ActionListener)listeners[i+1]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_IN, LoginService.COMMAND_LOGGED_IN));
             }
         }
     }
@@ -56,8 +57,6 @@ public class LoginService {
                 ((ActionListener)listeners[i]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
             }
         }
-
-        this.activeUser = null;
     }
 
     public void processLogin(PasswordAuthentication credentials) throws SQLException {
@@ -65,7 +64,7 @@ public class LoginService {
         Connection conn = ConnectionService.getConnection();
 
        if(conn!=null) {
-           PreparedStatement statement = conn.prepareStatement("SELECT * FROM USER usr WHERE usr.username = ?, usr.password = ?");
+           PreparedStatement statement = conn.prepareStatement("SELECT * FROM User usr WHERE usr.username = ? AND usr.password = ?");
            statement.setString(1, credentials.getUserName());
            statement.setString(2, String.valueOf(credentials.getPassword()));
            ResultSet rs =  statement.executeQuery();
@@ -85,9 +84,19 @@ public class LoginService {
 
            } else {
                //Login failed
+               JOptionPane.showMessageDialog(null, "Unable to process login, please try again");
            }
+
+           conn.close();
        }
 
+    }
+
+    public void processLogout() {
+        //User has requested to logout
+
+        logoutSuccessful();
+        this.activeUser = null;
     }
 
 

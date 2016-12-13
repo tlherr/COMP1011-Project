@@ -3,6 +3,7 @@ package com.tlherr.Panels;
 
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
+import com.tlherr.Users.BaseUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,11 +16,16 @@ public class LoginPanel extends JPanel {
     private JPanel loginPanel;
     private JPanel loggedInPanel;
 
+    //Login panel elements
     private JLabel usernameLabel;
     private JTextField usernameTextField;
     private JLabel passwordLabel;
     private JPasswordField passwordField;
     private JButton loginButton;
+
+    //Logout panel elements
+    private JLabel nameLabel;
+    private JButton logoutButton;
 
     public LoginPanel() {
         setLayout(new FlowLayout());
@@ -44,22 +50,47 @@ public class LoginPanel extends JPanel {
 
         add(loginPanel);
 
+        //Logout Panel elements
+        nameLabel = new JLabel();
+        logoutButton = new JButton(Strings.LOGIN_FORM_BUTTON_LOGOUT);
+
+        logoutButton.addActionListener(new LogoutButtonListener());
+
         LoginService.getInstance().addListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("LoginPanel catching Authentication Event");
+
                 //Check what event was given
                 if(e.getID()==LoginService.EVENT_LOGGED_IN) {
                     //User has logged in. Modify the UI to reflect that
                     remove(loginPanel);
+                    nameLabel.setText(((BaseUser) e.getSource()).getName());
                     add(loggedInPanel);
                 } else if(e.getID()==LoginService.EVENT_LOGGED_OUT) {
                     //User has logged out. Modify the UI to reflect that
+                    remove(loggedInPanel);
+                    nameLabel.setText("");
+                    add(loginPanel);
                 }
             }
         });
-
-
     }
+
+    public class LogoutButtonListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Process a logout
+            LoginService.getInstance().processLogout();
+        }
+    }
+
 
     public class LoginButtonListener implements ActionListener {
 

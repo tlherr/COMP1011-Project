@@ -66,7 +66,6 @@ public class Strings {
     public static final String EMPLOYEE_FORM_LABEL_LASTNAME = "Last Name: ";
     public static final String EMPLOYEE_FORM_LABEL_POSITION = "Position: ";
     public static final String EMPLOYEE_FORM_LABEL_DEPARTMENT = "Department: ";
-    public static final String EMPLOYEE_FORM_LABEL_ID = "Id: ";
 
     /**
      * Employee Form Controls
@@ -97,6 +96,7 @@ public class Strings {
     public static final String LOGIN_FORM_LABEL_USERNAME = "Username";
     public static final String LOGIN_FORM_LABEL_PASSWORD = "Password";
     public static final String LOGIN_FORM_BUTTON_LOGIN = "Login";
+    public static final String LOGIN_FORM_BUTTON_LOGOUT = "Logout";
 
 
 
