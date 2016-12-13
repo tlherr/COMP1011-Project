@@ -77,7 +77,7 @@ public class LoginService {
                        break;
 
                    case AdminUser.USER_TYPE_ADMIN:
-                       activeUser = new AdminUser(rs.getString("name", rs.getInt("id")));
+                       activeUser = new AdminUser(rs.getString("name"), rs.getInt("id"));
                        loginSuccessful();
                        break;
                }
