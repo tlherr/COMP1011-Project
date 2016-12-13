@@ -72,12 +72,12 @@ public class LoginService {
            if(rs.next()) {
                switch(rs.getInt("type")) {
                    case RegularUser.USER_TYPE_BASIC:
-                       activeUser = new RegularUser(rs.getString("name"));
+                       activeUser = new RegularUser(rs.getString("name"), rs.getInt("id"));
                        loginSuccessful();
                        break;
 
                    case AdminUser.USER_TYPE_ADMIN:
-                       activeUser = new AdminUser(rs.getString("name"));
+                       activeUser = new AdminUser(rs.getString("name", rs.getInt("id")));
                        loginSuccessful();
                        break;
                }

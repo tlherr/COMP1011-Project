@@ -5,7 +5,7 @@ package com.tlherr.Users;
  */
 public class RegularUser extends BaseUser {
     public static final int USER_TYPE_BASIC = 1;
-    public RegularUser(String name) {
-        super(name);
+    public RegularUser(String name, int id) {
+        super(name, id);
     }
 }

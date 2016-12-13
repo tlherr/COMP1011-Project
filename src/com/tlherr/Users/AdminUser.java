@@ -10,8 +10,8 @@ import com.tlherr.Permissions.ProductPermission;
 public class AdminUser extends BaseUser {
     public static final int USER_TYPE_ADMIN = 2;
 
-    public AdminUser(String name) {
-        super(name);
+    public AdminUser(String name, int id) {
+        super(name, id);
         //Add elevated permissions
         this.permissions.add(new EmployeePermission("ELEVATED", "edit,delete"));
         this.permissions.add(new ManufacturerPermission("ELEVATED", "edit,delete"));
