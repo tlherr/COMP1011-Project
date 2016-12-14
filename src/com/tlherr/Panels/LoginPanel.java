@@ -62,8 +62,6 @@ public class LoginPanel extends JPanel {
         LoginService.getInstance().addListener(new AuthenticationListener() {
             @Override
             public void loggedIn(ActionEvent e) {
-                System.out.println("LoginPanel processing Login Event");
-
                 //User has logged in. Modify the UI to reflect that
                 nameLabel.setText(((BaseUser) e.getSource()).getName());
                 loginPanel.setVisible(false);
@@ -72,8 +70,6 @@ public class LoginPanel extends JPanel {
 
             @Override
             public void loggedOut(ActionEvent e) {
-                System.out.println("LoginPanel processing Logout Event");
-
                 //User has logged out. Modify the UI to reflect that
                 nameLabel.setText("");
                 loginPanel.setVisible(true);

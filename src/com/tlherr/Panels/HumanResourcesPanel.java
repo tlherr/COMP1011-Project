@@ -1,6 +1,7 @@
 package com.tlherr.Panels;
 
 import com.tlherr.Form.*;
+import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
@@ -76,6 +77,18 @@ public class HumanResourcesPanel extends BasePanel {
         enableComponents(employeeOperationsButtons, false);
 
 
+        LoginService.getInstance().addListener(new AuthenticationListener() {
+            @Override
+            public void loggedIn(ActionEvent e) {
+                enableComponents(employeeOperationsButtons, true);
+            }
+
+            @Override
+            public void loggedOut(ActionEvent e) {
+                enableComponents(employeeOperationsButtons, false);
+            }
+        });
+
     }
 
     private class AddEmployeeButtonListener implements ActionListener {
@@ -135,7 +148,7 @@ public class HumanResourcesPanel extends BasePanel {
         /**
          * Invoked when an action occurs.
          *
-         * @param e
+         * @param e ActionEvent
          */
         @Override
         public void actionPerformed(ActionEvent e) {
