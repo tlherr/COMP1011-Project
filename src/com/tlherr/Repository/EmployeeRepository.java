@@ -22,14 +22,6 @@ public class EmployeeRepository {
         employees.add(employee);
     }
 
-    public String getPropAt(int index, int col) {
-        //Check if index is within bounds
-        if(!(index>employees.size()) && !(index<0)) {
-            return employees.get(index).getProp(col);
-        }
-        return null;
-    }
-
     public Integer getCount() {
         return employees.size();
     }

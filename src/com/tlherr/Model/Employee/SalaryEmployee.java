@@ -35,8 +35,4 @@ public class SalaryEmployee extends AbstractEmployee {
         this.salary = salary;
     }
 
-    @Override
-    public Integer getRowCount() {
-        return getClass().getDeclaredFields().length;
-    }
 }

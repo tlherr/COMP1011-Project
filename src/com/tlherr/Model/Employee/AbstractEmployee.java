@@ -1,6 +1,5 @@
 package com.tlherr.Model.Employee;
 
-import com.tlherr.Model.IsTabular;
 import com.tlherr.Service.ServiceClass;
 
 import java.util.Date;
@@ -11,7 +10,7 @@ import java.util.Date;
  * This class implements IsTablular interface so all child classes will have methods needed to be loaded into JTablel
  * model
  */
-public abstract class AbstractEmployee implements IsTabular {
+public abstract class AbstractEmployee {
 
     private String type;
     private String firstName, lastName, position, department,
@@ -20,6 +19,7 @@ public abstract class AbstractEmployee implements IsTabular {
     private Date dateHired, dateOfBirth;
 
     protected AbstractEmployee() {
+        this.type = this.getClass().getSimpleName();
         this.idNumber = ServiceClass.getId();
     }
 
@@ -56,32 +56,6 @@ public abstract class AbstractEmployee implements IsTabular {
     public String toString() {
         return String.format("Name: %1$s,%2$s Id: %3$d Department: %4$s Position: %5$s",
                 this.getFirstName(), this.getLastName(), this.getIdNumber(), this.getDepartment(), this.getPosition());
-    }
-
-    /**
-     * This method is used by the table model to get values to be displayed in the table
-     *
-     * @param index Integer requested value to get (we map these thus the switch statement)
-     * @return String an employee property
-     */
-    public String getProp(int index) {
-        switch(index) {
-            case 0:
-                return this.type;
-            case 1:
-                return String.valueOf(this.idNumber);
-            case 2:
-                return this.firstName;
-            case 3:
-                return this.lastName;
-            case 4:
-                return this.position;
-            case 5:
-                return this.department;
-
-        }
-
-        return "Invalid Index";
     }
 
     /**
