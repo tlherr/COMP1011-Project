@@ -61,10 +61,11 @@ public class LoginService {
 
     public void processLogin(PasswordAuthentication credentials) throws SQLException {
 
+        //@TODO: Try catch needed for failed onnection
         Connection conn = ConnectionService.getConnection();
 
        if(conn!=null) {
-           PreparedStatement statement = conn.prepareStatement("SELECT * FROM User usr WHERE usr.username = ? AND usr.password = ?");
+           PreparedStatement statement = conn.prepareStatement("SELECT * FROM Account act WHERE act.username = ? AND act.password = ?");
            statement.setString(1, credentials.getUserName());
            statement.setString(2, String.valueOf(credentials.getPassword()));
            ResultSet rs =  statement.executeQuery();
@@ -72,12 +73,12 @@ public class LoginService {
            if(rs.next()) {
                switch(rs.getInt("type")) {
                    case RegularUser.USER_TYPE_BASIC:
-                       activeUser = new RegularUser(rs.getString("name"), rs.getInt("id"));
+                       activeUser = new RegularUser(rs.getString("username"), rs.getInt("id"));
                        loginSuccessful();
                        break;
 
                    case AdminUser.USER_TYPE_ADMIN:
-                       activeUser = new AdminUser(rs.getString("name"), rs.getInt("id"));
+                       activeUser = new AdminUser(rs.getString("username"), rs.getInt("id"));
                        loginSuccessful();
                        break;
                }
