@@ -33,22 +33,15 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         }
 
         //Add form values to Employee object
-        empl.setFirstName(firstNameTextField.getText());
-        empl.setLastName(lastNameTextField.getText());
-        empl.setPosition(positionTextField.getText());
-        empl.setDepartment(departmentTextField.getText());
+        empl.setFirstName(firstName.getValue());
+        empl.setLastName(lastName.getValue());
+        empl.setPosition(position.getValue());
+        empl.setDepartment(department.getValue());
         empl.setHourlyRate(Float.parseFloat(hourlyRateTextField.getText()));
         return empl;
     }
 
-    @Override
-    public Boolean validateForm() {
-        return InputService.validate(firstNameTextField.getText(), InputService.CHARACTERS_ONLY)
-                && InputService.validate(lastNameTextField.getText(), InputService.CHARACTERS_ONLY)
-                && InputService.validate(positionTextField.getText(), InputService.CHARACTERS_ONLY)
-                && InputService.validate(departmentTextField.getText(), InputService.CHARACTERS_ONLY)
-                && InputService.validate(hourlyRateTextField.getText(), InputService.NUMERIC_ONLY);
-    }
+
 
     public HourlyEmployeeForm(HourlyEmployee empl) {
         super(empl);
@@ -58,16 +51,16 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
     public void addFormElements() {
         HourlyEmployee empl = (HourlyEmployee) this.employee;
 
-        //This adds any extra form elements beyond the base ones provided by abstract employee form
-
-        //Commission Rate
-        JLabel hourlyRateLabel = new JLabel(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE);
-        addLabel(hourlyRateLabel);
-
-        hourlyRateTextField = new JTextField();
-        if(this.employee!=null) {
-            hourlyRateTextField.setText(String.valueOf(empl.getHourlyRate()));
-        }
-        addTextField(hourlyRateTextField);
+//        //This adds any extra form elements beyond the base ones provided by abstract employee form
+//
+//        //Commission Rate
+//        JLabel hourlyRateLabel = new JLabel(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE);
+//        addLabel(hourlyRateLabel);
+//
+//        hourlyRateTextField = new JTextField();
+//        if(this.employee!=null) {
+//            hourlyRateTextField.setText(String.valueOf(empl.getHourlyRate()));
+//        }
+//        addTextField(hourlyRateTextField);
     }
 }

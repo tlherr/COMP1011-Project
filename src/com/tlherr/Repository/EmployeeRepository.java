@@ -1,9 +1,15 @@
 package com.tlherr.Repository;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
+import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
 import com.tlherr.Model.Employee.EmployeeTableModel;
+import com.tlherr.Service.ConnectionService;
 
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class EmployeeRepository {
@@ -36,20 +42,40 @@ public class EmployeeRepository {
     }
 
     public void save(AbstractEmployee employee) {
-        Boolean found = false;
-        //Check if the employee exists already
-        for(int i=0; i<employees.size(); i++) {
-            if(employees.get(i).getIdNumber() == employee.getIdNumber()) {
-                //The employee already exists, update the info
-                employees.set(i, employee);
-                found = true;
+        if(employee.getClass()==BasePlusCommissionEmployee.class) {
+            save((BasePlusCommissionEmployee) employee);
+        }
+    }
+
+    private void save(BasePlusCommissionEmployee employee) {
+        //Get a connection
+        try {
+            Connection conn = ConnectionService.getConnection();
+            conn.setAutoCommit(false);
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO BasePlusCommissionEmployee " +
+                    "(firstName, lastName, position, department, commissionRate, sales, salary)" +
+                    " VALUES (?,?,?,?,?,?,?)");
+
+            statement.setString(1, employee.getFirstName());
+            statement.setString(2, employee.getLastName());
+            statement.setString(3, employee.getPosition());
+            statement.setString(4, employee.getDepartment());
+            statement.setFloat(5, employee.getCommissionRate());
+            statement.setFloat(6, employee.getSales());
+            statement.setFloat(7, employee.getBaseSalary());
+
+            if(statement.execute()) {
+                conn.commit();
+            } else {
+                conn.rollback();
             }
-        }
 
-        if(!found) {
-            //This is a new employee, save it
-            addEmployee(employee);
-        }
+            conn.setAutoCommit(true);
+            conn.close();
 
+        } catch (SQLException e) {
+            //@TODO: This should log to debug log as per requirements
+            e.printStackTrace();
+        }
     }
 }

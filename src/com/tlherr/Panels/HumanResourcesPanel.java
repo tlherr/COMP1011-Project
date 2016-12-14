@@ -159,39 +159,44 @@ public class HumanResourcesPanel extends BasePanel {
                 case 0:
                     if(bpcComissionEmployeeForm.validateForm()) {
                         EmployeeRepository.getInstance().save(bpcComissionEmployeeForm.submit());
+                        clearForm();
                     }
                     break;
 
                 case 1:
                     if(commissionSalesEmployeeForm.validateForm()) {
-                        EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
+                        //EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
                     }
                     break;
 
                 case 2:
                     if(hourlyEmployeeForm.validateForm()) {
-                        EmployeeRepository.getInstance().save(hourlyEmployeeForm.submit());
+                        //EmployeeRepository.getInstance().save(hourlyEmployeeForm.submit());
                     }
                     break;
 
                 case 3:
                     if(salaryEmployeeForm.validateForm()) {
-                        EmployeeRepository.getInstance().save(salaryEmployeeForm.submit());
+                        //EmployeeRepository.getInstance().save(salaryEmployeeForm.submit());
                     }
                     break;
             }
 
-            employeeFormPanel.removeAll();
-            addEmployeeButton.setEnabled(true);
-            employeeTypeSelector.setEnabled(true);
-
-            hourlyEmployeeForm = null;
-            bpcComissionEmployeeForm = null;
-            commissionSalesEmployeeForm = null;
-            salaryEmployeeForm = null;
-            repack();
         }
     }
+
+    private void clearForm() {
+        employeeFormPanel.removeAll();
+        addEmployeeButton.setEnabled(true);
+        employeeTypeSelector.setEnabled(true);
+
+        hourlyEmployeeForm = null;
+        bpcComissionEmployeeForm = null;
+        commissionSalesEmployeeForm = null;
+        salaryEmployeeForm = null;
+        repack();
+    }
+
 
     /**
      * Listener for cancel button, if user wants to discard new employee data entry

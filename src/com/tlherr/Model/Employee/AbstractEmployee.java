@@ -12,43 +12,18 @@ import java.util.Date;
  */
 public abstract class AbstractEmployee {
 
-    private String type;
-    private String firstName, lastName, position, department,
-            email, phoneNumber, address, gender;
-    private int idNumber, vacationsDays, socialInsuranceNumber;
-    private Date dateHired, dateOfBirth;
+    private String firstName, lastName, position, department;
+    private int idNumber;
 
     protected AbstractEmployee() {
-        this.type = this.getClass().getSimpleName();
         this.idNumber = ServiceClass.getId();
     }
 
     protected AbstractEmployee(String firstName, String lastName, String position, String department) {
-        this.type = this.getClass().getSimpleName();
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
         this.department = department;
-        this.idNumber = ServiceClass.getId();
-    }
-
-    protected AbstractEmployee(String firstName, String lastName, String position, String department,
-                               Integer socialInsuranceNumber, String email, String phoneNumber, String address,
-                               String gender, int vacationsDays, Date dateHired, Date dateOfBirth) {
-        this.type = this.getClass().getSimpleName();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.department = department;
-        this.socialInsuranceNumber = socialInsuranceNumber;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.gender = gender;
-        this.vacationsDays = vacationsDays;
-        this.dateHired = dateHired;
-        this.dateOfBirth = dateOfBirth;
-
         this.idNumber = ServiceClass.getId();
     }
 
@@ -100,71 +75,7 @@ public abstract class AbstractEmployee {
         this.department = department;
     }
 
-    public Integer getSocialInsuranceNumber() {
-        return socialInsuranceNumber;
-    }
-
-    public void setSocialInsuranceNumber(Integer socialInsuranceNumber) {
-        this.socialInsuranceNumber = socialInsuranceNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public int getIdNumber() {
         return idNumber;
-    }
-
-    public int getVacationsDays() {
-        return vacationsDays;
-    }
-
-    public void setVacationsDays(int vacationsDays) {
-        this.vacationsDays = vacationsDays;
-    }
-
-    public Date getDateHired() {
-        return dateHired;
-    }
-
-    public void setDateHired(Date dateHired) {
-        this.dateHired = dateHired;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 }

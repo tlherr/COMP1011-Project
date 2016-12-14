@@ -26,6 +26,10 @@ public class InputService {
      */
     public static Boolean validate(String input, String regex) {
 
+            if(input.length()==0) {
+                return false;
+            }
+
             try {
                 Pattern p = Pattern.compile(regex);
                 Matcher m = p.matcher(input);

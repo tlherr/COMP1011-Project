@@ -68,6 +68,11 @@ public class Strings {
     public static final String EMPLOYEE_FORM_LABEL_DEPARTMENT = "Department: ";
 
     /**
+     * Employee Form Errors
+     */
+    public static final String EMPLOYEE_FORM_LABEL_ERROR = "Error: ";
+
+    /**
      * Employee Form Controls
      */
     public static final String EMPLOYEE_CONTROL_BUTTON_OK = "Ok";

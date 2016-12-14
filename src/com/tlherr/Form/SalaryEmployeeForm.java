@@ -36,13 +36,13 @@ public class SalaryEmployeeForm extends AbstractEmployeeForm {
         //This adds any extra form elements beyond the base ones provided by abstract employee form
 
         //Salary
-        JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
-        addLabel(salaryLabel);
-
-        JTextField salaryTextField = new JTextField();
-        if(this.employee!=null) {
-            salaryTextField.setText(String.valueOf(empl.getSalary()));
-        }
-        addTextField(salaryTextField);
+//        JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
+//        addLabel(salaryLabel);
+//
+//        JTextField salaryTextField = new JTextField();
+//        if(this.employee!=null) {
+//            salaryTextField.setText(String.valueOf(empl.getSalary()));
+//        }
+//        addTextField(salaryTextField);
     }
 }

@@ -1,7 +1,9 @@
 package com.tlherr.Form;
 
+import com.tlherr.Input.ValidatedFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.InputService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -34,19 +36,12 @@ public abstract class AbstractEmployeeForm extends JPanel {
     protected JPanel controlsPanel;
 
     /**
-     * GridBagConstants allow for reuse of layouts and styles between form elements
-     * Defined in constructor and applied via addLabel() and addTextField()
-     */
-    protected GridBagConstraints labelConstraints;
-    protected GridBagConstraints textFieldConstrains;
-
-    /**
      * Component references so we can get/set form values
      */
-    protected JTextField firstNameTextField;
-    protected JTextField lastNameTextField;
-    protected JTextField positionTextField;
-    protected JTextField departmentTextField;
+    protected ValidatedFormInput firstName;
+    protected ValidatedFormInput lastName;
+    protected ValidatedFormInput position;
+    protected ValidatedFormInput department;
 
     /**
      * Form Controls
@@ -57,26 +52,11 @@ public abstract class AbstractEmployeeForm extends JPanel {
     public AbstractEmployeeForm() {
         setLayout(new BorderLayout());
 
-        contentPanel = new JPanel(new GridBagLayout());
+        contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         controlsPanel = new JPanel(new BorderLayout());
-
-        //Set Grid Bag Constraints
-        labelConstraints = new GridBagConstraints();
-        //Fill Space Horizontally
-        labelConstraints.fill = GridBagConstraints.HORIZONTAL;
-        //Labels should always start left of row
-        labelConstraints.anchor = GridBagConstraints.NORTHWEST;
-        //Give low weight to prioritize the width of other components that need more space
-        labelConstraints.weightx = 0;
-        //This component takes up 1 grid space
-        labelConstraints.gridwidth = 1;
-
-        //Copy previous settings, only add weight and take up all remaining space in the row
-        textFieldConstrains = (GridBagConstraints) labelConstraints.clone();
-        textFieldConstrains.weightx = 1.0;
-        textFieldConstrains.gridwidth = GridBagConstraints.REMAINDER;
     }
 
     /**
@@ -90,24 +70,8 @@ public abstract class AbstractEmployeeForm extends JPanel {
         this.employee = empl;
     }
 
-    /**
-     * Apply GridBagConstants to a label component and add it to the content panel
-     * @param c JLabel Label component to be styled/positioned
-     */
-    protected void addLabel(JLabel c) {
-        GridBagLayout gbl = (GridBagLayout) contentPanel.getLayout();
-        gbl.setConstraints(c, labelConstraints);
-        contentPanel.add(c);
-    }
-
-    /**
-     * Apply GridBagConstants to a textfield component and add it to the content panel
-     * @param c JTextField TextField component to be styled
-     */
-    protected void addTextField(JTextField c) {
-        GridBagLayout gbl = (GridBagLayout) contentPanel.getLayout();
-        gbl.setConstraints(c, textFieldConstrains);
-        contentPanel.add(c);
+    public void addValidatedInput(ValidatedFormInput validatedFormInput) {
+        this.contentPanel.add(validatedFormInput);
     }
 
     /**
@@ -115,45 +79,15 @@ public abstract class AbstractEmployeeForm extends JPanel {
      * If an employee is set it will set values based on employee data
      */
     private void buildBaseFormElements() {
-        //First Name
-        JLabel firstNameLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_FIRSTNAME);
-        addLabel(firstNameLabel);
+        firstName = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_FIRSTNAME, InputService.CHARACTERS_ONLY);
+        lastName = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_LASTNAME, InputService.CHARACTERS_ONLY);
+        position = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_POSITION, InputService.CHARACTERS_ONLY);
+        department = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT, InputService.CHARACTERS_ONLY);
 
-        firstNameTextField = new JTextField();
-        if(this.employee!=null) {
-            firstNameTextField.setText(this.employee.getFirstName());
-        }
-        addTextField(firstNameTextField);
-
-        //Last Name
-        JLabel lastNameLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_LASTNAME);
-        addLabel(lastNameLabel);
-
-        lastNameTextField = new JTextField();
-        if(this.employee!=null) {
-            lastNameTextField.setText(this.employee.getLastName());
-        }
-        addTextField(lastNameTextField);
-
-        //Position
-        JLabel positionLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_POSITION);
-        addLabel(positionLabel);
-
-        positionTextField = new JTextField();
-        if(this.employee!=null) {
-            positionTextField.setText(this.employee.getPosition());
-        }
-        addTextField(positionTextField);
-
-        //Department
-        JLabel departmentLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT);
-        addLabel(departmentLabel);
-
-        departmentTextField = new JTextField();
-        if(this.employee!=null) {
-            departmentTextField.setText(this.employee.getDepartment());
-        }
-        addTextField(departmentTextField);
+        contentPanel.add(firstName);
+        contentPanel.add(lastName);
+        contentPanel.add(position);
+        contentPanel.add(department);
     }
 
     /**
@@ -166,7 +100,6 @@ public abstract class AbstractEmployeeForm extends JPanel {
 
         controlsPanel.add(okButton, BorderLayout.EAST);
         controlsPanel.add(cancelButton, BorderLayout.WEST);
-
     }
 
     /**
@@ -213,7 +146,11 @@ public abstract class AbstractEmployeeForm extends JPanel {
      * @ref InputService for validation methods
      * @return Boolean If form validated successfully
      */
-    public abstract Boolean validateForm();
+    public Boolean validateForm() {
+        //Iterate over all components and check validated fields to see if values are ok
+
+        return true;
+    };
 
     /**
      * Method for adding custom form elements for subclass data collection
