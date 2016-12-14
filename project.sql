@@ -9,8 +9,18 @@ CREATE TABLE IF NOT EXISTS Account (
     UNIQUE INDEX `username_UNIQUE` (`username` ASC)
 ) ENGINE=INNODB;
 
+DELIMITER $$
+CREATE TRIGGER chk_UserType BEFORE INSERT ON Account
+FOR EACH ROW
+BEGIN
+    IF NEW.type NOT IN (1,2) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid User Type Given';
+    END IF;
+END$$
+
 CREATE TABLE if not exists CommissionEmployee(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(200) NOT NULL ,
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
@@ -21,7 +31,7 @@ CREATE TABLE if not exists CommissionEmployee(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists BasePlusCommissionEmployee(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(200) NOT NULL ,
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
@@ -33,7 +43,7 @@ CREATE TABLE if not exists BasePlusCommissionEmployee(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists HourlyEmployee(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(200) NOT NULL ,
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
@@ -45,7 +55,7 @@ CREATE TABLE if not exists HourlyEmployee(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists SalaryEmployee(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(200) NOT NULL ,
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
@@ -56,13 +66,13 @@ CREATE TABLE if not exists SalaryEmployee(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists Manufacturers(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(200),
     PRIMARY KEY(id)
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists Products(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(200),
     `modelNumber`VARCHAR(200),
     `manufacturer_ID` INT,
@@ -71,7 +81,7 @@ CREATE TABLE if not exists Products(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists CommissionEmployeeSales(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `salePrice` DECIMAL(15,2) NOT NULL,
     `product_ID` INT,
     `employee_ID` INT,
@@ -81,7 +91,7 @@ CREATE TABLE if not exists CommissionEmployeeSales(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists BasePlusCommissionEmployeeSales(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `salePrice` DECIMAL(15,2) NOT NULL,
     `product_ID` INT,
     `employee_ID` INT NOT NULL,
@@ -91,7 +101,7 @@ CREATE TABLE if not exists BasePlusCommissionEmployeeSales(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists HourlyEmployeeSales(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `salePrice` DECIMAL(15,2) NOT NULL,
     `product_ID` INT,
     `employee_ID` INT,
@@ -101,7 +111,7 @@ CREATE TABLE if not exists HourlyEmployeeSales(
 ) ENGINE=INNODB;
 
 CREATE TABLE if not exists SalaryEmployeeSales(
-    id int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL AUTO_INCREMENT,
     `salePrice` DECIMAL(15,2) NOT NULL,
     `product_ID` INT,
     `employee_ID` INT,
@@ -110,7 +120,10 @@ CREATE TABLE if not exists SalaryEmployeeSales(
     FOREIGN KEY(employee_ID) references SalaryEmployee(id)
 ) ENGINE=INNODB;
 
+# Insert accounts into table
 
+INSERT INTO account (username, password, type) VALUES ("Regular", "regular", 1);
+INSERT INTO account (username, password, type) VALUES ("Admin", "admin", 2);
 
 
 
