@@ -1,6 +1,7 @@
 package com.tlherr.Panels;
 
 
+import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 import com.tlherr.Users.BaseUser;
@@ -58,40 +59,39 @@ public class LoginPanel extends JPanel {
 
         logoutButton.addActionListener(new LogoutButtonListener());
 
-        LoginService.getInstance().addListener(new ActionListener() {
+        LoginService.getInstance().addListener(new AuthenticationListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("LoginPanel catching Authentication Event");
+            public void loggedIn(ActionEvent e) {
+                System.out.println("LoginPanel processing Login Event");
 
-                //Check what event was given
-                if(e.getID()==LoginService.EVENT_LOGGED_IN) {
-                    System.out.println("LoginPanel processing Login Event");
+                //User has logged in. Modify the UI to reflect that
+                nameLabel.setText(((BaseUser) e.getSource()).getName());
+                loginPanel.setVisible(false);
+                loggedInPanel.setVisible(true);
+            }
 
-                    //User has logged in. Modify the UI to reflect that
-                    nameLabel.setText(((BaseUser) e.getSource()).getName());
-                    loginPanel.setVisible(false);
-                    loggedInPanel.setVisible(true);
-                } else if(e.getID()==LoginService.EVENT_LOGGED_OUT) {
-                    System.out.println("LoginPanel processing Logout Event");
+            @Override
+            public void loggedOut(ActionEvent e) {
+                System.out.println("LoginPanel processing Logout Event");
 
-                    //User has logged out. Modify the UI to reflect that
-                    nameLabel.setText("");
-                    loginPanel.setVisible(true);
-                    loggedInPanel.setVisible(false);
-                }
+                //User has logged out. Modify the UI to reflect that
+                nameLabel.setText("");
+                loginPanel.setVisible(true);
+                loggedInPanel.setVisible(false);
             }
         });
+
 
         add(loginPanel);
         add(loggedInPanel);
     }
 
-    public class LogoutButtonListener implements ActionListener {
+    private class LogoutButtonListener implements ActionListener {
 
         /**
          * Invoked when an action occurs.
          *
-         * @param e
+         * @param e ActionEvent
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class LoginPanel extends JPanel {
     }
 
 
-    public class LoginButtonListener implements ActionListener {
+    private class LoginButtonListener implements ActionListener {
 
         /**
          * Invoked when an action occurs.

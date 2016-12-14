@@ -4,6 +4,7 @@ import com.tlherr.Form.*;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.LoginService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -73,6 +74,8 @@ public class HumanResourcesPanel extends BasePanel {
 
         //Disable components until we have a logged in user
         enableComponents(employeeOperationsButtons, false);
+
+
     }
 
     private class AddEmployeeButtonListener implements ActionListener {

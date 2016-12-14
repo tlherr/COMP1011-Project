@@ -1,5 +1,6 @@
 package com.tlherr.Service;
 
+import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Users.AdminUser;
 import com.tlherr.Users.BaseUser;
 import com.tlherr.Users.RegularUser;
@@ -31,20 +32,20 @@ public class LoginService {
         return instance;
     }
 
-    public void removeListener(ActionListener listener) {
-        this.listenerList.remove(ActionListener.class, listener);
+    public void removeListener(AuthenticationListener listener) {
+        this.listenerList.remove(AuthenticationListener.class, listener);
     }
 
-    public void addListener(ActionListener listener) {
-        this.listenerList.add(ActionListener.class, listener);
+    public void addListener(AuthenticationListener listener) {
+        this.listenerList.add(AuthenticationListener.class, listener);
     }
 
     private void loginSuccessful() {
         Object[] listeners = listenerList.getListenerList();
         //Notify Listeners that a user has successfully logged in
         for (int i = listeners.length-2; i>=0; i-=2) {
-            if (listeners[i]==ActionListener.class) {
-                ((ActionListener)listeners[i+1]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_IN, LoginService.COMMAND_LOGGED_IN));
+            if (listeners[i]==AuthenticationListener.class) {
+                ((AuthenticationListener)listeners[i+1]).loggedIn(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_IN, LoginService.COMMAND_LOGGED_IN));
             }
         }
     }
@@ -53,8 +54,8 @@ public class LoginService {
         Object[] listeners = listenerList.getListenerList();
         //Notify Listeners that a user has successfully logged in
         for (int i = listeners.length-2; i>=0; i-=2) {
-            if (listeners[i]==ActionListener.class) {
-                ((ActionListener)listeners[i+1]).actionPerformed(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
+            if (listeners[i]==AuthenticationListener.class) {
+                ((AuthenticationListener)listeners[i+1]).loggedOut(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
             }
         }
     }
