@@ -8,10 +8,14 @@ import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * HR tab that has the ability to collect/display all the information of all types of
@@ -79,6 +83,20 @@ public class HumanResourcesPanel extends BasePanel {
                 repack();
             }
         });
+
+        //Listen for table click events
+        employeeTabbedPanel.getBasePlusCommissionTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                if(e.getValueIsAdjusting()) {
+                    System.out.println(e.toString());
+                    //Now have the index of what was clicked, have to load that record into a form and display it
+                }
+
+            }
+        });
+
 
     }
 
