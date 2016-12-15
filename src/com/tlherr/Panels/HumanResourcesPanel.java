@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
  */
 public class HumanResourcesPanel extends BasePanel {
 
-    private JTable employeeTable;
+    private EmployeeTabbedPanel employeeTabbedPanel;
     private JPanel employeeOperationsButtons;
     private JButton addEmployeeButton;
     private JComboBox<String> employeeTypeSelector;
@@ -39,18 +39,8 @@ public class HumanResourcesPanel extends BasePanel {
     public HumanResourcesPanel() {
         setLayout(new BorderLayout());
 
-        employeeTable = new JTable(new EmployeeTableModel());
-        employeeTable.setPreferredScrollableViewportSize(employeeTable.getPreferredSize());
-        employeeTable.setFillsViewportHeight(true);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-        //Set all table columns to display text in the center of the column for visual layout
-        for (int i=0; i<employeeTable.getColumnCount(); i++) {
-            employeeTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        }
-
-        JScrollPane tablePanel = new JScrollPane(employeeTable);
+        employeeTabbedPanel = new EmployeeTabbedPanel();
+        JScrollPane tablePanel = new JScrollPane(employeeTabbedPanel);
         tablePanel.setPreferredSize(new Dimension(400, 200));
         add(tablePanel, BorderLayout.NORTH);
 
@@ -76,16 +66,17 @@ public class HumanResourcesPanel extends BasePanel {
         //Disable components until we have a logged in user
         enableComponents(employeeOperationsButtons, false);
 
-
         LoginService.getInstance().addListener(new AuthenticationListener() {
             @Override
             public void loggedIn(ActionEvent e) {
                 enableComponents(employeeOperationsButtons, true);
+                repack();
             }
 
             @Override
             public void loggedOut(ActionEvent e) {
                 enableComponents(employeeOperationsButtons, false);
+                repack();
             }
         });
 

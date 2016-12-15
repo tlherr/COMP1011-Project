@@ -29,6 +29,15 @@ public class Strings {
     public static final String SEARCH_TAB = "Search";
 
     /**
+     * Employee Subtabs
+     */
+
+    public static final String BASE_PLUS_COMMISSION_EMPLOYEE_TAB = "Base Plus Commission";
+    public static final String COMMISSION_SALES_EMPLOYEE_TAB = "Commission Sales";
+    public static final String HOURLY_EMPLOYEE_TAB = "Hourly";
+    public static final String SALARY_EMPLOYEE_TAB = "Salary";
+
+    /**
      * AbstractEmployeeForm Buttons
      */
     public static final String ADD_EMPLOYEE = "Add";

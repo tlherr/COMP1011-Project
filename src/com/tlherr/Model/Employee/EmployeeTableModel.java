@@ -14,22 +14,21 @@ import java.util.Vector;
  */
 public class EmployeeTableModel extends DefaultTableModel {
 
-    public Vector<String> columnNames;
-    public Vector<Vector<Object>> tableData;
-
     public EmployeeTableModel(){};
 
-    public DefaultTableModel build(ResultSet resultSet) throws SQLException {
+    public static DefaultTableModel build(ResultSet resultSet) throws SQLException {
         ResultSetMetaData metaData = resultSet.getMetaData();
 
-        columnNames = new Vector<String>();
+        Vector<String> columnNames = new Vector<String>();
         int columnCount = metaData.getColumnCount();
+
+        System.out.println("Loading "+columnCount+" columns from result set");
 
         for(int i=1; i<=columnCount; i++) {
             columnNames.add(metaData.getColumnName(i));
         }
 
-        tableData = new Vector<Vector<Object>>();
+        Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
         while(resultSet.next())
         {
@@ -43,6 +42,10 @@ public class EmployeeTableModel extends DefaultTableModel {
             }
             tableData.add(rowVector);
         }
+
+        System.out.println("Result Set Contained "+tableData.size()+" elements");
+
+        resultSet.close();
 
         return new DefaultTableModel(tableData, columnNames);
     }
