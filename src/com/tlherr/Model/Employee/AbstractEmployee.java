@@ -14,7 +14,7 @@ import java.util.Date;
 public abstract class AbstractEmployee {
 
     private String firstName, lastName, position, department;
-    private int idNumber;
+    protected int idNumber;
 
     protected AbstractEmployee() {
         this.idNumber = ServiceClass.getId();
@@ -25,7 +25,6 @@ public abstract class AbstractEmployee {
         this.lastName = lastName;
         this.position = position;
         this.department = department;
-        this.idNumber = ServiceClass.getId();
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * This type of employee works on a base salary as well as commission rates
@@ -16,6 +17,18 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     public BasePlusCommissionEmployee() {
         super();
+    }
+
+    public BasePlusCommissionEmployee(Vector v) {
+        super();
+        this.idNumber = (int) v.get(0);
+        this.setFirstName(v.get(1).toString());
+        this.setLastName(v.get(2).toString());
+        this.setPosition(v.get(3).toString());
+        this.setDepartment(v.get(4).toString());
+        this.setCommissionRate(new BigDecimal(v.get(5).toString()));
+        this.setSales(new BigDecimal(v.get(6).toString()));
+        this.setBaseSalary(new BigDecimal(v.get(7).toString()));
     }
 
     public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department,

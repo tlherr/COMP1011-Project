@@ -95,6 +95,10 @@ public class ValidatedFormInput extends JPanel {
         return input.getText();
     }
 
+    public void setEditText(String text) {
+        input.setText(text);
+    }
+
     public BigDecimal getDecimalValue() {
         return new BigDecimal(input.getText());
     }

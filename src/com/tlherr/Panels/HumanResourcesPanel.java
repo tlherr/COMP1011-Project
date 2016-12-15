@@ -2,6 +2,7 @@ package com.tlherr.Panels;
 
 import com.tlherr.Form.*;
 import com.tlherr.Listener.AuthenticationListener;
+import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
@@ -11,11 +12,13 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 /**
  * HR tab that has the ability to collect/display all the information of all types of
@@ -90,8 +93,20 @@ public class HumanResourcesPanel extends BasePanel {
             public void valueChanged(ListSelectionEvent e) {
 
                 if(e.getValueIsAdjusting()) {
-                    System.out.println(e.toString());
-                    //Now have the index of what was clicked, have to load that record into a form and display it
+                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
+                    Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
+
+                    BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
+
+                    addEmployeeButton.setEnabled(false);
+                    employeeTypeSelector.setEnabled(false);
+
+                    clearForm();
+                    bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
+                    bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                    bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                    employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
+                    repack();
                 }
 
             }

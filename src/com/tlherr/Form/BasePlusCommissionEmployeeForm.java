@@ -25,6 +25,20 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         super();
     }
 
+    public BasePlusCommissionEmployeeForm(BasePlusCommissionEmployee empl) {
+        super(empl);
+        //If we were given an employee this is an edit
+        build();
+
+        firstName.setEditText(empl.getFirstName());
+        lastName.setEditText(empl.getLastName());
+        position.setEditText(empl.getPosition());
+        department.setEditText(empl.getDepartment());
+        sales.setEditText(empl.getSales().toString());
+        salary.setEditText(empl.getBaseSalary().toString());
+        commissionRate.setEditText(empl.getCommissionRate().toString());
+    }
+
     @Override
     public AbstractEmployee submit() {
         BasePlusCommissionEmployee empl;
@@ -47,10 +61,6 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         empl.setBaseSalary(salary.getDecimalValue());
         empl.setCommissionRate(new BigDecimal(commissionRate.getValue()));
         return empl;
-    }
-
-    public BasePlusCommissionEmployeeForm(BasePlusCommissionEmployee empl) {
-        super(empl);
     }
 
     @Override
