@@ -2,6 +2,7 @@ package com.tlherr.Model.Employee;
 
 import com.tlherr.Service.ServiceClass;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -37,7 +38,7 @@ public abstract class AbstractEmployee {
      * Calculate the amount the employee should be paid. Changes based on employee type
      * @return Float amount of money the employee should be paid
      */
-    public abstract float calculatePay();
+    public abstract BigDecimal calculatePay();
 
     /**
      * Getters/Setters

@@ -10,6 +10,7 @@ import com.tlherr.Service.InputService;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.math.BigDecimal;
 
 /**
  * This class implements a form panel that collects/displays data for an Employee of type BasePlusCommissionEmployee
@@ -42,15 +43,10 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         empl.setLastName(lastName.getValue());
         empl.setPosition(position.getValue());
         empl.setDepartment(department.getValue());
-        empl.setCommissionRate(Float.parseFloat(commissionRate.getValue()));
+        empl.setSales(sales.getDecimalValue());
+        empl.setBaseSalary(salary.getDecimalValue());
+        empl.setCommissionRate(new BigDecimal(commissionRate.getValue()));
         return empl;
-    }
-
-    @Override
-    public Boolean validateForm() {
-       //Iterate over child elements and
-
-        return true;
     }
 
     public BasePlusCommissionEmployeeForm(BasePlusCommissionEmployee empl) {
@@ -60,9 +56,8 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
     @Override
     public void addFormElements() {
         //This adds any extra form elements beyond the base ones provided by abstract employee form
-        BasePlusCommissionEmployee empl = (BasePlusCommissionEmployee) this.employee;
 
-        commissionRate = new ValidatedFormInput(Strings.C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE, InputService.DECIMAL);
+        commissionRate = new ValidatedFormInput(Strings.C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE, InputService.NUMERIC_ONLY);
         sales = new ValidatedFormInput(Strings.C_EMPLOYEE_FORM_LABEL_SALES, InputService.DECIMAL);
         salary = new ValidatedFormInput(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY, InputService.DECIMAL);
 

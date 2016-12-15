@@ -147,9 +147,17 @@ public abstract class AbstractEmployeeForm extends JPanel {
      * @return Boolean If form validated successfully
      */
     public Boolean validateForm() {
+        Boolean isValid = true;
         //Iterate over all components and check validated fields to see if values are ok
+        for(Component component: this.contentPanel.getComponents()) {
+            if(component.getClass()==ValidatedFormInput.class) {
+                if(!((ValidatedFormInput) component).validateInput()) {
+                    isValid = false;
+                }
+            }
+        }
 
-        return true;
+        return isValid;
     };
 
     /**

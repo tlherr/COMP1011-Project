@@ -7,6 +7,7 @@ import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 
 /**
  * This class implements a form panel that collects/displays data for an Employee of type CommissionSalesEmployeeForm
@@ -37,7 +38,7 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         empl.setLastName(lastName.getValue());
         empl.setPosition(position.getValue());
         empl.setDepartment(department.getValue());
-        empl.setHourlyRate(Float.parseFloat(hourlyRateTextField.getText()));
+        empl.setHourlyRate(new BigDecimal(hourlyRateTextField.getText()));
         return empl;
     }
 

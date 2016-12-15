@@ -181,7 +181,7 @@ public class HumanResourcesPanel extends BasePanel {
                     }
                     break;
             }
-
+            repack();
         }
     }
 

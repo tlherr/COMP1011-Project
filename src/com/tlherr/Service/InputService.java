@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class InputService {
 
     public static String CHARACTERS_ONLY = "^[a-zA-Z]*$";
-    public static String DECIMAL = "/^\\d*\\.?\\d*$/";
+    public static String DECIMAL = "[0-9]+([,.][0-9]{1,2})?";
     public static String NUMERIC_ONLY = "^[0-9]*$";
     public static String ALPHANUMERIC_WORDS = "([a-zA-Z0-9 .,])+";
     public static String PHONE_NUMBER = "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b";
@@ -37,7 +37,6 @@ public class InputService {
             } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
                 return false;
             }
-
     }
 
     public static Boolean validate(Integer input, String regex) {

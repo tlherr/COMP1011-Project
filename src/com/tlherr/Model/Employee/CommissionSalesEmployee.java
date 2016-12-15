@@ -1,17 +1,19 @@
 package com.tlherr.Model.Employee;
 
+import java.math.BigDecimal;
+
 /**
  * This type of employee works on commission (percentage of sales they receive as compensation)
  */
 public class CommissionSalesEmployee extends AbstractEmployee {
 
-    private float commissionRate, sales;
+    private BigDecimal commissionRate, sales;
 
     public CommissionSalesEmployee() {
         super();
     }
 
-    public CommissionSalesEmployee(String firstName, String lastName, String position, String department, float commissionRate, float sales) {
+    public CommissionSalesEmployee(String firstName, String lastName, String position, String department, BigDecimal commissionRate, BigDecimal sales) {
         super(firstName, lastName, position, department);
         this.commissionRate = commissionRate;
         this.sales = sales;
@@ -23,23 +25,23 @@ public class CommissionSalesEmployee extends AbstractEmployee {
     }
 
     @Override
-    public float calculatePay() {
-        return (sales*commissionRate);
+    public BigDecimal calculatePay() {
+        return (sales.multiply(commissionRate));
     }
 
-    public float getCommissionRate() {
+    public BigDecimal getCommissionRate() {
         return commissionRate;
     }
 
-    public void setCommissionRate(float commissionRate) {
+    public void setCommissionRate(BigDecimal commissionRate) {
         this.commissionRate = commissionRate;
     }
 
-    public float getSales() {
+    public BigDecimal getSales() {
         return sales;
     }
 
-    public void setSales(float sales) {
+    public void setSales(BigDecimal sales) {
         this.sales = sales;
     }
 

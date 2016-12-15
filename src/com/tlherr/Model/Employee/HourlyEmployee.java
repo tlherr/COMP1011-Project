@@ -1,45 +1,47 @@
 package com.tlherr.Model.Employee;
 
+import java.math.BigDecimal;
+
 /**
  * This type of employee is simply paid a flat rate per hour worked
  */
 public class HourlyEmployee extends AbstractEmployee {
 
-    private Float hoursWorked;
-    private Float hourlyRate;
+    private BigDecimal hoursWorked;
+    private BigDecimal hourlyRate;
 
     public HourlyEmployee() {
         super();
     }
 
-    public HourlyEmployee(String firstName, String lastName, String position, String department, Float hoursPerWeek, Float hourlyRate) {
+    public HourlyEmployee(String firstName, String lastName, String position, String department, BigDecimal hoursPerWeek, BigDecimal hourlyRate) {
         super(firstName, lastName, position, department);
         this.hoursWorked = hoursPerWeek;
         this.hourlyRate = hourlyRate;
     }
 
     @Override
-    public float calculatePay() {
-        if(hourlyRate!=null && hourlyRate!=null) {
-            return (hoursWorked*hourlyRate);
+    public BigDecimal calculatePay() {
+        if(hourlyRate!=null && hoursWorked!=null) {
+            return (hoursWorked.multiply(hourlyRate));
         } else {
-            return 0.00f;
+            return new BigDecimal("0.00");
         }
     }
 
-    public Float getHoursWorked() {
+    public BigDecimal getHoursWorked() {
         return hoursWorked;
     }
 
-    public void setHoursWorked(Float hoursWorked) {
+    public void setHoursWorked(BigDecimal hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
 
-    public Float getHourlyRate() {
+    public BigDecimal getHourlyRate() {
         return hourlyRate;
     }
 
-    public void setHourlyRate(Float hourlyRate) {
+    public void setHourlyRate(BigDecimal hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
 }

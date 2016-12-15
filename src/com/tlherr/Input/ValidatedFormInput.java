@@ -5,6 +5,7 @@ import com.tlherr.Service.InputService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 
 //This class represents a text input panel containing
 //a label, and input and an error message
@@ -65,7 +66,15 @@ public class ValidatedFormInput extends JPanel {
     }
 
     public boolean validateInput() {
-        return InputService.validate(input.getText(), validator);
+        Boolean isValid = InputService.validate(input.getText(), validator);
+
+        if(isValid) {
+            clearError();
+        } else {
+            displayError("Invalid Input");
+        }
+
+        return isValid;
     }
 
     public void displayError(String errorString) {
@@ -84,6 +93,10 @@ public class ValidatedFormInput extends JPanel {
 
     public String getValue() {
         return input.getText();
+    }
+
+    public BigDecimal getDecimalValue() {
+        return new BigDecimal(input.getText());
     }
 
     /**

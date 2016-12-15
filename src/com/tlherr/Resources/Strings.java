@@ -86,7 +86,7 @@ public class Strings {
     /**
      * Commission Sales Employee
      */
-    public static final String C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE = "Commission Rate: ";
+    public static final String C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE = "Commission Rate (%): ";
     public static final String C_EMPLOYEE_FORM_LABEL_SALES = "Sales: ";
 
     /**

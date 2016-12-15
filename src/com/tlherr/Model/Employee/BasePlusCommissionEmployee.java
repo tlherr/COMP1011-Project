@@ -1,18 +1,20 @@
 package com.tlherr.Model.Employee;
 
+import java.math.BigDecimal;
+
 /**
  * This type of employee works on a base salary as well as commission rates
  */
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
-    private float baseSalary;
+    private BigDecimal baseSalary;
 
     public BasePlusCommissionEmployee() {
         super();
     }
 
     public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department,
-                                      float commissionRates, float sales, float baseSalary) {
+                                      BigDecimal commissionRates, BigDecimal sales, BigDecimal baseSalary) {
         super(firstName, lastName, position, department, commissionRates, sales);
         this.baseSalary = baseSalary;
     }
@@ -24,16 +26,16 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
     }
 
     @Override
-    public float calculatePay() {
-        return baseSalary + (super.getSales() * super.getCommissionRate());
+    public BigDecimal calculatePay() {
+        return baseSalary.add(super.getSales().multiply(super.getCommissionRate()));
     }
 
 
-    public float getBaseSalary() {
+    public BigDecimal getBaseSalary() {
         return baseSalary;
     }
 
-    public void setBaseSalary(float baseSalary) {
+    public void setBaseSalary(BigDecimal baseSalary) {
         this.baseSalary = baseSalary;
     }
 }

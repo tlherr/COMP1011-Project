@@ -1,17 +1,19 @@
 package com.tlherr.Model.Employee;
 
+import java.math.BigDecimal;
+
 /**
  * This type of employee is simply paid a salary regardless of time worked
  */
 public class SalaryEmployee extends AbstractEmployee {
 
-    private float salary;
+    private BigDecimal salary;
 
     public SalaryEmployee() {
         super();
     }
 
-    public SalaryEmployee(String firstName, String lastName, String position, String department, float baseSalary) {
+    public SalaryEmployee(String firstName, String lastName, String position, String department, BigDecimal baseSalary) {
         super(firstName, lastName, position, department);
         this.salary = baseSalary;
     }
@@ -22,16 +24,16 @@ public class SalaryEmployee extends AbstractEmployee {
     }
 
     @Override
-    public float calculatePay() {
+    public BigDecimal calculatePay() {
         return salary;
     }
 
 
-    public float getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 

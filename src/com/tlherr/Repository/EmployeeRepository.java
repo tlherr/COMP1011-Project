@@ -51,7 +51,6 @@ public class EmployeeRepository {
         //Get a connection
         try {
             Connection conn = ConnectionService.getConnection();
-            conn.setAutoCommit(false);
             PreparedStatement statement = conn.prepareStatement("INSERT INTO BasePlusCommissionEmployee " +
                     "(firstName, lastName, position, department, commissionRate, sales, salary)" +
                     " VALUES (?,?,?,?,?,?,?)");
@@ -60,17 +59,11 @@ public class EmployeeRepository {
             statement.setString(2, employee.getLastName());
             statement.setString(3, employee.getPosition());
             statement.setString(4, employee.getDepartment());
-            statement.setFloat(5, employee.getCommissionRate());
-            statement.setFloat(6, employee.getSales());
-            statement.setFloat(7, employee.getBaseSalary());
+            statement.setBigDecimal(5, employee.getCommissionRate());
+            statement.setBigDecimal(6, employee.getSales());
+            statement.setBigDecimal(7, employee.getBaseSalary());
 
-            if(statement.execute()) {
-                conn.commit();
-            } else {
-                conn.rollback();
-            }
-
-            conn.setAutoCommit(true);
+            statement.execute();
             conn.close();
 
         } catch (SQLException e) {

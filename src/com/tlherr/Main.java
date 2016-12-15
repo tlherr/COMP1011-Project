@@ -35,10 +35,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-        //Add dummy data
-        EmployeeRepository.getInstance().addEmployee(new HourlyEmployee("Thomas", "Herr", "Developer", "Information Technology", 40.0f, 20.0f));
-        ManufacturerRepository.getInstance().addManufacturer(new Manufacturer("Company"));
-        ProductRepository.getInstance().addProduct(new Product("Some Product", ManufacturerRepository.getInstance().findByName("Company"), "001F"));
 
         //created frame
         ContainerFrame containerFrame = new ContainerFrame();
