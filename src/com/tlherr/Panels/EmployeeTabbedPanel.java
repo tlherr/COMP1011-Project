@@ -1,8 +1,7 @@
 package com.tlherr.Panels;
 
 import com.tlherr.Listener.AuthenticationListener;
-import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
-import com.tlherr.Model.Employee.EmployeeTableModel;
+import com.tlherr.Model.Employee.*;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
@@ -76,10 +75,27 @@ public class EmployeeTabbedPanel extends JPanel {
             public void loggedIn(ActionEvent e) {
                 //When user logs in load up table data
                 try {
-                    ResultSet rs = EmployeeRepository.loadResultSetOrNull(BasePlusCommissionEmployee.class);
-                    if(rs!=null) {
-                        basePlusCommissionTable.setModel(EmployeeTableModel.build(rs));
+                    //@TODO: This is pretty dirty, should be refactored out into class methods
+                    ResultSet bpcRs = EmployeeRepository.loadResultSetOrNull(BasePlusCommissionEmployee.class);
+                    if(bpcRs!=null) {
+                        basePlusCommissionTable.setModel(EmployeeTableModel.build(bpcRs));
                     }
+
+                    ResultSet csRs = EmployeeRepository.loadResultSetOrNull(CommissionSalesEmployee.class);
+                    if(csRs!=null) {
+                        commissionSalesTable.setModel(EmployeeTableModel.build(csRs));
+                    }
+
+                    ResultSet hRs = EmployeeRepository.loadResultSetOrNull(HourlyEmployee.class);
+                    if(hRs!=null) {
+                        hourlyTable.setModel(EmployeeTableModel.build(hRs));
+                    }
+
+                    ResultSet sRs = EmployeeRepository.loadResultSetOrNull(SalaryEmployee.class);
+                    if(sRs!=null) {
+                        salaryTable.setModel(EmployeeTableModel.build(sRs));
+                    }
+
                 } catch (SQLException e1) {
                     //@TODO: Handle with loggin class as stated in requirements
                     e1.printStackTrace();
@@ -96,7 +112,19 @@ public class EmployeeTabbedPanel extends JPanel {
         add(employeeContainerPane, BorderLayout.NORTH);
     }
 
+    public JTable getBasePlusCommissionTable() {
+        return basePlusCommissionTable;
+    }
 
+    public JTable getCommissionSalesTable() {
+        return commissionSalesTable;
+    }
 
+    public JTable getHourlyTable() {
+        return hourlyTable;
+    }
 
+    public JTable getSalaryTable() {
+        return salaryTable;
+    }
 }

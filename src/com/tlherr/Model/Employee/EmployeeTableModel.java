@@ -45,6 +45,7 @@ public class EmployeeTableModel extends DefaultTableModel {
 
         System.out.println("Result Set Contained "+tableData.size()+" elements");
 
+        //@TODO: need to look into how this should be handled. Closing for now to avoid flooding connection pool
         resultSet.close();
 
         return new DefaultTableModel(tableData, columnNames);

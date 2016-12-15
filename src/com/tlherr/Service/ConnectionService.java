@@ -13,6 +13,8 @@ public class ConnectionService {
     private static final String username = "gc200325519";
     private static final String password = "L^cW3GW*";
 
+    //@TODO: Hold a list of all connections and when logged out close them before exiting?
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DBUrl, username, password);
     }

@@ -49,22 +49,19 @@ public class EmployeeRepository {
 
         if(c==BasePlusCommissionEmployee.class) {
             //Load BasePlusCommissionEmployees into result set and return it
-            rs = statement.executeQuery("SELECT * FROM BasePlusCommissionEmployee");
-            return rs;
+            return statement.executeQuery("SELECT * FROM BasePlusCommissionEmployee");
+
         } else if(c==CommissionSalesEmployee.class) {
             //Load CommissionSalesEmployees into result set and return it
-            rs =  statement.executeQuery("SELECT * FROM CommissionSalesEmployee");
-            return rs;
+            return statement.executeQuery("SELECT * FROM CommissionEmployee");
+
         } else if(c==HourlyEmployee.class) {
             //Load HourlyEmployees into a result set and return it
-            rs = statement.executeQuery("SELECT * FROM HourlyEmployee");
-            conn.close();
-            return rs;
+            return statement.executeQuery("SELECT * FROM HourlyEmployee");
+
         } else if(c==SalaryEmployee.class) {
             //Load SalaryEmployees into a result set and return it
-            rs = statement.executeQuery("SELECT * FROM SalaryEmployee");
-            rs.close();
-            return rs;
+            return statement.executeQuery("SELECT * FROM SalaryEmployee");
         } else {
             return null;
         }
