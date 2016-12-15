@@ -2,6 +2,7 @@ package com.tlherr.Repository;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Service.ConnectionService;
 
@@ -44,6 +45,8 @@ public class EmployeeRepository {
     public void save(AbstractEmployee employee) {
         if(employee.getClass()==BasePlusCommissionEmployee.class) {
             save((BasePlusCommissionEmployee) employee);
+        } else if(employee.getClass()== CommissionSalesEmployee.class) {
+            save((CommissionSalesEmployee) employee);
         }
     }
 
@@ -62,6 +65,31 @@ public class EmployeeRepository {
             statement.setBigDecimal(5, employee.getCommissionRate());
             statement.setBigDecimal(6, employee.getSales());
             statement.setBigDecimal(7, employee.getBaseSalary());
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            //@TODO: This should log to debug log as per requirements
+             e.printStackTrace();
+        }
+    }
+
+
+    private void save(CommissionSalesEmployee employee) {
+        //Get a connection
+        try {
+            Connection conn = ConnectionService.getConnection();
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO CommissionEmployee " +
+                    "(firstName, lastName, position, department, commissionRate, sales)" +
+                    " VALUES (?,?,?,?,?,?)");
+
+            statement.setString(1, employee.getFirstName());
+            statement.setString(2, employee.getLastName());
+            statement.setString(3, employee.getPosition());
+            statement.setString(4, employee.getDepartment());
+            statement.setBigDecimal(5, employee.getCommissionRate());
+            statement.setBigDecimal(6, employee.getSales());
 
             statement.execute();
             conn.close();

@@ -165,7 +165,8 @@ public class HumanResourcesPanel extends BasePanel {
 
                 case 1:
                     if(commissionSalesEmployeeForm.validateForm()) {
-                        //EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
+                        EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
+                        clearForm();
                     }
                     break;
 
