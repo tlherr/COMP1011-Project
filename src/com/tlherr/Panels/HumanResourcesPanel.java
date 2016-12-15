@@ -158,27 +158,29 @@ public class HumanResourcesPanel extends BasePanel {
             switch(employeeTypeSelector.getSelectedIndex()) {
                 case 0:
                     if(bpcComissionEmployeeForm.validateForm()) {
-                        EmployeeRepository.getInstance().save(bpcComissionEmployeeForm.submit());
+                        bpcComissionEmployeeForm.submit().save();
                         clearForm();
                     }
                     break;
 
                 case 1:
                     if(commissionSalesEmployeeForm.validateForm()) {
-                        EmployeeRepository.getInstance().save(commissionSalesEmployeeForm.submit());
+                        commissionSalesEmployeeForm.submit().save();
                         clearForm();
                     }
                     break;
 
                 case 2:
                     if(hourlyEmployeeForm.validateForm()) {
-                        //EmployeeRepository.getInstance().save(hourlyEmployeeForm.submit());
+                        hourlyEmployeeForm.submit().save();
+                        clearForm();
                     }
                     break;
 
                 case 3:
                     if(salaryEmployeeForm.validateForm()) {
-                        //EmployeeRepository.getInstance().save(salaryEmployeeForm.submit());
+                        salaryEmployeeForm.submit().save();
+                        clearForm();
                     }
                     break;
             }

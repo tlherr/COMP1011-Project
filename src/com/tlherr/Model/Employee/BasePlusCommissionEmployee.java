@@ -1,6 +1,11 @@
 package com.tlherr.Model.Employee;
 
+import com.tlherr.Service.ConnectionService;
+
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * This type of employee works on a base salary as well as commission rates
@@ -30,6 +35,31 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
         return baseSalary.add(super.getSales().multiply(super.getCommissionRate()));
     }
 
+    @Override
+    public void save() {
+        //Get a connection
+        try {
+            Connection conn = ConnectionService.getConnection();
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO BasePlusCommissionEmployee " +
+                    "(firstName, lastName, position, department, commissionRate, sales, salary)" +
+                    " VALUES (?,?,?,?,?,?,?)");
+
+            statement.setString(1, this.getFirstName());
+            statement.setString(2, this.getLastName());
+            statement.setString(3, this.getPosition());
+            statement.setString(4, this.getDepartment());
+            statement.setBigDecimal(5, this.getCommissionRate());
+            statement.setBigDecimal(6, this.getSales());
+            statement.setBigDecimal(7, this.getBaseSalary());
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            //@TODO: This should log to debug log as per requirements
+            e.printStackTrace();
+        }
+    }
 
     public BigDecimal getBaseSalary() {
         return baseSalary;

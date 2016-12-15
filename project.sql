@@ -48,7 +48,6 @@ CREATE TABLE if not exists HourlyEmployee(
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
     `department` VARCHAR(200) NOT NULL ,
-    `sales` DECIMAL(9,2) NOT NULL,
     `hoursPerWeek` DECIMAL(3,2) NOT NULL,
     `hourlyRate` DECIMAL(3,2) NOT NULL,
     PRIMARY KEY(id)
@@ -60,7 +59,6 @@ CREATE TABLE if not exists SalaryEmployee(
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
     `department` VARCHAR(200) NOT NULL ,
-    `sales` DECIMAL(9,2) NOT NULL,
     `salary` DOUBLE(3,2) NOT NULL,
     PRIMARY KEY(id)
 ) ENGINE=INNODB;

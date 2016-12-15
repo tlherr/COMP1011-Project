@@ -1,5 +1,6 @@
 package com.tlherr.Form;
 
+import com.tlherr.Input.ValidatedFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
@@ -14,7 +15,9 @@ import java.math.BigDecimal;
  */
 public class HourlyEmployeeForm extends AbstractEmployeeForm {
 
-    private JTextField hourlyRateTextField;
+
+    private ValidatedFormInput hourlyRate;
+    private ValidatedFormInput hoursPerWeek;
 
     public HourlyEmployeeForm() {
         super();
@@ -38,7 +41,8 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         empl.setLastName(lastName.getValue());
         empl.setPosition(position.getValue());
         empl.setDepartment(department.getValue());
-        empl.setHourlyRate(new BigDecimal(hourlyRateTextField.getText()));
+        empl.setHourlyRate(hourlyRate.getDecimalValue());
+        empl.setHoursWorked(hoursPerWeek.getDecimalValue());
         return empl;
     }
 
@@ -50,18 +54,7 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
 
     @Override
     public void addFormElements() {
-        HourlyEmployee empl = (HourlyEmployee) this.employee;
-
-//        //This adds any extra form elements beyond the base ones provided by abstract employee form
-//
-//        //Commission Rate
-//        JLabel hourlyRateLabel = new JLabel(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE);
-//        addLabel(hourlyRateLabel);
-//
-//        hourlyRateTextField = new JTextField();
-//        if(this.employee!=null) {
-//            hourlyRateTextField.setText(String.valueOf(empl.getHourlyRate()));
-//        }
-//        addTextField(hourlyRateTextField);
+        hourlyRate = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE, InputService.DECIMAL);
+        hoursPerWeek = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK, InputService.DECIMAL);
     }
 }

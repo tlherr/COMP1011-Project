@@ -40,6 +40,8 @@ public abstract class AbstractEmployee {
      */
     public abstract BigDecimal calculatePay();
 
+    public abstract void save();
+
     /**
      * Getters/Setters
      */

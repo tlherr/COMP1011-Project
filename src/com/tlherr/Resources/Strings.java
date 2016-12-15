@@ -93,6 +93,7 @@ public class Strings {
      * Hourly Sales Employee
      */
     public static final String H_EMPLOYEE_FORM_LABEL_HOURLY_RATE = "Hourly Rate: ";
+    public static final String H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK = "Hours Per Week: ";
 
     /**
      * Login Form
