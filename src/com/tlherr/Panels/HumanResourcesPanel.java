@@ -2,10 +2,7 @@ package com.tlherr.Panels;
 
 import com.tlherr.Form.*;
 import com.tlherr.Listener.AuthenticationListener;
-import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
-import com.tlherr.Model.Employee.CommissionSalesEmployee;
-import com.tlherr.Model.Employee.EmployeeTableModel;
-import com.tlherr.Model.Employee.HourlyEmployee;
+import com.tlherr.Model.Employee.*;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
@@ -171,6 +168,32 @@ public class HumanResourcesPanel extends BasePanel {
             }
         });
 
+        employeeTabbedPanel.getSalaryTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                if(e.getValueIsAdjusting()) {
+                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
+
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getSalaryTable().getSelectedRow());
+                        SalaryEmployee empl = new SalaryEmployee(vectorResult);
+
+                        addEmployeeButton.setEnabled(false);
+                        employeeTypeSelector.setEnabled(false);
+
+                        clearForm();
+                        salaryEmployeeForm = new SalaryEmployeeForm(empl);
+                        salaryEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                        salaryEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                        employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
+                        repack();
+                    } catch(ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
+                }
+            }
+        });
 
 
     }
@@ -269,6 +292,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 3:
                     if(salaryEmployeeForm.validateForm()) {
                         salaryEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateSalaryTable();
                         clearForm();
                     }
                     break;
@@ -310,6 +334,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 3:
                     if(salaryEmployeeForm.validateForm()) {
                         salaryEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateSalaryTable();
                         clearForm();
                     }
                     break;

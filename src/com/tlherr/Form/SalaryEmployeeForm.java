@@ -1,8 +1,10 @@
 package com.tlherr.Form;
 
+import com.tlherr.Input.ValidatedFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.InputService;
 
 import javax.swing.*;
 
@@ -11,38 +13,49 @@ import javax.swing.*;
  */
 public class SalaryEmployeeForm extends AbstractEmployeeForm {
 
+    private ValidatedFormInput salary;
+
     public SalaryEmployeeForm() {
         super();
     }
 
     @Override
     public AbstractEmployee submit() {
-        return null;
-    }
+        SalaryEmployee empl;
 
-    @Override
-    public Boolean validateForm() {
-        return null;
+        //Check if an employee already exists for the form
+        if(this.employee==null) {
+            //Employee does not exist, create a new one
+            empl = new SalaryEmployee();
+        } else {
+            //If an employee does exist overwrite the existing values
+            empl = (SalaryEmployee) this.employee;
+        }
+
+        //Add form values to Employee object
+        empl.setFirstName(firstName.getValue());
+        empl.setLastName(lastName.getValue());
+        empl.setPosition(position.getValue());
+        empl.setDepartment(department.getValue());
+        empl.setSalary(salary.getDecimalValue());
+        return empl;
     }
 
     public SalaryEmployeeForm(SalaryEmployee empl) {
         super(empl);
+        build();
+
+        firstName.setEditText(empl.getFirstName());
+        lastName.setEditText(empl.getLastName());
+        position.setEditText(empl.getPosition());
+        department.setEditText(empl.getDepartment());
+        salary.setEditText(empl.getSalary().toString());
     }
 
     @Override
     public void addFormElements() {
-        SalaryEmployee empl = (SalaryEmployee) this.employee;
+        salary = new ValidatedFormInput(Strings.S_EMPLOYEE_FORM_LABEL_SALARY, InputService.DECIMAL);
 
-        //This adds any extra form elements beyond the base ones provided by abstract employee form
-
-        //Salary
-//        JLabel salaryLabel = new JLabel(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY);
-//        addLabel(salaryLabel);
-//
-//        JTextField salaryTextField = new JTextField();
-//        if(this.employee!=null) {
-//            salaryTextField.setText(String.valueOf(empl.getSalary()));
-//        }
-//        addTextField(salaryTextField);
+        addValidatedInput(salary);
     }
 }

@@ -105,6 +105,11 @@ public class Strings {
     public static final String H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK = "Hours Per Week: ";
 
     /**
+     * Salary Employee
+     */
+    public static final String S_EMPLOYEE_FORM_LABEL_SALARY = "Salary:";
+
+    /**
      * Login Form
      */
 
