@@ -19,6 +19,15 @@ BEGIN
     END IF;
 END$$
 
+CREATE TABLE IF NOT EXISTS Customer(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `firstName` VARCHAR(200) NOT NULL,
+    `lastName` VARCHAR(200) NOT NULL,
+    `emailAddress` VARCHAR(200) NOT NULL,
+    `company` VARCHAR(200) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=INNODB;
+
 CREATE TABLE if not exists CommissionEmployee(
     `id` int NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(200) NOT NULL ,
