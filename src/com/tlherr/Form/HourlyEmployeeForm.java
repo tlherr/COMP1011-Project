@@ -46,15 +46,24 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         return empl;
     }
 
-
-
     public HourlyEmployeeForm(HourlyEmployee empl) {
         super(empl);
+        build();
+
+        firstName.setEditText(empl.getFirstName());
+        lastName.setEditText(empl.getLastName());
+        position.setEditText(empl.getPosition());
+        department.setEditText(empl.getDepartment());
+        hoursPerWeek.setEditText(String.valueOf(empl.getHourlyRate()));
+        hourlyRate.setEditText(String.valueOf(empl.getHoursWorked()));
     }
 
     @Override
     public void addFormElements() {
         hourlyRate = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE, InputService.DECIMAL);
         hoursPerWeek = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK, InputService.DECIMAL);
+
+        addValidatedInput(hourlyRate);
+        addValidatedInput(hoursPerWeek);
     }
 }

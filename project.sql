@@ -123,6 +123,10 @@ CREATE TABLE if not exists SalaryEmployeeSales(
 INSERT INTO account (username, password, type) VALUES ("Regular", "regular", 1);
 INSERT INTO account (username, password, type) VALUES ("Admin", "admin", 2);
 
+# Create some Dummy Data
+
+INSERT INTO BasePlusCommissionEmployee (`firstName`,`lastName`,`position`,`department`,`commissionRate`,`sales`,`salary`)
+VALUES ("Bob", "Smith", "Programmer", "IT", 10.00, 20000.00, 60000.00);
 
 
 

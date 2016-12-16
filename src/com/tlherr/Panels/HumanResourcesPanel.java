@@ -5,6 +5,7 @@ import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
 import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.EmployeeTableModel;
+import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
@@ -143,6 +144,34 @@ public class HumanResourcesPanel extends BasePanel {
             }
         });
 
+        employeeTabbedPanel.getHourlyTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                if(e.getValueIsAdjusting()) {
+                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
+
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getHourlyTable().getSelectedRow());
+                        HourlyEmployee empl = new HourlyEmployee(vectorResult);
+
+                        addEmployeeButton.setEnabled(false);
+                        employeeTypeSelector.setEnabled(false);
+
+                        clearForm();
+                        hourlyEmployeeForm = new HourlyEmployeeForm(empl);
+                        hourlyEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                        hourlyEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                        employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
+                        repack();
+                    } catch(ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
+                }
+            }
+        });
+
+
 
     }
 
@@ -232,6 +261,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 2:
                     if(hourlyEmployeeForm.validateForm()) {
                         hourlyEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateHourlyTable();
                         clearForm();
                     }
                     break;
@@ -272,6 +302,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 2:
                     if(hourlyEmployeeForm.validateForm()) {
                         hourlyEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateHourlyTable();
                         clearForm();
                     }
                     break;

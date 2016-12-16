@@ -16,9 +16,7 @@ public abstract class AbstractEmployee {
     private String firstName, lastName, position, department;
     protected int idNumber;
 
-    protected AbstractEmployee() {
-        this.idNumber = ServiceClass.getId();
-    }
+    protected AbstractEmployee() {}
 
     protected AbstractEmployee(String firstName, String lastName, String position, String department) {
         this.firstName = firstName;
