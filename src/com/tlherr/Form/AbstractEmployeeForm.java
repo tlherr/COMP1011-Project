@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
  * The class provides default GridBagConstants that allow components to be added by subclasses and still share the same
  * styling and layout.
  */
-public abstract class AbstractEmployeeForm extends JPanel {
+public abstract class AbstractEmployeeForm extends AbstractForm {
 
     /**
      * This employee can be loaded into the form to allow for "edit" or "read" functionality
