@@ -1,5 +1,7 @@
 package com.tlherr.Panels;
 
+import com.tlherr.Resources.Strings;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,15 +12,20 @@ import java.awt.*;
  */
 public class InventoryPanel extends JPanel {
 
+    private JTabbedPane inventoryTabbedPane;
     private JPanel manufacturerPanel;
     private JPanel productPanel;
 
     public InventoryPanel() {
         setLayout(new BorderLayout());
-        manufacturerPanel = new ManufacturerPanel();
-        add(manufacturerPanel, BorderLayout.NORTH);
+        inventoryTabbedPane = new JTabbedPane();
 
+        manufacturerPanel = new ManufacturerPanel();
         productPanel = new ProductPanel();
-        add(productPanel, BorderLayout.SOUTH);
+
+        inventoryTabbedPane.add(Strings.MANUFACTURERS_TAB_TITLE, manufacturerPanel);
+        inventoryTabbedPane.add(Strings.PRODUCTS_TAB_TITLE, productPanel);
+
+        add(inventoryTabbedPane, BorderLayout.NORTH);
     }
 }

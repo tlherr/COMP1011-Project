@@ -9,7 +9,6 @@ import java.awt.*;
  * Manufacturer panel, contains table and add/edit/remove buttons
  */
 public class ManufacturerPanel extends JPanel {
-    private JLabel headerLabel;
     private JTable manufacturersTable;
     private JPanel manufacturersOperationButtons;
     private JButton addManufacturerButton;
@@ -19,12 +18,9 @@ public class ManufacturerPanel extends JPanel {
     public ManufacturerPanel() {
         setLayout(new BorderLayout());
 
-        headerLabel = new JLabel(Strings.MANUFACTURERS_TITLE);
-        add(headerLabel, BorderLayout.NORTH);
-
         manufacturersTable = new JTable();
         manufacturersTable.setFillsViewportHeight(true);
-        add(manufacturersTable, BorderLayout.CENTER);
+        add(manufacturersTable, BorderLayout.NORTH);
 
         manufacturersOperationButtons = new JPanel(new FlowLayout());
         addManufacturerButton = new JButton(Strings.ADD_MANUFACTURERS_BUTTON);

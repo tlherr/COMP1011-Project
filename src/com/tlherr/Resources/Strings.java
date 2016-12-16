@@ -47,7 +47,7 @@ public class Strings {
     /**
      * Manufacturers Panel
      */
-    public static final String MANUFACTURERS_TITLE = "Manufacturers";
+    public static final String MANUFACTURERS_TAB_TITLE = "Manufacturers";
     public static final String ADD_MANUFACTURERS_BUTTON = "Add";
     public static final String DELETE_MANUFACTURERS_BUTTON = "Delete";
     public static final String EDIT_MANUFACTURERS_BUTTON = "Edit";
@@ -55,7 +55,7 @@ public class Strings {
     /**
      * Products Panel
      */
-    public static final String PRODUCTS_TITLE = "Products";
+    public static final String PRODUCTS_TAB_TITLE = "Products";
     public static final String ADD_PRODUCTS_BUTTON = "Add";
     public static final String DELETE_PRODUCTS_BUTTON = "Delete";
     public static final String EDIT_PRODUCTS_BUTTON = "Edit";
