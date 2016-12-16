@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * This type of employee works on commission (percentage of sales they receive as compensation)
@@ -16,6 +17,17 @@ public class CommissionSalesEmployee extends AbstractEmployee {
 
     public CommissionSalesEmployee() {
         super();
+    }
+
+    public CommissionSalesEmployee(Vector v) {
+        super();
+        this.idNumber = (int) v.get(0);
+        this.setFirstName(v.get(1).toString());
+        this.setLastName(v.get(2).toString());
+        this.setPosition(v.get(3).toString());
+        this.setDepartment(v.get(4).toString());
+        this.setCommissionRate(new BigDecimal(v.get(5).toString()));
+        this.setSales(new BigDecimal(v.get(6).toString()));
     }
 
     public CommissionSalesEmployee(String firstName, String lastName, String position, String department, BigDecimal commissionRate, BigDecimal sales) {
@@ -39,16 +51,31 @@ public class CommissionSalesEmployee extends AbstractEmployee {
         //Get a connection
         try {
             Connection conn = ConnectionService.getConnection();
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO CommissionEmployee " +
-                    "(firstName, lastName, position, department, commissionRate, sales)" +
-                    " VALUES (?,?,?,?,?,?)");
+            PreparedStatement statement;
 
-            statement.setString(1, this.getFirstName());
-            statement.setString(2, this.getLastName());
-            statement.setString(3, this.getPosition());
-            statement.setString(4, this.getDepartment());
-            statement.setBigDecimal(5, this.getCommissionRate());
-            statement.setBigDecimal(6, this.getSales());
+            if(this.idNumber!=0) {
+                statement = conn.prepareStatement("UPDATE CommissionEmployee SET firstName=?, lastName=?," +
+                        "position=?,department=?,commissionRate=?,sales=? WHERE id=? ");
+
+                statement.setString(1, this.getFirstName());
+                statement.setString(2, this.getLastName());
+                statement.setString(3, this.getPosition());
+                statement.setString(4, this.getDepartment());
+                statement.setBigDecimal(5, this.getCommissionRate());
+                statement.setBigDecimal(6, this.getSales());
+                statement.setInt(7, this.getIdNumber());
+            } else {
+                statement = conn.prepareStatement("INSERT INTO CommissionEmployee " +
+                        "(firstName, lastName, position, department, commissionRate, sales)" +
+                        " VALUES (?,?,?,?,?,?)");
+
+                statement.setString(1, this.getFirstName());
+                statement.setString(2, this.getLastName());
+                statement.setString(3, this.getPosition());
+                statement.setString(4, this.getDepartment());
+                statement.setBigDecimal(5, this.getCommissionRate());
+                statement.setBigDecimal(6, this.getSales());
+            }
 
             statement.execute();
             conn.close();

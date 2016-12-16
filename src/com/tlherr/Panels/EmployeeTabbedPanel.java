@@ -78,7 +78,10 @@ public class EmployeeTabbedPanel extends JPanel {
             @Override
             public void loggedIn(ActionEvent e) {
                 //When user logs in load up table data
-                updateEmployeeTables();
+                updateBasePlusCommissionTable();
+                updateCommissionSalesTable();
+                updateHourlyTable();
+                updateSalaryTable();
             }
 
             @Override
@@ -91,34 +94,58 @@ public class EmployeeTabbedPanel extends JPanel {
         add(employeeContainerPane, BorderLayout.NORTH);
     }
 
-    public void updateEmployeeTables() {
+    public int getActiveTab() {
+        return employeeContainerPane.getSelectedIndex();
+    }
+
+    public void updateBasePlusCommissionTable() {
         try {
-            //@TODO: This is pretty dirty, should be refactored out into class methods
             ResultSet bpcRs = EmployeeRepository.loadResultSetOrNull(BasePlusCommissionEmployee.class);
             if(bpcRs!=null) {
                 basePlusCommissionTable.setModel(EmployeeTableModel.build(bpcRs));
             }
-
-            ResultSet csRs = EmployeeRepository.loadResultSetOrNull(CommissionSalesEmployee.class);
-            if(csRs!=null) {
-                commissionSalesTable.setModel(EmployeeTableModel.build(csRs));
-            }
-
-            ResultSet hRs = EmployeeRepository.loadResultSetOrNull(HourlyEmployee.class);
-            if(hRs!=null) {
-                hourlyTable.setModel(EmployeeTableModel.build(hRs));
-            }
-
-            ResultSet sRs = EmployeeRepository.loadResultSetOrNull(SalaryEmployee.class);
-            if(sRs!=null) {
-                salaryTable.setModel(EmployeeTableModel.build(sRs));
-            }
-
         } catch (SQLException e1) {
             //@TODO: Handle with loggin class as stated in requirements
             e1.printStackTrace();
         }
     }
+
+    public void updateCommissionSalesTable() {
+        try {
+            ResultSet csRs = EmployeeRepository.loadResultSetOrNull(CommissionSalesEmployee.class);
+            if(csRs!=null) {
+                commissionSalesTable.setModel(EmployeeTableModel.build(csRs));
+            }
+        } catch (SQLException e1) {
+            //@TODO: Handle with loggin class as stated in requirements
+            e1.printStackTrace();
+        }
+    }
+
+    public void updateHourlyTable() {
+        try {
+            ResultSet hRs = EmployeeRepository.loadResultSetOrNull(HourlyEmployee.class);
+            if(hRs!=null) {
+                hourlyTable.setModel(EmployeeTableModel.build(hRs));
+            }
+        } catch (SQLException e1) {
+            //@TODO: Handle with loggin class as stated in requirements
+            e1.printStackTrace();
+        }
+    }
+
+    public void updateSalaryTable() {
+        try {
+            ResultSet sRs = EmployeeRepository.loadResultSetOrNull(SalaryEmployee.class);
+            if(sRs!=null) {
+                salaryTable.setModel(EmployeeTableModel.build(sRs));
+            }
+        } catch (SQLException e1) {
+            //@TODO: Handle with loggin class as stated in requirements
+            e1.printStackTrace();
+        }
+    }
+
 
 
 

@@ -3,6 +3,7 @@ package com.tlherr.Panels;
 import com.tlherr.Form.*;
 import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.EmployeeTableModel;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
@@ -73,6 +74,7 @@ public class HumanResourcesPanel extends BasePanel {
         //Disable components until we have a logged in user
         enableComponents(employeeOperationsButtons, false);
 
+        //Handle login events
         LoginService.getInstance().addListener(new AuthenticationListener() {
             @Override
             public void loggedIn(ActionEvent e) {
@@ -86,8 +88,7 @@ public class HumanResourcesPanel extends BasePanel {
                 repack();
             }
         });
-
-        //Listen for table click events
+        //Handle user selecting table items
         employeeTabbedPanel.getBasePlusCommissionTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -104,7 +105,7 @@ public class HumanResourcesPanel extends BasePanel {
 
                         clearForm();
                         bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
-                        bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                        bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
                         bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
                         employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
                         repack();
@@ -112,7 +113,33 @@ public class HumanResourcesPanel extends BasePanel {
                         //@TODO: Logging method should handle this as stated in requirements
                     }
                 }
+            }
+        });
 
+        employeeTabbedPanel.getCommissionSalesTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                if(e.getValueIsAdjusting()) {
+                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
+
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow());
+                        CommissionSalesEmployee empl = new CommissionSalesEmployee(vectorResult);
+
+                        addEmployeeButton.setEnabled(false);
+                        employeeTypeSelector.setEnabled(false);
+
+                        clearForm();
+                        commissionSalesEmployeeForm = new CommissionSalesEmployeeForm(empl);
+                        commissionSalesEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                        commissionSalesEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                        employeeFormPanel.add(commissionSalesEmployeeForm, BorderLayout.CENTER);
+                        repack();
+                    } catch(ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
+                }
             }
         });
 
@@ -172,7 +199,7 @@ public class HumanResourcesPanel extends BasePanel {
     }
 
 
-
+    //This is the ok button listener for forms added via the dropdown
     private class OkEmployeeButtonListener implements ActionListener {
 
         /**
@@ -189,6 +216,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 0:
                     if(bpcComissionEmployeeForm.validateForm()) {
                         bpcComissionEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateBasePlusCommissionTable();
                         clearForm();
                     }
                     break;
@@ -196,6 +224,7 @@ public class HumanResourcesPanel extends BasePanel {
                 case 1:
                     if(commissionSalesEmployeeForm.validateForm()) {
                         commissionSalesEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateCommissionSalesTable();
                         clearForm();
                     }
                     break;
@@ -215,8 +244,45 @@ public class HumanResourcesPanel extends BasePanel {
                     break;
             }
             //Update table to show changes
-            employeeTabbedPanel.updateEmployeeTables();
             repack();
+        }
+    }
+
+    private class OkEmployeeTabbedPanelButtonListener implements  ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch(employeeTabbedPanel.getActiveTab()) {
+                case 0:
+                    if(bpcComissionEmployeeForm.validateForm()) {
+                        bpcComissionEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateBasePlusCommissionTable();
+                        clearForm();
+                    }
+                    break;
+
+                case 1:
+                    if(commissionSalesEmployeeForm.validateForm()) {
+                        commissionSalesEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateCommissionSalesTable();
+                        clearForm();
+                    }
+                    break;
+
+                case 2:
+                    if(hourlyEmployeeForm.validateForm()) {
+                        hourlyEmployeeForm.submit().save();
+                        clearForm();
+                    }
+                    break;
+
+                case 3:
+                    if(salaryEmployeeForm.validateForm()) {
+                        salaryEmployeeForm.submit().save();
+                        clearForm();
+                    }
+                    break;
+            }
         }
     }
 

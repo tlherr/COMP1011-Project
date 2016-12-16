@@ -46,6 +46,15 @@ public class CommissionSalesEmployeeForm extends AbstractEmployeeForm {
 
     public CommissionSalesEmployeeForm(CommissionSalesEmployee empl) {
         super(empl);
+
+        build();
+
+        firstName.setEditText(empl.getFirstName());
+        lastName.setEditText(empl.getLastName());
+        position.setEditText(empl.getPosition());
+        department.setEditText(empl.getDepartment());
+        sales.setEditText(empl.getSales().toString());
+        commissionRate.setEditText(empl.getCommissionRate().toString());
     }
 
     @Override
