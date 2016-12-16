@@ -94,19 +94,23 @@ public class HumanResourcesPanel extends BasePanel {
 
                 if(e.getValueIsAdjusting()) {
                     DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
-                    Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
 
-                    BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
+                        BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
 
-                    addEmployeeButton.setEnabled(false);
-                    employeeTypeSelector.setEnabled(false);
+                        addEmployeeButton.setEnabled(false);
+                        employeeTypeSelector.setEnabled(false);
 
-                    clearForm();
-                    bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
-                    bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
-                    bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
-                    employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
-                    repack();
+                        clearForm();
+                        bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
+                        bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeButtonListener());
+                        bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                        employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
+                        repack();
+                    } catch(ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
                 }
 
             }
@@ -167,6 +171,8 @@ public class HumanResourcesPanel extends BasePanel {
         }
     }
 
+
+
     private class OkEmployeeButtonListener implements ActionListener {
 
         /**
@@ -208,6 +214,8 @@ public class HumanResourcesPanel extends BasePanel {
                     }
                     break;
             }
+            //Update table to show changes
+            employeeTabbedPanel.updateEmployeeTables();
             repack();
         }
     }
