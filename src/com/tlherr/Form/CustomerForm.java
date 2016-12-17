@@ -29,6 +29,13 @@ public class CustomerForm extends AbstractForm {
         emailAddress = new ValidatedFormInput(Strings.CUSTOMER_FORM_LABEL_EMAIL, InputService.EMAIL_BASIC);
         company = new ValidatedFormInput(Strings.CUSTOMER_FORM_LABEL_COMPANY, InputService.ALPHANUMERIC_WORDS);
 
+        if(this.customer!=null) {
+            firstName.setEditText(this.customer.getFirstName());
+            lastName.setEditText(this.customer.getLastName());
+            emailAddress.setEditText(this.customer.getEmailAddress());
+            company.setEditText(this.customer.getCompany());
+        }
+
         addValidatedInput(firstName);
         addValidatedInput(lastName);
         addValidatedInput(emailAddress);

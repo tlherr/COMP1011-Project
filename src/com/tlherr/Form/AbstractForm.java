@@ -6,6 +6,7 @@ import com.tlherr.Resources.Strings;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public abstract class AbstractForm extends JPanel {
 
@@ -80,5 +81,27 @@ public abstract class AbstractForm extends JPanel {
         }
 
         return isValid;
+    }
+
+    /**
+     * Set a listener for the ok button
+     *
+     * @param listener ActionListener Listener to handle event
+     */
+    public void setOkButtonActionListener(ActionListener listener) {
+        if (this.okButton != null) {
+            this.okButton.addActionListener(listener);
+        }
+    }
+
+    /**
+     * Set a listener for the cancel button
+     *
+     * @param listener ActionListener Listener to handle event
+     */
+    public void setCancelButtonActionListener(ActionListener listener) {
+        if (this.cancelButton != null) {
+            this.cancelButton.addActionListener(listener);
+        }
     }
 }

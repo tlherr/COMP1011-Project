@@ -17,10 +17,7 @@ public class EmployeeRepository extends AbstractRepository {
         return instance;
     }
 
-    private EmployeeRepository() {
-    }
-
-    ;
+    private EmployeeRepository() {}
 
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 

@@ -25,8 +25,11 @@ public class Customer extends AbstractModel {
     }
 
     public Customer(Vector v) {
-        this.id = (int) v.get(1);
-        this.firstName = v.get(2).toString();
+        this.id = (int) v.get(0);
+        this.firstName = v.get(1).toString();
+        this.lastName = v.get(2).toString();
+        this.emailAddress = v.get(3).toString();
+        this.company = v.get(4).toString();
     }
 
     public String getFirstName() {

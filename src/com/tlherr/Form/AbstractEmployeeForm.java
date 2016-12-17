@@ -66,28 +66,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     }
 
     /**
-     * Set a listener for the ok button
-     *
-     * @param listener ActionListener Listener to handle event
-     */
-    public void setOkButtonActionListener(ActionListener listener) {
-        if (this.okButton != null) {
-            this.okButton.addActionListener(listener);
-        }
-    }
-
-    /**
-     * Set a listener for the cancel button
-     *
-     * @param listener ActionListener Listener to handle event
-     */
-    public void setCancelButtonActionListener(ActionListener listener) {
-        if (this.cancelButton != null) {
-            this.cancelButton.addActionListener(listener);
-        }
-    }
-
-    /**
      * Call build methods that add base form elements, any subclass form elements and form controls
      * then add panels to the main panel and make everything visible.
      */
