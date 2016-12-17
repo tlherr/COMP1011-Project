@@ -30,8 +30,8 @@ public class ProductRepository extends AbstractRepository {
         Statement statement = conn.createStatement();
 
         if(toLoad==Product.class) {
-            //Load BasePlusCommissionEmployees into result set and return it
-            return statement.executeQuery("SELECT * FROM Manufacturers");
+            return statement.executeQuery("SELECT prod.name as 'Product Name',prod.modelNumber as 'Model Number', manu.id as 'Manufacturer ID', manu.name as 'Manufacturer' \n" +
+                    "FROM products prod INNER JOIN manufacturers manu on prod.manufacturer_ID=manu.id;");
         } else {
             return null;
         }

@@ -52,10 +52,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
         this.employee = empl;
     }
 
-    public void addValidatedInput(ValidatedFormInput validatedFormInput) {
-        this.contentPanel.add(validatedFormInput);
-    }
-
     /**
      * This method adds base employee attribute form components to content panel
      * If an employee is set it will set values based on employee data

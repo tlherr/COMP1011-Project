@@ -14,34 +14,15 @@ import java.util.Vector;
  */
 public class Manufacturer extends AbstractModel {
 
-    private int id;
     private String name;
-    private ArrayList<Product> products;
 
     public Manufacturer(String name) {
         this.name = name;
     }
 
-    public Manufacturer(String name, ArrayList<Product> products) {
-        this(name);
-        this.products = products;
-    }
-
     public Manufacturer(Vector v) {
         this.id = (int) v.get(1);
         this.name = v.get(2).toString();
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -54,7 +35,7 @@ public class Manufacturer extends AbstractModel {
             if(this.id!=0) {
                 statement = conn.prepareStatement("UPDATE Manufacturers SET name=? WHERE id=? ");
 
-                statement.setString(1, this.getName());
+                statement.setString(1, this.name);
                 statement.setInt(2, this.id);
 
             } else {
@@ -62,7 +43,7 @@ public class Manufacturer extends AbstractModel {
                         "(name)" +
                         " VALUES (?)");
 
-                statement.setString(1, this.getName());
+                statement.setString(1, this.name);
             }
 
             statement.execute();

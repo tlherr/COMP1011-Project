@@ -7,10 +7,7 @@ import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Model.Manufacturer;
 import com.tlherr.Service.ConnectionService;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -37,6 +34,14 @@ public class ManufacturerRepository extends AbstractRepository {
         } else {
             return null;
         }
+    }
+
+    public ResultSet loadById(int id) throws SQLException {
+        Connection conn = ConnectionService.getConnection();
+        PreparedStatement statement = conn.prepareStatement("SELECT * FROM Manufacturer WHERE id=?");
+        statement.setInt(1, id);
+
+        return statement.executeQuery();
     }
 
 

@@ -70,6 +70,10 @@ public class Strings {
     /**
      * Customer Form
      */
+    public static final String CUSTOMER_FORM_LABEL_FIRSTNAME = "First Name: ";
+    public static final String CUSTOMER_FORM_LABEL_LASTNAME = "Last Name: ";
+    public static final String CUSTOMER_FORM_LABEL_EMAIL = "Email Address: ";
+    public static final String CUSTOMER_FORM_LABEL_COMPANY = "Company: ";
 
 
     /**

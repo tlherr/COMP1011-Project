@@ -9,8 +9,6 @@ import java.awt.*;
 
 public abstract class AbstractForm extends JPanel {
 
-
-
     protected JPanel contentPanel;
     protected JPanel controlsPanel;
 
@@ -34,6 +32,10 @@ public abstract class AbstractForm extends JPanel {
 
         add(contentPanel, BorderLayout.NORTH);
         add(controlsPanel, BorderLayout.SOUTH);
+    }
+
+    public void addValidatedInput(ValidatedFormInput validatedFormInput) {
+        this.contentPanel.add(validatedFormInput);
     }
 
     public JButton getOkButton() {

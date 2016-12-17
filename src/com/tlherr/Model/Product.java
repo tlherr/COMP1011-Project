@@ -1,6 +1,11 @@
 package com.tlherr.Model;
 
-import java.util.Date;
+import com.tlherr.Service.ConnectionService;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * Product Model
@@ -9,115 +14,56 @@ import java.util.Date;
 public class Product extends AbstractModel {
 
     private Manufacturer manufacturer;
-    private String productName, description, modelNumber;
-    private Integer sku;
-    private float msrp, weight, depth, price;
-    private Date dateProduced;
+    private String name, modelNumber;
 
-    public Product() {}
+    public Product(Vector v) {
+        this.id = (int) v.get(1);
+        this.name = v.get(2).toString();
+        this.modelNumber = v.get(3).toString();
 
-    public Product(String productName, Manufacturer manufacturer, String modelNumber) {
-        this.productName = productName;
+        Vector<Object> manufacturerVector = new Vector<>();
+        manufacturerVector.add(v.get(4));
+        manufacturerVector.add(v.get(5).toString());
+        this.manufacturer = new Manufacturer(manufacturerVector);
+    }
+
+    public Product(String name, Manufacturer manufacturer, String modelNumber) {
+        this.name = name;
         this.manufacturer = manufacturer;
         this.modelNumber = modelNumber;
-    }
-
-
-    public Product(String productName, String description, Manufacturer manufacturer, String modelNumber, Integer sku, float msrp, float weight, float depth, float price, Date dateProduced) {
-        this.productName = productName;
-        this.description = description;
-        this.manufacturer = manufacturer;
-        this.modelNumber = modelNumber;
-        this.sku = sku;
-        this.msrp = msrp;
-        this.weight = weight;
-        this.depth = depth;
-        this.price = price;
-        this.dateProduced = dateProduced;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getModelNumber() {
-        return modelNumber;
-    }
-
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
-    }
-
-    public Integer getSku() {
-        return sku;
-    }
-
-    public void setSku(Integer sku) {
-        this.sku = sku;
-    }
-
-    public float getMsrp() {
-        return msrp;
-    }
-
-    public void setMsrp(float msrp) {
-        this.msrp = msrp;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public float getDepth() {
-        return depth;
-    }
-
-    public void setDepth(float depth) {
-        this.depth = depth;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Date getDateProduced() {
-        return dateProduced;
-    }
-
-    public void setDateProduced(Date dateProduced) {
-        this.dateProduced = dateProduced;
     }
 
     @Override
     public void save() {
+        //Get a connection
+        try {
+            Connection conn = ConnectionService.getConnection();
+            PreparedStatement statement;
+            //Check for an ID, if it has one this is an update
+            if(this.id!=0) {
+                statement = conn.prepareStatement("UPDATE Products SET name=?,modelNumber=?,manufacturer_ID=? WHERE id=?");
 
+                statement.setString(1, this.name);
+                statement.setString(2, this.modelNumber);
+                statement.setInt(3,this.manufacturer.id);
+                statement.setInt(4, this.id);
+
+            } else {
+                statement = conn.prepareStatement("INSERT INTO Products " +
+                        "(name,modelNumber,manufacturer_ID)" +
+                        " VALUES (?,?,?)");
+
+                statement.setString(1, this.name);
+                statement.setString(2, this.modelNumber);
+                statement.setInt(3,this.manufacturer.id);
+            }
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            //@TODO: This should log to debug log as per requirements
+            e.printStackTrace();
+        }
     }
 }
