@@ -68,6 +68,17 @@ public class Strings {
     public static final String DELETE_CUSTOMER_BUTTON = "Delete";
 
     /**
+     * Customer Form
+     */
+
+
+    /**
+     * Generic Form Controls
+     */
+    public static final String FORM_CONTROL_BUTTON_OK = "Ok";
+    public static final String FORM_CONTROL_BUTTON_CANCEL = "Cancel";
+
+    /**
      * Search Page
      */
     public static final String SEARCH_TYPE_EMPLOYEE = "Employee";
@@ -87,12 +98,6 @@ public class Strings {
      * Employee Form Errors
      */
     public static final String EMPLOYEE_FORM_LABEL_ERROR = "Error: ";
-
-    /**
-     * Employee Form Controls
-     */
-    public static final String EMPLOYEE_CONTROL_BUTTON_OK = "Ok";
-    public static final String EMPLOYEE_CONTROL_BUTTON_CANCEL = "Cancel";
 
     /**
      * Base Plus Commission Employee Specific Form

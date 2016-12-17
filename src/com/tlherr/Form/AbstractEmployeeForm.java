@@ -37,12 +37,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     protected ValidatedFormInput position;
     protected ValidatedFormInput department;
 
-    /**
-     * Form Controls
-     */
-    protected JButton okButton;
-    protected JButton cancelButton;
-
     public AbstractEmployeeForm() {
         super();
     }
@@ -79,18 +73,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     }
 
     /**
-     * Adds controls (buttons) to the controls panel
-     */
-    private void addFormControls() {
-        //Add buttons here
-        okButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_OK);
-        cancelButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_CANCEL);
-
-        this.controlsPanel.add(okButton, BorderLayout.EAST);
-        this.controlsPanel.add(cancelButton, BorderLayout.WEST);
-    }
-
-    /**
      * Set a listener for the ok button
      * @param listener ActionListener Listener to handle event
      */
@@ -117,7 +99,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     public void build() {
         buildBaseFormElements();
         addFormElements();
-        addFormControls();
         setVisible(true);
     }
 
