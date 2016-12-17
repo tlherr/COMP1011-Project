@@ -263,39 +263,45 @@ public class HumanResourcesPanel extends AbstractPanel {
             //Handle the OK button being clicked
             //Active form will validate and if successful submit data to repository
 
-            switch(employeeTypeSelector.getSelectedIndex()) {
-                case 0:
-                    if(bpcComissionEmployeeForm.validateForm()) {
-                        bpcComissionEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateBasePlusCommissionTable();
-                        clearForm();
-                    }
-                    break;
+            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
+            if(dialogResult==JOptionPane.YES_OPTION) {
+                switch(employeeTypeSelector.getSelectedIndex()) {
+                    case 0:
+                        if(bpcComissionEmployeeForm.validateForm()) {
+                            bpcComissionEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateBasePlusCommissionTable();
+                            clearForm();
+                        }
+                        break;
 
-                case 1:
-                    if(commissionSalesEmployeeForm.validateForm()) {
-                        commissionSalesEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateCommissionSalesTable();
-                        clearForm();
-                    }
-                    break;
+                    case 1:
+                        if(commissionSalesEmployeeForm.validateForm()) {
+                            commissionSalesEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateCommissionSalesTable();
+                            clearForm();
+                        }
+                        break;
 
-                case 2:
-                    if(hourlyEmployeeForm.validateForm()) {
-                        hourlyEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateHourlyTable();
-                        clearForm();
-                    }
-                    break;
+                    case 2:
+                        if(hourlyEmployeeForm.validateForm()) {
+                            hourlyEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateHourlyTable();
+                            clearForm();
+                        }
+                        break;
 
-                case 3:
-                    if(salaryEmployeeForm.validateForm()) {
-                        salaryEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateSalaryTable();
-                        clearForm();
-                    }
-                    break;
+                    case 3:
+                        if(salaryEmployeeForm.validateForm()) {
+                            salaryEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateSalaryTable();
+                            clearForm();
+                        }
+                        break;
+                }
             }
+
+            
+            
             //Update table to show changes
             repack();
         }
@@ -305,12 +311,13 @@ public class HumanResourcesPanel extends AbstractPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            switch(employeeTabbedPanel.getActiveTab()) {
+            
+               switch(employeeTabbedPanel.getActiveTab()) {
                 case 0:
                     if(bpcComissionEmployeeForm.validateForm()) {
-                        bpcComissionEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateBasePlusCommissionTable();
-                        clearForm();
+                           bpcComissionEmployeeForm.submit().save();
+                           employeeTabbedPanel.updateBasePlusCommissionTable();
+                           clearForm();
                     }
                     break;
 
@@ -338,6 +345,9 @@ public class HumanResourcesPanel extends AbstractPanel {
                     }
                     break;
             }
+            
+            
+           
         }
     }
 
@@ -368,15 +378,20 @@ public class HumanResourcesPanel extends AbstractPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Clear out the frame
-            employeeFormPanel.removeAll();
-            addEmployeeButton.setEnabled(true);
-            employeeTypeSelector.setEnabled(true);
+            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
+            if(dialogResult==JOptionPane.YES_OPTION) {
+                employeeFormPanel.removeAll();
+                addEmployeeButton.setEnabled(true);
+                employeeTypeSelector.setEnabled(true);
 
-            hourlyEmployeeForm = null;
-            bpcComissionEmployeeForm = null;
-            commissionSalesEmployeeForm = null;
-            salaryEmployeeForm = null;
-            repack();
+                hourlyEmployeeForm = null;
+                bpcComissionEmployeeForm = null;
+                commissionSalesEmployeeForm = null;
+                salaryEmployeeForm = null;
+                repack();
+            }
+            
+            
         }
     }
 }
