@@ -100,11 +100,14 @@ public class ValidatedFormInput extends JPanel {
     }
 
     public BigDecimal getDecimalValue() {
+        BigDecimal toReturn;
         try {
-            return new BigDecimal(input.getText());
-        } catch(Exception e) {
-            return new BigDecimal(0);
+             toReturn = new BigDecimal(input.getText());
+        } catch(NumberFormatException numException) {
+            toReturn = new BigDecimal(0);
         }
+
+        return toReturn;
     }
 
     /**

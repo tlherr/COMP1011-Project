@@ -40,7 +40,7 @@ public class CommissionSalesEmployeeForm extends AbstractEmployeeForm {
         empl.setPosition(position.getValue());
         empl.setDepartment(department.getValue());
         empl.setSales(sales.getDecimalValue());
-        empl.setCommissionRate(new BigDecimal(commissionRate.getValue()));
+        empl.setCommissionRate(commissionRate.getDecimalValue());
         return empl;
     }
 

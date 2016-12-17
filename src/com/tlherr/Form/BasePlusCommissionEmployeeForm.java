@@ -61,7 +61,7 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         empl.setDepartment(department.getValue());
         empl.setSales(sales.getDecimalValue());
         empl.setBaseSalary(salary.getDecimalValue());
-        empl.setCommissionRate(new BigDecimal(commissionRate.getValue()));
+        empl.setCommissionRate(commissionRate.getDecimalValue());
         return empl;
     }
 
