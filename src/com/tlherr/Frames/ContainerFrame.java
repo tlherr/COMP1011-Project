@@ -2,10 +2,7 @@ package com.tlherr.Frames;
 
 
 import com.tlherr.Listener.AuthenticationListener;
-import com.tlherr.Panels.HumanResourcesPanel;
-import com.tlherr.Panels.InventoryPanel;
-import com.tlherr.Panels.LoginPanel;
-import com.tlherr.Panels.SearchPanel;
+import com.tlherr.Panels.*;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 
@@ -101,6 +98,7 @@ public class ContainerFrame extends JFrame {
         tabbedPane = new JTabbedPane();
         tabbedPane.add(Strings.HUMAN_RESOURCES_TAB, new HumanResourcesPanel());
         tabbedPane.add(Strings.INVENTORY_TAB, new InventoryPanel());
+        tabbedPane.add(Strings.CUSTOMERS_TAB, new CustomerPanel());
         tabbedPane.add(Strings.SEARCH_TAB, new SearchPanel());
         middlePanel.add(tabbedPane, BorderLayout.NORTH);
 

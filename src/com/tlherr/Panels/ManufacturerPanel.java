@@ -32,7 +32,6 @@ public class ManufacturerPanel extends AbstractPanel {
         setLayout(new BorderLayout());
 
         manufacturersTable = new JTable();
-        manufacturersTable.setFillsViewportHeight(true);
         add(new JScrollPane(manufacturersTable), BorderLayout.NORTH);
 
         manufacturersOperationButtons = new JPanel(new FlowLayout());

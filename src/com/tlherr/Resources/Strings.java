@@ -26,6 +26,7 @@ public class Strings {
      */
     public static final String HUMAN_RESOURCES_TAB = "Human Resources";
     public static final String INVENTORY_TAB = "Inventory";
+    public static final String CUSTOMERS_TAB = "Customers";
     public static final String SEARCH_TAB = "Search";
 
     /**
@@ -59,6 +60,12 @@ public class Strings {
     public static final String ADD_PRODUCTS_BUTTON = "Add";
     public static final String DELETE_PRODUCTS_BUTTON = "Delete";
     public static final String EDIT_PRODUCTS_BUTTON = "Edit";
+
+    /**
+     * Customer Panel
+     */
+    public static final String ADD_CUSTOMER_BUTTON = "Add";
+    public static final String DELETE_CUSTOMER_BUTTON = "Delete";
 
     /**
      * Search Page
