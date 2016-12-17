@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * Manufacturer panel, contains table and add/edit/remove buttons
  */
-public class ManufacturerPanel extends BasePanel {
+public class ManufacturerPanel extends AbstractPanel {
     private JTable manufacturersTable;
     private JPanel manufacturersOperationButtons;
     private JButton addManufacturerButton;

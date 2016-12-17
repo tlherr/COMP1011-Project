@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * This panel contains a tabbed panel with one tab for each user type
  * Each panel contains a JTable
  */
-public class EmployeeTabbedPanel extends BasePanel {
+public class EmployeeTabbedPanel extends AbstractPanel {
 
     private JTabbedPane employeeContainerPane;
 

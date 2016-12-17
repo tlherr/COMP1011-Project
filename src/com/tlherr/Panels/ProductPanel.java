@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Product panel contains table, add/edit/delete buttons
  */
-public class ProductPanel extends BasePanel {
+public class ProductPanel extends AbstractPanel {
     private JTable productsTable;
     private JPanel productsOperationButtons;
     private JButton addManufacturerButton;

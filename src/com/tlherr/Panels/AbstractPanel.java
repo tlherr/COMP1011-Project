@@ -6,13 +6,13 @@ import java.awt.*;
 /**
  * Base Panel Class
  */
-public class BasePanel extends Panel {
+public abstract class AbstractPanel extends Panel {
 
-    public BasePanel() {
+    public AbstractPanel() {
         super();
     }
 
-    public BasePanel(LayoutManager layoutManager) {
+    public AbstractPanel(LayoutManager layoutManager) {
         super(layoutManager);
     }
 

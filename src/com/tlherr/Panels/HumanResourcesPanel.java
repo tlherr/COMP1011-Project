@@ -3,27 +3,23 @@ package com.tlherr.Panels;
 import com.tlherr.Form.*;
 import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Model.Employee.*;
-import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 /**
  * HR tab that has the ability to collect/display all the information of all types of
  * Employees
  */
-public class HumanResourcesPanel extends BasePanel {
+public class HumanResourcesPanel extends AbstractPanel {
 
     private EmployeeTabbedPanel employeeTabbedPanel;
     private JPanel employeeOperationsButtons;
