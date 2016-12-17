@@ -142,25 +142,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     public abstract AbstractEmployee submit();
 
     /**
-     * Check that inputs match expectations before allowing submission to proceed
-     * @ref InputService for validation methods
-     * @return Boolean If form validated successfully
-     */
-    public Boolean validateForm() {
-        Boolean isValid = true;
-        //Iterate over all components and check validated fields to see if values are ok
-        for(Component component: this.contentPanel.getComponents()) {
-            if(component.getClass()==ValidatedFormInput.class) {
-                if(!((ValidatedFormInput) component).validateInput()) {
-                    isValid = false;
-                }
-            }
-        }
-
-        return isValid;
-    };
-
-    /**
      * Method for adding custom form elements for subclass data collection
      * Will get called after base elements are built and added
      * So any form elements added here will display under the base elements

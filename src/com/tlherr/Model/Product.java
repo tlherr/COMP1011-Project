@@ -6,7 +6,7 @@ import java.util.Date;
  * Product Model
  * Contains various properties of products. Belong to manufacturers
  */
-public class Product {
+public class Product extends AbstractModel {
 
     private Manufacturer manufacturer;
     private String productName, description, modelNumber;
@@ -114,5 +114,10 @@ public class Product {
 
     public void setDateProduced(Date dateProduced) {
         this.dateProduced = dateProduced;
+    }
+
+    @Override
+    public void save() {
+
     }
 }

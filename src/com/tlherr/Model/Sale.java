@@ -5,7 +5,7 @@ import com.tlherr.Model.Employee.CommissionSalesEmployee;
 
 import java.math.BigDecimal;
 
-public class Sale {
+public class Sale extends AbstractModel {
     private Product product;
     private AbstractEmployee employee;
     private BigDecimal salePrice;
@@ -24,4 +24,8 @@ public class Sale {
     }
 
 
+    @Override
+    public void save() {
+
+    }
 }

@@ -1,6 +1,6 @@
 package com.tlherr.Model;
 
-public class Customer {
+public class Customer extends AbstractModel {
 
     private String firstName;
     private String lastName;
@@ -12,5 +12,10 @@ public class Customer {
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.company = company;
+    }
+
+    @Override
+    public void save() {
+
     }
 }

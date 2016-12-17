@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.net.PasswordAuthentication;
 import java.sql.SQLException;
 
-public class LoginPanel extends JPanel {
+public class LoginPanel extends BasePanel {
     private JPanel loginPanel;
     private JPanel loggedInPanel;
 

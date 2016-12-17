@@ -10,11 +10,11 @@ import java.awt.*;
  * Product (including manufacturer information – HINT: Information to create
  * two separate objects might be required when you create a Product object)
  */
-public class InventoryPanel extends JPanel {
+public class InventoryPanel extends BasePanel {
 
     private JTabbedPane inventoryTabbedPane;
-    private JPanel manufacturerPanel;
-    private JPanel productPanel;
+    private ManufacturerPanel manufacturerPanel;
+    private ProductPanel productPanel;
 
     public InventoryPanel() {
         setLayout(new BorderLayout());

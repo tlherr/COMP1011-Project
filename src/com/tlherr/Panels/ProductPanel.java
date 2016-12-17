@@ -8,19 +8,20 @@ import java.awt.*;
 /**
  * Product panel contains table, add/edit/delete buttons
  */
-public class ProductPanel extends JPanel {
+public class ProductPanel extends BasePanel {
     private JTable productsTable;
     private JPanel productsOperationButtons;
     private JButton addManufacturerButton;
     private JButton deleteManufacturerButton;
     private JButton editManufacturerButton;
+    private JPanel formPanel;
 
     public ProductPanel() {
         setLayout(new BorderLayout());
 
         productsTable = new JTable();
         productsTable.setFillsViewportHeight(true);
-        add(productsTable, BorderLayout.NORTH);
+        add(new JScrollPane(productsTable), BorderLayout.NORTH);
 
         productsOperationButtons = new JPanel(new FlowLayout());
         addManufacturerButton = new JButton(Strings.ADD_PRODUCTS_BUTTON);
@@ -31,7 +32,10 @@ public class ProductPanel extends JPanel {
         productsOperationButtons.add(deleteManufacturerButton);
         productsOperationButtons.add(editManufacturerButton);
 
-        add(productsOperationButtons, BorderLayout.SOUTH);
+        add(productsOperationButtons, BorderLayout.CENTER);
+
+        formPanel = new JPanel();
+        add(formPanel, BorderLayout.SOUTH);
     }
 
 

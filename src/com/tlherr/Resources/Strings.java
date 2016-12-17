@@ -118,6 +118,10 @@ public class Strings {
     public static final String LOGIN_FORM_BUTTON_LOGIN = "Login";
     public static final String LOGIN_FORM_BUTTON_LOGOUT = "Logout";
 
+    /**
+     * Manufacturer Form
+     */
+    public static final String MANUFACTURER_FORM_NAME = "Name: ";
 
 
     private Strings() {
