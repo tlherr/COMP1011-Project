@@ -17,13 +17,13 @@ public class Product extends AbstractModel {
     private String name, modelNumber;
 
     public Product(Vector v) {
-        this.id = (int) v.get(1);
-        this.name = v.get(2).toString();
-        this.modelNumber = v.get(3).toString();
+        this.id = (int) v.get(0);
+        this.name = v.get(1).toString();
+        this.modelNumber = v.get(2).toString();
 
         Vector<Object> manufacturerVector = new Vector<>();
-        manufacturerVector.add(v.get(4));
-        manufacturerVector.add(v.get(5).toString());
+        manufacturerVector.add(v.get(3));
+        manufacturerVector.add(v.get(4).toString());
         this.manufacturer = new Manufacturer(manufacturerVector);
     }
 
