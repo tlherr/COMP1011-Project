@@ -47,31 +47,33 @@ public abstract class AbstractForm extends JPanel {
     }
 
     public abstract void build();
+
     public abstract Object submit();
 
     public void clear() {
-        if(contentPanel!=null) {
+        if (contentPanel != null) {
             remove(contentPanel);
         }
 
-        if(controlsPanel!=null) {
+        if (controlsPanel != null) {
             remove(controlsPanel);
         }
         setVisible(false);
-    };
+    }
 
     /**
      * Check that inputs match expectations before allowing submission to proceed
-     * @ref InputService for validation methods
+     *
      * @return Boolean If form validated successfully
+     * @ref InputService for validation methods
      */
     public Boolean validateForm() {
         Boolean isValid = true;
         //Iterate over all components and check validated fields to see if values are ok
 
-        for(Component component: this.contentPanel.getComponents()) {
-            if(component.getClass()==ValidatedFormInput.class) {
-                if(!((ValidatedFormInput) component).validateInput()) {
+        for (Component component : this.contentPanel.getComponents()) {
+            if (component.getClass() == ValidatedFormInput.class) {
+                if (!((ValidatedFormInput) component).validateInput()) {
                     isValid = false;
                 }
             }

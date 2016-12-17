@@ -53,7 +53,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
 
-            if(this.idNumber!=0) {
+            if (this.idNumber != 0) {
                 statement = conn.prepareStatement("UPDATE CommissionEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,commissionRate=?,sales=? WHERE id=? ");
 

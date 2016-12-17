@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 //Show an error message when not validated
 public class ValidatedFormInput extends JPanel {
 
-    private JLabel inputLabel;
     private JTextField input;
     private JLabel errorLabel;
     private JTextField error;
@@ -48,7 +47,7 @@ public class ValidatedFormInput extends JPanel {
 
         validator = validatorString;
 
-        inputLabel = new JLabel(inputLabelText);
+        JLabel inputLabel = new JLabel(inputLabelText);
         addLabel(inputLabel);
 
         input = new JTextField(10);
@@ -68,7 +67,7 @@ public class ValidatedFormInput extends JPanel {
     public boolean validateInput() {
         Boolean isValid = InputService.validate(input.getText(), validator);
 
-        if(isValid) {
+        if (isValid) {
             clearError();
         } else {
             displayError("Invalid Input");
@@ -77,14 +76,14 @@ public class ValidatedFormInput extends JPanel {
         return isValid;
     }
 
-    public void displayError(String errorString) {
+    private void displayError(String errorString) {
         error.setVisible(true);
         errorLabel.setVisible(true);
         input.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         error.setText(errorString);
     }
 
-    public void clearError() {
+    private void clearError() {
         error.setVisible(false);
         errorLabel.setVisible(false);
         input.setBorder(BorderFactory.createEmptyBorder());
@@ -102,8 +101,8 @@ public class ValidatedFormInput extends JPanel {
     public BigDecimal getDecimalValue() {
         BigDecimal toReturn;
         try {
-             toReturn = new BigDecimal(input.getText());
-        } catch(NumberFormatException numException) {
+            toReturn = new BigDecimal(input.getText());
+        } catch (NumberFormatException numException) {
             toReturn = new BigDecimal(0);
         }
 
@@ -112,6 +111,7 @@ public class ValidatedFormInput extends JPanel {
 
     /**
      * Apply GridBagConstants to a label component and add it to the content panel
+     *
      * @param c JLabel Label component to be styled/positioned
      */
     private void addLabel(JLabel c) {
@@ -122,6 +122,7 @@ public class ValidatedFormInput extends JPanel {
 
     /**
      * Apply GridBagConstants to a textfield component and add it to the content panel
+     *
      * @param c JTextField TextField component to be styled
      */
     private void addTextField(JTextField c) {
@@ -129,8 +130,6 @@ public class ValidatedFormInput extends JPanel {
         gbl.setConstraints(c, textFieldConstrains);
         this.add(c);
     }
-
-
 
 
 }

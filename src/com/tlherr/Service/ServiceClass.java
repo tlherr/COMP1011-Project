@@ -8,7 +8,10 @@ public final class ServiceClass {
 
     private static int count = 1;
 
-    private ServiceClass(){};
+    private ServiceClass() {
+    }
+
+    ;
 
     public static Integer getId() {
         return count++;

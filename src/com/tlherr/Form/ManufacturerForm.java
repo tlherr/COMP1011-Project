@@ -33,15 +33,15 @@ public class ManufacturerForm extends AbstractForm {
                 clear();
             }
         });
-
     }
 
     @Override
     public Manufacturer submit() {
-        if(manufacturer==null) {
-            this.manufacturer = new Manufacturer(name.getValue());
+        if (manufacturer == null) {
+            this.manufacturer = new Manufacturer();
         }
 
+        this.manufacturer.setName(name.getValue());
         return this.manufacturer;
     }
 }

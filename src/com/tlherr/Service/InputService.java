@@ -1,8 +1,7 @@
 package com.tlherr.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,21 +21,22 @@ public class InputService {
     /**
      * This method will create a scanner and get user input until it matches specified conditions.
      * It is up to other methods to type check, this method will only run a regex check
+     *
      * @return String text the user has entered.
      */
     public static Boolean validate(String input, String regex) {
 
-            if(input.length()==0) {
-                return false;
-            }
+        if (input.length() == 0) {
+            return false;
+        }
 
-            try {
-                Pattern p = Pattern.compile(regex);
-                Matcher m = p.matcher(input);
-                return m.matches();
-            } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
-                return false;
-            }
+        try {
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(input);
+            return m.matches();
+        } catch (InputMismatchException | IllegalStateException | NumberFormatException ex) {
+            return false;
+        }
     }
 
     public static Boolean validate(Integer input, String regex) {
@@ -44,7 +44,7 @@ public class InputService {
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(String.valueOf(input));
             return m.matches();
-        } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
+        } catch (InputMismatchException | IllegalStateException | NumberFormatException ex) {
             return false;
         }
 
@@ -55,7 +55,7 @@ public class InputService {
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(String.valueOf(input));
             return m.matches();
-        } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
+        } catch (InputMismatchException | IllegalStateException | NumberFormatException ex) {
             return false;
         }
 
@@ -66,7 +66,7 @@ public class InputService {
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(input.toString());
             return m.matches();
-        } catch(InputMismatchException | IllegalStateException | NumberFormatException ex) {
+        } catch (InputMismatchException | IllegalStateException | NumberFormatException ex) {
             return false;
         }
 

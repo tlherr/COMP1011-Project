@@ -1,12 +1,10 @@
 package com.tlherr.Model;
 
-import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Service.ConnectionService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -15,6 +13,9 @@ import java.util.Vector;
 public class Manufacturer extends AbstractModel {
 
     private String name;
+
+    public Manufacturer() {
+    }
 
     public Manufacturer(String name) {
         this.name = name;
@@ -25,6 +26,14 @@ public class Manufacturer extends AbstractModel {
         this.name = v.get(2).toString();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public void save() {
         //Get a connection
@@ -32,7 +41,7 @@ public class Manufacturer extends AbstractModel {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if(this.id!=0) {
+            if (this.id != 0) {
                 statement = conn.prepareStatement("UPDATE Manufacturers SET name=? WHERE id=? ");
 
                 statement.setString(1, this.name);

@@ -1,8 +1,14 @@
 package com.tlherr.Panels;
 
-import com.tlherr.Form.*;
+import com.tlherr.Form.BasePlusCommissionEmployeeForm;
+import com.tlherr.Form.CommissionSalesEmployeeForm;
+import com.tlherr.Form.HourlyEmployeeForm;
+import com.tlherr.Form.SalaryEmployeeForm;
 import com.tlherr.Listener.AuthenticationListener;
-import com.tlherr.Model.Employee.*;
+import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
+import com.tlherr.Model.Employee.HourlyEmployee;
+import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 
@@ -90,7 +96,7 @@ public class HumanResourcesPanel extends AbstractPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                if(e.getValueIsAdjusting()) {
+                if (e.getValueIsAdjusting()) {
                     DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
 
                     try {
@@ -106,7 +112,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
                         employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
                         repack();
-                    } catch(ArrayIndexOutOfBoundsException exception) {
+                    } catch (ArrayIndexOutOfBoundsException exception) {
                         //@TODO: Logging method should handle this as stated in requirements
                     }
                 }
@@ -117,7 +123,7 @@ public class HumanResourcesPanel extends AbstractPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                if(e.getValueIsAdjusting()) {
+                if (e.getValueIsAdjusting()) {
                     DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
 
                     try {
@@ -133,7 +139,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         commissionSalesEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
                         employeeFormPanel.add(commissionSalesEmployeeForm, BorderLayout.CENTER);
                         repack();
-                    } catch(ArrayIndexOutOfBoundsException exception) {
+                    } catch (ArrayIndexOutOfBoundsException exception) {
                         //@TODO: Logging method should handle this as stated in requirements
                     }
                 }
@@ -144,7 +150,7 @@ public class HumanResourcesPanel extends AbstractPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                if(e.getValueIsAdjusting()) {
+                if (e.getValueIsAdjusting()) {
                     DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
 
                     try {
@@ -160,7 +166,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         hourlyEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
                         employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
                         repack();
-                    } catch(ArrayIndexOutOfBoundsException exception) {
+                    } catch (ArrayIndexOutOfBoundsException exception) {
                         //@TODO: Logging method should handle this as stated in requirements
                     }
                 }
@@ -171,7 +177,7 @@ public class HumanResourcesPanel extends AbstractPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                if(e.getValueIsAdjusting()) {
+                if (e.getValueIsAdjusting()) {
                     DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
 
                     try {
@@ -187,7 +193,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         salaryEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
                         employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
                         repack();
-                    } catch(ArrayIndexOutOfBoundsException exception) {
+                    } catch (ArrayIndexOutOfBoundsException exception) {
                         //@TODO: Logging method should handle this as stated in requirements
                     }
                 }
@@ -207,7 +213,7 @@ public class HumanResourcesPanel extends AbstractPanel {
 
 
             //Based on user selection create a new user form for the specified type and display it
-            switch(employeeTypeSelector.getSelectedIndex()) {
+            switch (employeeTypeSelector.getSelectedIndex()) {
                 case 0:
                     //Create a new Base+Commission EmployeeForm
                     bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm();
@@ -263,18 +269,18 @@ public class HumanResourcesPanel extends AbstractPanel {
             //Handle the OK button being clicked
             //Active form will validate and if successful submit data to repository
 
-            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
-            if(dialogResult==JOptionPane.YES_OPTION) {
-                switch(employeeTypeSelector.getSelectedIndex()) {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                switch (employeeTypeSelector.getSelectedIndex()) {
                     case 0:
-                        if(bpcComissionEmployeeForm.validateForm()) {
+                        if (bpcComissionEmployeeForm.validateForm()) {
                             bpcComissionEmployeeForm.submit().save();
                             employeeTabbedPanel.updateBasePlusCommissionTable();
                         }
                         break;
 
                     case 1:
-                        if(commissionSalesEmployeeForm.validateForm()) {
+                        if (commissionSalesEmployeeForm.validateForm()) {
                             commissionSalesEmployeeForm.submit().save();
                             employeeTabbedPanel.updateCommissionSalesTable();
                             clearForm();
@@ -282,7 +288,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         break;
 
                     case 2:
-                        if(hourlyEmployeeForm.validateForm()) {
+                        if (hourlyEmployeeForm.validateForm()) {
                             hourlyEmployeeForm.submit().save();
                             employeeTabbedPanel.updateHourlyTable();
                             clearForm();
@@ -290,7 +296,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         break;
 
                     case 3:
-                        if(salaryEmployeeForm.validateForm()) {
+                        if (salaryEmployeeForm.validateForm()) {
                             salaryEmployeeForm.submit().save();
                             employeeTabbedPanel.updateSalaryTable();
                             clearForm();
@@ -301,44 +307,44 @@ public class HumanResourcesPanel extends AbstractPanel {
         }
     }
 
-    private class OkEmployeeTabbedPanelButtonListener implements  ActionListener {
+    private class OkEmployeeTabbedPanelButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
-               switch(employeeTabbedPanel.getActiveTab()) {
-                    case 0:
-                        if(bpcComissionEmployeeForm.validateForm()) {
-                               bpcComissionEmployeeForm.submit().save();
-                               employeeTabbedPanel.updateBasePlusCommissionTable();
-                               clearForm();
-                        }
-                        break;
 
-                    case 1:
-                        if(commissionSalesEmployeeForm.validateForm()) {
-                            commissionSalesEmployeeForm.submit().save();
-                            employeeTabbedPanel.updateCommissionSalesTable();
-                            clearForm();
-                        }
-                        break;
+            switch (employeeTabbedPanel.getActiveTab()) {
+                case 0:
+                    if (bpcComissionEmployeeForm.validateForm()) {
+                        bpcComissionEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateBasePlusCommissionTable();
+                        clearForm();
+                    }
+                    break;
 
-                    case 2:
-                        if(hourlyEmployeeForm.validateForm()) {
-                            hourlyEmployeeForm.submit().save();
-                            employeeTabbedPanel.updateHourlyTable();
-                            clearForm();
-                        }
-                        break;
+                case 1:
+                    if (commissionSalesEmployeeForm.validateForm()) {
+                        commissionSalesEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateCommissionSalesTable();
+                        clearForm();
+                    }
+                    break;
 
-                    case 3:
-                        if(salaryEmployeeForm.validateForm()) {
-                            salaryEmployeeForm.submit().save();
-                            employeeTabbedPanel.updateSalaryTable();
-                            clearForm();
-                        }
-                        break;
-                }
+                case 2:
+                    if (hourlyEmployeeForm.validateForm()) {
+                        hourlyEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateHourlyTable();
+                        clearForm();
+                    }
+                    break;
+
+                case 3:
+                    if (salaryEmployeeForm.validateForm()) {
+                        salaryEmployeeForm.submit().save();
+                        employeeTabbedPanel.updateSalaryTable();
+                        clearForm();
+                    }
+                    break;
+            }
 
         }
     }
@@ -365,8 +371,8 @@ public class HumanResourcesPanel extends AbstractPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Clear out the frame
-            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
-            if(dialogResult==JOptionPane.YES_OPTION) {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
                 employeeFormPanel.removeAll();
                 addEmployeeButton.setEnabled(true);
                 employeeTypeSelector.setEnabled(true);
@@ -377,8 +383,8 @@ public class HumanResourcesPanel extends AbstractPanel {
                 salaryEmployeeForm = null;
                 repack();
             }
-            
-            
+
+
         }
     }
 }

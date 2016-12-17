@@ -6,9 +6,6 @@ import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
 
-import javax.swing.*;
-import java.math.BigDecimal;
-
 /**
  * This class implements a form panel that collects/displays data for an Employee of type CommissionSalesEmployeeForm
  */
@@ -26,7 +23,7 @@ public class CommissionSalesEmployeeForm extends AbstractEmployeeForm {
         CommissionSalesEmployee empl;
 
         //Check if an employee already exists for the form
-        if(this.employee==null) {
+        if (this.employee == null) {
             //Employee does not exist, create a new one
             empl = new CommissionSalesEmployee();
         } else {

@@ -55,7 +55,7 @@ public class SearchPanel extends AbstractPanel {
 
         resultsPanel = new JPanel();
         resultsTextArea = new JTextArea(5, 20);
-        resultsTextArea.setBorder(new LineBorder(new Color(0,0,0)));
+        resultsTextArea.setBorder(new LineBorder(new Color(0, 0, 0)));
 
         resultsPanel.add(resultsTextArea);
 

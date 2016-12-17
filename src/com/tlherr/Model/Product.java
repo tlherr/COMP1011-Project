@@ -40,12 +40,12 @@ public class Product extends AbstractModel {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if(this.id!=0) {
+            if (this.id != 0) {
                 statement = conn.prepareStatement("UPDATE Products SET name=?,modelNumber=?,manufacturer_ID=? WHERE id=?");
 
                 statement.setString(1, this.name);
                 statement.setString(2, this.modelNumber);
-                statement.setInt(3,this.manufacturer.id);
+                statement.setInt(3, this.manufacturer.id);
                 statement.setInt(4, this.id);
 
             } else {
@@ -55,7 +55,7 @@ public class Product extends AbstractModel {
 
                 statement.setString(1, this.name);
                 statement.setString(2, this.modelNumber);
-                statement.setInt(3,this.manufacturer.id);
+                statement.setInt(3, this.manufacturer.id);
             }
 
             statement.execute();

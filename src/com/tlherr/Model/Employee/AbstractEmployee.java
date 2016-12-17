@@ -1,14 +1,12 @@
 package com.tlherr.Model.Employee;
 
 import com.tlherr.Model.AbstractModel;
-import com.tlherr.Service.ServiceClass;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * This class contains base elements and functionality for an employee. All employee types inherit from this class
- *
+ * <p>
  * This class implements IsTablular interface so all child classes will have methods needed to be loaded into JTablel
  * model
  */
@@ -17,7 +15,8 @@ public abstract class AbstractEmployee extends AbstractModel {
     private String firstName, lastName, position, department;
     protected int idNumber;
 
-    protected AbstractEmployee() {}
+    protected AbstractEmployee() {
+    }
 
     protected AbstractEmployee(String firstName, String lastName, String position, String department) {
         this.firstName = firstName;
@@ -34,6 +33,7 @@ public abstract class AbstractEmployee extends AbstractModel {
 
     /**
      * Calculate the amount the employee should be paid. Changes based on employee type
+     *
      * @return Float amount of money the employee should be paid
      */
     public abstract BigDecimal calculatePay();

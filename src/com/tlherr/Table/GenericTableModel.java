@@ -1,8 +1,5 @@
 package com.tlherr.Table;
 
-import com.tlherr.Repository.EmployeeRepository;
-
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,9 +11,11 @@ import java.util.Vector;
  */
 public class GenericTableModel extends DefaultTableModel {
 
-    public GenericTableModel(){
+    public GenericTableModel() {
         super();
-    };
+    }
+
+    ;
 
     public GenericTableModel(Vector data, Vector columnNames) {
         super(data, columnNames);
@@ -28,28 +27,26 @@ public class GenericTableModel extends DefaultTableModel {
         Vector<String> columnNames = new Vector<String>();
         int columnCount = metaData.getColumnCount();
 
-        System.out.println("Loading "+columnCount+" columns from result set");
+        System.out.println("Loading " + columnCount + " columns from result set");
 
-        for(int i=1; i<=columnCount; i++) {
+        for (int i = 1; i <= columnCount; i++) {
             columnNames.add(metaData.getColumnName(i));
         }
 
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
-        while(resultSet.next())
-        {
+        while (resultSet.next()) {
             //This will store each row
             Vector<Object> rowVector = new Vector<Object>();
 
             //Loop through the result set and get each object
-            for(int colIndex=1; colIndex<=columnCount; colIndex++)
-            {
+            for (int colIndex = 1; colIndex <= columnCount; colIndex++) {
                 rowVector.add(resultSet.getObject(colIndex));
             }
             tableData.add(rowVector);
         }
 
-        System.out.println("Result Set Contained "+tableData.size()+" elements");
+        System.out.println("Result Set Contained " + tableData.size() + " elements");
 
         //@TODO: need to look into how this should be handled. Closing for now to avoid flooding connection pool
         resultSet.close();

@@ -1,14 +1,9 @@
 package com.tlherr.Repository;
 
-import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
-import com.tlherr.Model.Employee.CommissionSalesEmployee;
-import com.tlherr.Model.Employee.HourlyEmployee;
-import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Model.Manufacturer;
 import com.tlherr.Service.ConnectionService;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * Responsible for storing and accessing manufacturers as they as saved/edited/removed
@@ -21,14 +16,17 @@ public class ManufacturerRepository extends AbstractRepository {
         return instance;
     }
 
-    private ManufacturerRepository(){};
+    private ManufacturerRepository() {
+    }
+
+    ;
 
     @Override
     public ResultSet load(Class toLoad) throws SQLException {
         Connection conn = ConnectionService.getConnection();
         Statement statement = conn.createStatement();
 
-        if(toLoad==Manufacturer.class) {
+        if (toLoad == Manufacturer.class) {
             //Load BasePlusCommissionEmployees into result set and return it
             return statement.executeQuery("SELECT * FROM Manufacturers");
         } else {

@@ -16,9 +16,9 @@ public class Sale extends AbstractModel {
         this.employee = employee;
         this.salePrice = salePrice;
 
-        if(employee instanceof CommissionSalesEmployee) {
+        if (employee instanceof CommissionSalesEmployee) {
             //Commission can be earned by this type of employee
-            commissionEarned =  ((CommissionSalesEmployee) employee).getCommissionRate().multiply(this.salePrice);
+            commissionEarned = ((CommissionSalesEmployee) employee).getCommissionRate().multiply(this.salePrice);
         }
 
     }

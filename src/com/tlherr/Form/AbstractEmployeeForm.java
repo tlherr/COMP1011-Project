@@ -5,18 +5,15 @@ import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
  * This class is an abstract representation of what an Employee Form should contain
  * it contains all base employee fields so it can be extended to allow CRUD operations on different employee types
- *
+ * <p>
  * This panel uses a GridBagLayout. This allows us to dynamically position elements.
  * Elements for the base employee fields are added along with labels.
- *
+ * <p>
  * The class provides default GridBagConstants that allow components to be added by subclasses and still share the same
  * styling and layout.
  */
@@ -70,20 +67,22 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
 
     /**
      * Set a listener for the ok button
+     *
      * @param listener ActionListener Listener to handle event
      */
     public void setOkButtonActionListener(ActionListener listener) {
-        if(this.okButton!=null) {
+        if (this.okButton != null) {
             this.okButton.addActionListener(listener);
         }
     }
 
     /**
      * Set a listener for the cancel button
+     *
      * @param listener ActionListener Listener to handle event
      */
     public void setCancelButtonActionListener(ActionListener listener) {
-        if(this.cancelButton!=null) {
+        if (this.cancelButton != null) {
             this.cancelButton.addActionListener(listener);
         }
     }
@@ -100,6 +99,7 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
 
     /**
      * Get values from form and return an AbstractEmployee subclass object
+     *
      * @return AbstractEmployee Employee Object
      */
     public abstract AbstractEmployee submit();

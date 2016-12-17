@@ -131,9 +131,9 @@ public class ContainerFrame extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            int doExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?","Confirm Action", JOptionPane.YES_NO_OPTION);
+            int doExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirm Action", JOptionPane.YES_NO_OPTION);
 
-            if(doExit == JOptionPane.YES_OPTION) {
+            if (doExit == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
         }

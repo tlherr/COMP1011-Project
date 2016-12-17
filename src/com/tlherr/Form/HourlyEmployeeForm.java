@@ -2,13 +2,9 @@ package com.tlherr.Form;
 
 import com.tlherr.Input.ValidatedFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
-import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
-
-import javax.swing.*;
-import java.math.BigDecimal;
 
 /**
  * This class implements a form panel that collects/displays data for an Employee of type CommissionSalesEmployeeForm
@@ -28,7 +24,7 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         HourlyEmployee empl;
 
         //Check if an employee already exists for the form
-        if(this.employee==null) {
+        if (this.employee == null) {
             //Employee does not exist, create a new one
             empl = new HourlyEmployee();
         } else {

@@ -65,7 +65,7 @@ public class ManufacturerPanel extends AbstractPanel {
                 manufacturerForm.getOkButton().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(manufacturerForm.validateForm()) {
+                        if (manufacturerForm.validateForm()) {
                             manufacturerForm.submit().save();
                             manufacturerForm.clear();
                         }
@@ -84,7 +84,7 @@ public class ManufacturerPanel extends AbstractPanel {
         try {
             ResultSet rs = ManufacturerRepository.getInstance().load(Manufacturer.class);
 
-            if(rs!=null) {
+            if (rs != null) {
                 GenericTableModel tableModel = new GenericTableModel(rs);
                 manufacturersTable.setModel(tableModel);
             }

@@ -38,7 +38,7 @@ public class HourlyEmployee extends AbstractEmployee {
 
     @Override
     public BigDecimal calculatePay() {
-        if(hourlyRate!=null && hoursWorked!=null) {
+        if (hourlyRate != null && hoursWorked != null) {
             return (hoursWorked.multiply(hourlyRate));
         } else {
             return new BigDecimal("0.00");
@@ -52,7 +52,7 @@ public class HourlyEmployee extends AbstractEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if(this.idNumber!=0) {
+            if (this.idNumber != 0) {
                 statement = conn.prepareStatement("UPDATE HourlyEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,hoursPerWeek=?,hourlyRate=? WHERE id=? ");
 

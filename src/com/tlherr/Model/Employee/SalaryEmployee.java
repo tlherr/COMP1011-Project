@@ -51,7 +51,7 @@ public class SalaryEmployee extends AbstractEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if(this.idNumber!=0) {
+            if (this.idNumber != 0) {
                 statement = conn.prepareStatement("UPDATE SalaryEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,salary=? WHERE id=? ");
 

@@ -37,6 +37,17 @@ public class CustomerPanel extends AbstractPanel {
                 customerForm = new CustomerForm();
                 customerForm.build();
                 //Set ok button listener for form submission
+                customerForm.getOkButton().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (customerForm.validateForm()) {
+                            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", JOptionPane.YES_NO_OPTION);
+                            if (dialogResult == JOptionPane.YES_OPTION) {
+                                customerForm.submit().save();
+                            }
+                        }
+                    }
+                });
                 customerForm.setVisible(true);
                 add(customerForm, BorderLayout.SOUTH);
                 repack();

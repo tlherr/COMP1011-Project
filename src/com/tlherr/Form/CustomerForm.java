@@ -36,16 +36,15 @@ public class CustomerForm extends AbstractForm {
     }
 
     @Override
-    public Object submit() {
-        if(this.customer==null) {
-            this.customer = new Customer(
-                    firstName.getValue(),
-                    lastName.getValue(),
-                    emailAddress.getValue(),
-                    company.getValue()
-            );
-
+    public Customer submit() {
+        if (this.customer == null) {
+            this.customer = new Customer();
         }
+
+        this.customer.setFirstName(firstName.getValue());
+        this.customer.setLastName(lastName.getValue());
+        this.customer.setEmailAddress(emailAddress.getValue());
+        this.customer.setCompany(company.getValue());
 
         return this.customer;
     }

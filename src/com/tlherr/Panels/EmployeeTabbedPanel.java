@@ -1,7 +1,10 @@
 package com.tlherr.Panels;
 
 import com.tlherr.Listener.AuthenticationListener;
-import com.tlherr.Model.Employee.*;
+import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
+import com.tlherr.Model.Employee.HourlyEmployee;
+import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
@@ -100,7 +103,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
     public void updateBasePlusCommissionTable() {
         try {
             ResultSet bpcRs = EmployeeRepository.getInstance().load(BasePlusCommissionEmployee.class);
-            if(bpcRs!=null) {
+            if (bpcRs != null) {
                 GenericTableModel tableModel = new GenericTableModel(bpcRs);
                 basePlusCommissionTable.setModel(tableModel);
             }
@@ -113,7 +116,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
     public void updateCommissionSalesTable() {
         try {
             ResultSet csRs = EmployeeRepository.getInstance().load(CommissionSalesEmployee.class);
-            if(csRs!=null) {
+            if (csRs != null) {
                 GenericTableModel tableModel = new GenericTableModel(csRs);
                 commissionSalesTable.setModel(tableModel);
             }
@@ -126,7 +129,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
     public void updateHourlyTable() {
         try {
             ResultSet hRs = EmployeeRepository.getInstance().load(HourlyEmployee.class);
-            if(hRs!=null) {
+            if (hRs != null) {
                 GenericTableModel tableModel = new GenericTableModel(hRs);
                 hourlyTable.setModel(tableModel);
             }
@@ -139,7 +142,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
     public void updateSalaryTable() {
         try {
             ResultSet sRs = EmployeeRepository.getInstance().load(SalaryEmployee.class);
-            if(sRs!=null) {
+            if (sRs != null) {
                 GenericTableModel tableModel = new GenericTableModel(sRs);
                 salaryTable.setModel(tableModel);
             }
@@ -148,8 +151,6 @@ public class EmployeeTabbedPanel extends AbstractPanel {
             e1.printStackTrace();
         }
     }
-
-
 
 
     public JTable getBasePlusCommissionTable() {

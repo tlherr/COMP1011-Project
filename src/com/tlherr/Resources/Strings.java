@@ -6,6 +6,7 @@ package com.tlherr.Resources;
  */
 public class Strings {
     private static Strings manager = new Strings();
+
     public static Strings getManager() {
         return manager;
     }

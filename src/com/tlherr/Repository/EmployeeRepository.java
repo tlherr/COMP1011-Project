@@ -1,18 +1,13 @@
 package com.tlherr.Repository;
 
-import com.mysql.jdbc.ResultSetImpl;
 import com.tlherr.Model.Employee.*;
 import com.tlherr.Service.ConnectionService;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Map;
 
 public class EmployeeRepository extends AbstractRepository {
 
@@ -22,7 +17,10 @@ public class EmployeeRepository extends AbstractRepository {
         return instance;
     }
 
-    private EmployeeRepository(){};
+    private EmployeeRepository() {
+    }
+
+    ;
 
     private static ArrayList<AbstractEmployee> employees = new ArrayList<AbstractEmployee>();
 
@@ -36,7 +34,7 @@ public class EmployeeRepository extends AbstractRepository {
 
     public AbstractEmployee findByFirstName(String firstName) {
         for (AbstractEmployee employee : employees) {
-            if(employee.getFirstName().equals(firstName)) {
+            if (employee.getFirstName().equals(firstName)) {
                 return employee;
             }
         }
@@ -48,19 +46,19 @@ public class EmployeeRepository extends AbstractRepository {
         Connection conn = ConnectionService.getConnection();
         Statement statement = conn.createStatement();
 
-        if(toLoad==BasePlusCommissionEmployee.class) {
+        if (toLoad == BasePlusCommissionEmployee.class) {
             //Load BasePlusCommissionEmployees into result set and return it
             return statement.executeQuery("SELECT * FROM BasePlusCommissionEmployee");
 
-        } else if(toLoad==CommissionSalesEmployee.class) {
+        } else if (toLoad == CommissionSalesEmployee.class) {
             //Load CommissionSalesEmployees into result set and return it
             return statement.executeQuery("SELECT * FROM CommissionEmployee");
 
-        } else if(toLoad==HourlyEmployee.class) {
+        } else if (toLoad == HourlyEmployee.class) {
             //Load HourlyEmployees into a result set and return it
             return statement.executeQuery("SELECT * FROM HourlyEmployee");
 
-        } else if(toLoad==SalaryEmployee.class) {
+        } else if (toLoad == SalaryEmployee.class) {
             //Load SalaryEmployees into a result set and return it
             return statement.executeQuery("SELECT * FROM SalaryEmployee");
         } else {
