@@ -1,4 +1,4 @@
-package com.tlherr.Model.Employee;
+package com.tlherr.Table;
 
 import com.tlherr.Repository.EmployeeRepository;
 
@@ -12,11 +12,17 @@ import java.util.Vector;
 /**
  * Accepts a result set and returns a useable JTable model to display data
  */
-public class EmployeeTableModel extends DefaultTableModel {
+public class GenericTableModel extends DefaultTableModel {
 
-    public EmployeeTableModel(){};
+    public GenericTableModel(){
+        super();
+    };
 
-    public static DefaultTableModel build(ResultSet resultSet) throws SQLException {
+    public GenericTableModel(Vector data, Vector columnNames) {
+        super(data, columnNames);
+    }
+
+    public GenericTableModel(ResultSet resultSet) throws SQLException {
         ResultSetMetaData metaData = resultSet.getMetaData();
 
         Vector<String> columnNames = new Vector<String>();
@@ -48,7 +54,7 @@ public class EmployeeTableModel extends DefaultTableModel {
         //@TODO: need to look into how this should be handled. Closing for now to avoid flooding connection pool
         resultSet.close();
 
-        return new DefaultTableModel(tableData, columnNames);
+        setDataVector(tableData, columnNames);
     }
 
 }

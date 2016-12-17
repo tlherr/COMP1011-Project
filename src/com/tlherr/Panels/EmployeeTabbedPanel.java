@@ -5,10 +5,9 @@ import com.tlherr.Model.Employee.*;
 import com.tlherr.Repository.EmployeeRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
+import com.tlherr.Table.GenericTableModel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
@@ -47,21 +46,21 @@ public class EmployeeTabbedPanel extends BasePanel {
         basePlusCommissionPanel.add(new JScrollPane(basePlusCommissionTable), BorderLayout.NORTH);
 
         commissionSalesPanel = new JPanel(new BorderLayout());
-        commissionSalesTable = new JTable(new EmployeeTableModel());
+        commissionSalesTable = new JTable(new GenericTableModel());
         commissionSalesTable.setPreferredScrollableViewportSize(new Dimension(400, 100));
         commissionSalesTable.setFillsViewportHeight(true);
         commissionSalesTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         commissionSalesPanel.add(new JScrollPane(commissionSalesTable), BorderLayout.NORTH);
 
         hourlyPanel = new JPanel(new BorderLayout());
-        hourlyTable = new JTable(new EmployeeTableModel());
+        hourlyTable = new JTable(new GenericTableModel());
         hourlyTable.setPreferredScrollableViewportSize(new Dimension(400, 100));
         hourlyTable.setFillsViewportHeight(true);
         hourlyTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         hourlyPanel.add(new JScrollPane(hourlyTable), BorderLayout.NORTH);
 
         salaryPanel = new JPanel(new BorderLayout());
-        salaryTable = new JTable(new EmployeeTableModel());
+        salaryTable = new JTable(new GenericTableModel());
         salaryTable.setPreferredScrollableViewportSize(new Dimension(400, 100));
         salaryTable.setFillsViewportHeight(true);
         salaryTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -102,7 +101,8 @@ public class EmployeeTabbedPanel extends BasePanel {
         try {
             ResultSet bpcRs = EmployeeRepository.loadResultSetOrNull(BasePlusCommissionEmployee.class);
             if(bpcRs!=null) {
-                basePlusCommissionTable.setModel(EmployeeTableModel.build(bpcRs));
+                GenericTableModel tableModel = new GenericTableModel(bpcRs);
+                basePlusCommissionTable.setModel(tableModel);
             }
         } catch (SQLException e1) {
             //@TODO: Handle with loggin class as stated in requirements
@@ -114,7 +114,8 @@ public class EmployeeTabbedPanel extends BasePanel {
         try {
             ResultSet csRs = EmployeeRepository.loadResultSetOrNull(CommissionSalesEmployee.class);
             if(csRs!=null) {
-                commissionSalesTable.setModel(EmployeeTableModel.build(csRs));
+                GenericTableModel tableModel = new GenericTableModel(csRs);
+                commissionSalesTable.setModel(tableModel);
             }
         } catch (SQLException e1) {
             //@TODO: Handle with loggin class as stated in requirements
@@ -126,7 +127,8 @@ public class EmployeeTabbedPanel extends BasePanel {
         try {
             ResultSet hRs = EmployeeRepository.loadResultSetOrNull(HourlyEmployee.class);
             if(hRs!=null) {
-                hourlyTable.setModel(EmployeeTableModel.build(hRs));
+                GenericTableModel tableModel = new GenericTableModel(hRs);
+                hourlyTable.setModel(tableModel);
             }
         } catch (SQLException e1) {
             //@TODO: Handle with loggin class as stated in requirements
@@ -138,7 +140,8 @@ public class EmployeeTabbedPanel extends BasePanel {
         try {
             ResultSet sRs = EmployeeRepository.loadResultSetOrNull(SalaryEmployee.class);
             if(sRs!=null) {
-                salaryTable.setModel(EmployeeTableModel.build(sRs));
+                GenericTableModel tableModel = new GenericTableModel(sRs);
+                salaryTable.setModel(tableModel);
             }
         } catch (SQLException e1) {
             //@TODO: Handle with loggin class as stated in requirements
