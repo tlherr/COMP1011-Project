@@ -25,14 +25,11 @@ public class ManufacturerForm extends AbstractForm {
     @Override
     public void build() {
         name = new ValidatedFormInput(Strings.MANUFACTURER_FORM_NAME, InputService.ALPHANUMERIC_WORDS);
-        addValidatedInput(name);
+        if(this.manufacturer!=null) {
+            name.setEditText(this.manufacturer.getName());
+        }
 
-        this.cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clear();
-            }
-        });
+        addValidatedInput(name);
     }
 
     @Override

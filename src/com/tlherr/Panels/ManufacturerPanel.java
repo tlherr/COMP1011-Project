@@ -9,11 +9,15 @@ import com.tlherr.Service.LoginService;
 import com.tlherr.Table.GenericTableModel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * Manufacturer panel, contains table and add/edit/remove buttons
@@ -77,9 +81,35 @@ public class ManufacturerPanel extends AbstractPanel {
                 repack();
             }
         });
+
+        manufacturersTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    DefaultTableModel model = (DefaultTableModel) manufacturersTable.getModel();
+
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(manufacturersTable.getSelectedRow());
+                        Manufacturer manufacturer = new Manufacturer(vectorResult);
+
+                        addManufacturerButton.setEnabled(false);
+                        deleteManufacturerButton.setEnabled(false);
+
+                        manufacturerForm = new ManufacturerForm(manufacturer);
+                        manufacturerForm.build();
+                        manufacturerForm.setOkButtonActionListener(new okButtonListener());
+                        manufacturerForm.setCancelButtonActionListener(new cancelButtonListener());
+                        add(manufacturerForm, BorderLayout.SOUTH);
+                        repack();
+                    } catch (ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
+                }
+            }
+        });
     }
 
-    public void updateManufacturerTable() {
+    private void updateManufacturerTable() {
         //Get manufacturers from DB and output to new table model
         try {
             ResultSet rs = ManufacturerRepository.getInstance().load(Manufacturer.class);
@@ -91,6 +121,35 @@ public class ManufacturerPanel extends AbstractPanel {
         } catch (SQLException e) {
             //@TODO: Handle with loggin class as stated in requirements
             e.printStackTrace();
+        }
+    }
+
+    private class okButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+
+                if (manufacturerForm.validateForm()) {
+                    manufacturerForm.submit().save();
+                    updateManufacturerTable();
+                    manufacturerForm.clear();
+                } else {
+                    repack();
+                }
+            }
+        }
+    }
+
+    private class cancelButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                manufacturerForm.clear();
+            }
         }
     }
 

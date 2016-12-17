@@ -22,8 +22,8 @@ public class Manufacturer extends AbstractModel {
     }
 
     public Manufacturer(Vector v) {
-        this.id = (int) v.get(1);
-        this.name = v.get(2).toString();
+        this.id = (int) v.get(0);
+        this.name = v.get(1).toString();
     }
 
     public String getName() {
