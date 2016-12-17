@@ -270,7 +270,6 @@ public class HumanResourcesPanel extends AbstractPanel {
                         if(bpcComissionEmployeeForm.validateForm()) {
                             bpcComissionEmployeeForm.submit().save();
                             employeeTabbedPanel.updateBasePlusCommissionTable();
-                            clearForm();
                         }
                         break;
 
@@ -299,11 +298,6 @@ public class HumanResourcesPanel extends AbstractPanel {
                         break;
                 }
             }
-
-            
-            
-            //Update table to show changes
-            repack();
         }
     }
 
@@ -313,41 +307,39 @@ public class HumanResourcesPanel extends AbstractPanel {
         public void actionPerformed(ActionEvent e) {
             
                switch(employeeTabbedPanel.getActiveTab()) {
-                case 0:
-                    if(bpcComissionEmployeeForm.validateForm()) {
-                           bpcComissionEmployeeForm.submit().save();
-                           employeeTabbedPanel.updateBasePlusCommissionTable();
-                           clearForm();
-                    }
-                    break;
+                    case 0:
+                        if(bpcComissionEmployeeForm.validateForm()) {
+                               bpcComissionEmployeeForm.submit().save();
+                               employeeTabbedPanel.updateBasePlusCommissionTable();
+                               clearForm();
+                        }
+                        break;
 
-                case 1:
-                    if(commissionSalesEmployeeForm.validateForm()) {
-                        commissionSalesEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateCommissionSalesTable();
-                        clearForm();
-                    }
-                    break;
+                    case 1:
+                        if(commissionSalesEmployeeForm.validateForm()) {
+                            commissionSalesEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateCommissionSalesTable();
+                            clearForm();
+                        }
+                        break;
 
-                case 2:
-                    if(hourlyEmployeeForm.validateForm()) {
-                        hourlyEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateHourlyTable();
-                        clearForm();
-                    }
-                    break;
+                    case 2:
+                        if(hourlyEmployeeForm.validateForm()) {
+                            hourlyEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateHourlyTable();
+                            clearForm();
+                        }
+                        break;
 
-                case 3:
-                    if(salaryEmployeeForm.validateForm()) {
-                        salaryEmployeeForm.submit().save();
-                        employeeTabbedPanel.updateSalaryTable();
-                        clearForm();
-                    }
-                    break;
-            }
-            
-            
-           
+                    case 3:
+                        if(salaryEmployeeForm.validateForm()) {
+                            salaryEmployeeForm.submit().save();
+                            employeeTabbedPanel.updateSalaryTable();
+                            clearForm();
+                        }
+                        break;
+                }
+
         }
     }
 
@@ -356,11 +348,6 @@ public class HumanResourcesPanel extends AbstractPanel {
         addEmployeeButton.setEnabled(true);
         employeeTypeSelector.setEnabled(true);
 
-        //@TODO: Perhaps use new clear() method? Check for memory leaks first
-        hourlyEmployeeForm = null;
-        bpcComissionEmployeeForm = null;
-        commissionSalesEmployeeForm = null;
-        salaryEmployeeForm = null;
         repack();
     }
 

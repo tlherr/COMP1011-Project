@@ -3,12 +3,26 @@ package com.tlherr.Form;
 import com.tlherr.Input.ValidatedFormInput;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public abstract class AbstractForm extends JPanel {
 
     protected JPanel contentPanel;
     protected JPanel controlsPanel;
+
+    public AbstractForm() {
+        super(new BorderLayout());
+
+        contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        controlsPanel = new JPanel(new BorderLayout());
+
+        add(contentPanel, BorderLayout.NORTH);
+        add(controlsPanel, BorderLayout.SOUTH);
+    }
 
     public abstract void build();
     public abstract Object submit();
@@ -32,6 +46,7 @@ public abstract class AbstractForm extends JPanel {
     public Boolean validateForm() {
         Boolean isValid = true;
         //Iterate over all components and check validated fields to see if values are ok
+
         for(Component component: this.contentPanel.getComponents()) {
             if(component.getClass()==ValidatedFormInput.class) {
                 if(!((ValidatedFormInput) component).validateInput()) {
@@ -41,5 +56,5 @@ public abstract class AbstractForm extends JPanel {
         }
 
         return isValid;
-    };
+    }
 }

@@ -30,12 +30,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     protected AbstractEmployee employee;
 
     /**
-     * Two panels. One for form elements and another for controls (ok/cancel buttons)
-     */
-    protected JPanel contentPanel;
-    protected JPanel controlsPanel;
-
-    /**
      * Component references so we can get/set form values
      */
     protected ValidatedFormInput firstName;
@@ -50,13 +44,7 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     protected JButton cancelButton;
 
     public AbstractEmployeeForm() {
-        setLayout(new BorderLayout());
-
-        contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-
-        controlsPanel = new JPanel(new BorderLayout());
+        super();
     }
 
     /**
@@ -84,10 +72,10 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
         position = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_POSITION, InputService.CHARACTERS_ONLY);
         department = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT, InputService.CHARACTERS_ONLY);
 
-        contentPanel.add(firstName);
-        contentPanel.add(lastName);
-        contentPanel.add(position);
-        contentPanel.add(department);
+        this.contentPanel.add(firstName);
+        this.contentPanel.add(lastName);
+        this.contentPanel.add(position);
+        this.contentPanel.add(department);
     }
 
     /**
@@ -98,8 +86,8 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
         okButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_OK);
         cancelButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_CANCEL);
 
-        controlsPanel.add(okButton, BorderLayout.EAST);
-        controlsPanel.add(cancelButton, BorderLayout.WEST);
+        this.controlsPanel.add(okButton, BorderLayout.EAST);
+        this.controlsPanel.add(cancelButton, BorderLayout.WEST);
     }
 
     /**
@@ -130,8 +118,6 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
         buildBaseFormElements();
         addFormElements();
         addFormControls();
-        add(contentPanel, BorderLayout.NORTH);
-        add(controlsPanel, BorderLayout.SOUTH);
         setVisible(true);
     }
 

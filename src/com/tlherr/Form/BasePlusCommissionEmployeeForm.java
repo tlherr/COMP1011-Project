@@ -39,6 +39,8 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         commissionRate.setEditText(empl.getCommissionRate().toString());
     }
 
+
+
     @Override
     public AbstractEmployee submit() {
         BasePlusCommissionEmployee empl;
@@ -74,5 +76,10 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
         addValidatedInput(commissionRate);
         addValidatedInput(sales);
         addValidatedInput(salary);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
