@@ -21,7 +21,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
 
     public CommissionSalesEmployee(Vector v) {
         super();
-        this.idNumber = (int) v.get(0);
+        this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());
         this.setLastName(v.get(2).toString());
         this.setPosition(v.get(3).toString());
@@ -53,7 +53,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
 
-            if (this.idNumber != 0) {
+            if (this.id != 0) {
                 statement = conn.prepareStatement("UPDATE CommissionEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,commissionRate=?,sales=? WHERE id=? ");
 
@@ -63,7 +63,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
                 statement.setString(4, this.getDepartment());
                 statement.setBigDecimal(5, this.getCommissionRate());
                 statement.setBigDecimal(6, this.getSales());
-                statement.setInt(7, this.getIdNumber());
+                statement.setInt(7, this.getId());
             } else {
                 statement = conn.prepareStatement("INSERT INTO CommissionEmployee " +
                         "(firstName, lastName, position, department, commissionRate, sales)" +

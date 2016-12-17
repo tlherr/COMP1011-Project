@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 public abstract class AbstractEmployee extends AbstractModel {
 
     private String firstName, lastName, position, department;
-    protected int idNumber;
 
     protected AbstractEmployee() {
     }
@@ -28,7 +27,7 @@ public abstract class AbstractEmployee extends AbstractModel {
     @Override
     public String toString() {
         return String.format("Name: %1$s,%2$s Id: %3$d Department: %4$s Position: %5$s",
-                this.getFirstName(), this.getLastName(), this.getIdNumber(), this.getDepartment(), this.getPosition());
+                this.getFirstName(), this.getLastName(), this.getId(), this.getDepartment(), this.getPosition());
     }
 
     /**
@@ -72,9 +71,5 @@ public abstract class AbstractEmployee extends AbstractModel {
 
     public void setDepartment(String department) {
         this.department = department;
-    }
-
-    public int getIdNumber() {
-        return idNumber;
     }
 }

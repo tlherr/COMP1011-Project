@@ -21,7 +21,7 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
 
     public BasePlusCommissionEmployee(Vector v) {
         super();
-        this.idNumber = (int) v.get(0);
+        this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());
         this.setLastName(v.get(2).toString());
         this.setPosition(v.get(3).toString());
@@ -55,7 +55,7 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if (this.idNumber != 0) {
+            if (this.id != 0) {
                 statement = conn.prepareStatement("UPDATE BasePlusCommissionEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,commissionRate=?,sales=?,salary=? WHERE id=? ");
 
@@ -66,7 +66,7 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
                 statement.setBigDecimal(5, this.getCommissionRate());
                 statement.setBigDecimal(6, this.getSales());
                 statement.setBigDecimal(7, this.getBaseSalary());
-                statement.setInt(8, this.idNumber);
+                statement.setInt(8, this.getId());
 
             } else {
                 statement = conn.prepareStatement("INSERT INTO BasePlusCommissionEmployee " +

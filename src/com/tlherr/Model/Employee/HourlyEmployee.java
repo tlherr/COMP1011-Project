@@ -21,7 +21,7 @@ public class HourlyEmployee extends AbstractEmployee {
     }
 
     public HourlyEmployee(Vector v) {
-        this.idNumber = (int) v.get(0);
+        this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());
         this.setLastName(v.get(2).toString());
         this.setPosition(v.get(3).toString());
@@ -52,7 +52,7 @@ public class HourlyEmployee extends AbstractEmployee {
             Connection conn = ConnectionService.getConnection();
             PreparedStatement statement;
             //Check for an ID, if it has one this is an update
-            if (this.idNumber != 0) {
+            if (this.id != 0) {
                 statement = conn.prepareStatement("UPDATE HourlyEmployee SET firstName=?, lastName=?," +
                         "position=?,department=?,hoursPerWeek=?,hourlyRate=? WHERE id=? ");
 
@@ -62,7 +62,7 @@ public class HourlyEmployee extends AbstractEmployee {
                 statement.setString(4, this.getDepartment());
                 statement.setBigDecimal(5, this.getHoursWorked());
                 statement.setBigDecimal(6, this.getHourlyRate());
-                statement.setInt(7, this.idNumber);
+                statement.setInt(7, this.getId());
 
             } else {
                 statement = conn.prepareStatement("INSERT INTO HourlyEmployee " +
