@@ -67,18 +67,21 @@ public class HumanResourcesPanel extends AbstractPanel {
 
         //Disable components until we have a logged in user
         enableComponents(employeeOperationsButtons, false);
+        enableComponents(employeeTabbedPanel, false);
 
         //Handle login events
         LoginService.getInstance().addListener(new AuthenticationListener() {
             @Override
             public void loggedIn(ActionEvent e) {
                 enableComponents(employeeOperationsButtons, true);
+                enableComponents(employeeTabbedPanel, true);
                 repack();
             }
 
             @Override
             public void loggedOut(ActionEvent e) {
                 enableComponents(employeeOperationsButtons, false);
+                enableComponents(employeeTabbedPanel, false);
                 repack();
             }
         });
@@ -343,6 +346,7 @@ public class HumanResourcesPanel extends AbstractPanel {
         addEmployeeButton.setEnabled(true);
         employeeTypeSelector.setEnabled(true);
 
+        //@TODO: Perhaps use new clear() method? Check for memory leaks first
         hourlyEmployeeForm = null;
         bpcComissionEmployeeForm = null;
         commissionSalesEmployeeForm = null;

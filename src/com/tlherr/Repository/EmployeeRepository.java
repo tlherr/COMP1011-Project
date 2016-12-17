@@ -1,5 +1,6 @@
 package com.tlherr.Repository;
 
+import com.mysql.jdbc.ResultSetImpl;
 import com.tlherr.Model.Employee.*;
 import com.tlherr.Service.ConnectionService;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
-public class EmployeeRepository {
+public class EmployeeRepository extends AbstractRepository {
 
     private static EmployeeRepository instance = new EmployeeRepository();
 
@@ -42,29 +43,28 @@ public class EmployeeRepository {
         return null;
     }
 
-    public static ResultSet loadResultSetOrNull(Class c) throws SQLException {
+    @Override
+    public ResultSet load(Class toLoad) throws SQLException {
         Connection conn = ConnectionService.getConnection();
         Statement statement = conn.createStatement();
-        ResultSet rs;
 
-        if(c==BasePlusCommissionEmployee.class) {
+        if(toLoad==BasePlusCommissionEmployee.class) {
             //Load BasePlusCommissionEmployees into result set and return it
             return statement.executeQuery("SELECT * FROM BasePlusCommissionEmployee");
 
-        } else if(c==CommissionSalesEmployee.class) {
+        } else if(toLoad==CommissionSalesEmployee.class) {
             //Load CommissionSalesEmployees into result set and return it
             return statement.executeQuery("SELECT * FROM CommissionEmployee");
 
-        } else if(c==HourlyEmployee.class) {
+        } else if(toLoad==HourlyEmployee.class) {
             //Load HourlyEmployees into a result set and return it
             return statement.executeQuery("SELECT * FROM HourlyEmployee");
 
-        } else if(c==SalaryEmployee.class) {
+        } else if(toLoad==SalaryEmployee.class) {
             //Load SalaryEmployees into a result set and return it
             return statement.executeQuery("SELECT * FROM SalaryEmployee");
         } else {
             return null;
         }
     }
-
 }

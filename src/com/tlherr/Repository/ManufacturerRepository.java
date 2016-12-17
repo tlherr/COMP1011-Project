@@ -1,13 +1,22 @@
 package com.tlherr.Repository;
 
+import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
+import com.tlherr.Model.Employee.CommissionSalesEmployee;
+import com.tlherr.Model.Employee.HourlyEmployee;
+import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Model.Manufacturer;
+import com.tlherr.Service.ConnectionService;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  * Responsible for storing and accessing manufacturers as they as saved/edited/removed
  */
-public class ManufacturerRepository {
+public class ManufacturerRepository extends AbstractRepository {
 
     private static ManufacturerRepository instance = new ManufacturerRepository();
 
@@ -17,40 +26,18 @@ public class ManufacturerRepository {
 
     private ManufacturerRepository(){};
 
-    private static ArrayList<Manufacturer> manufacturers = new ArrayList<Manufacturer>();
+    @Override
+    public ResultSet load(Class toLoad) throws SQLException {
+        Connection conn = ConnectionService.getConnection();
+        Statement statement = conn.createStatement();
 
-    public void addManufacturer(Manufacturer manufacturer) {
-        manufacturers.add(manufacturer);
-    }
-
-    public Integer getCount() {
-        return manufacturers.size();
-    }
-
-    public Manufacturer findByName(String name) {
-        for (Manufacturer manufacturer : manufacturers) {
-            if(manufacturer.getName().equals(name)) {
-                return manufacturer;
-            }
+        if(toLoad==Manufacturer.class) {
+            //Load BasePlusCommissionEmployees into result set and return it
+            return statement.executeQuery("SELECT * FROM Manufacturers");
+        } else {
+            return null;
         }
-        return null;
     }
 
-    public void save(Manufacturer manufacturer) {
-        Boolean found = false;
-        //Check if the employee exists already
-        for(int i=0; i<manufacturers.size(); i++) {
-            if(manufacturers.get(i).getName() == manufacturer.getName()) {
-                //The employee already exists, update the info
-                manufacturers.set(i, manufacturer);
-                found = true;
-            }
-        }
 
-        if(!found) {
-            //This is a new manufacturer, save it
-            addManufacturer(manufacturer);
-        }
-
-    }
 }

@@ -1,12 +1,19 @@
 package com.tlherr.Panels;
 
 import com.tlherr.Form.ManufacturerForm;
+import com.tlherr.Listener.AuthenticationListener;
+import com.tlherr.Model.Manufacturer;
+import com.tlherr.Repository.ManufacturerRepository;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.LoginService;
+import com.tlherr.Table.GenericTableModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Manufacturer panel, contains table and add/edit/remove buttons
@@ -39,16 +46,53 @@ public class ManufacturerPanel extends AbstractPanel {
 
         add(manufacturersOperationButtons, BorderLayout.CENTER);
 
+        LoginService.getInstance().addListener(new AuthenticationListener() {
+            @Override
+            public void loggedIn(ActionEvent e) {
+                updateManufacturerTable();
+            }
+
+            @Override
+            public void loggedOut(ActionEvent e) {
+
+            }
+        });
+
         addManufacturerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 manufacturerForm = new ManufacturerForm();
                 manufacturerForm.build();
+                manufacturerForm.getOkButton().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(manufacturerForm.validateForm()) {
+                            manufacturerForm.submit().save();
+                            manufacturerForm.clear();
+                        }
+                        updateManufacturerTable();
+                    }
+                });
                 manufacturerForm.setVisible(true);
                 add(manufacturerForm, BorderLayout.SOUTH);
                 repack();
             }
         });
+    }
+
+    public void updateManufacturerTable() {
+        //Get manufacturers from DB and output to new table model
+        try {
+            ResultSet rs = ManufacturerRepository.getInstance().load(Manufacturer.class);
+
+            if(rs!=null) {
+                GenericTableModel tableModel = new GenericTableModel(rs);
+                manufacturersTable.setModel(tableModel);
+            }
+        } catch (SQLException e) {
+            //@TODO: Handle with loggin class as stated in requirements
+            e.printStackTrace();
+        }
     }
 
 

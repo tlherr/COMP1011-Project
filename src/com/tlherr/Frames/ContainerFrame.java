@@ -1,11 +1,13 @@
 package com.tlherr.Frames;
 
 
+import com.tlherr.Listener.AuthenticationListener;
 import com.tlherr.Panels.HumanResourcesPanel;
 import com.tlherr.Panels.InventoryPanel;
 import com.tlherr.Panels.LoginPanel;
 import com.tlherr.Panels.SearchPanel;
 import com.tlherr.Resources.Strings;
+import com.tlherr.Service.LoginService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -40,6 +42,21 @@ public class ContainerFrame extends JFrame {
         buildTopPanel(Strings.WELCOME_MESSAGE);
         buildMiddlePanel();
         buildBottomPanel();
+
+        tabbedPane.setEnabled(false);
+
+        LoginService.getInstance().addListener(new AuthenticationListener() {
+            @Override
+            public void loggedIn(ActionEvent e) {
+                tabbedPane.setEnabled(true);
+            }
+
+            @Override
+            public void loggedOut(ActionEvent e) {
+                tabbedPane.setEnabled(false);
+            }
+        });
+
 
         //add(menuBar, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.NORTH);

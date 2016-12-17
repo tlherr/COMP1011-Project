@@ -43,12 +43,12 @@ public class ManufacturerForm extends AbstractForm {
         okButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_OK);
         cancelButton = new JButton(Strings.EMPLOYEE_CONTROL_BUTTON_CANCEL);
 
-        okButton.addActionListener(new ActionListener() {
+        cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(validateForm()) {
-                    submit().save();
-                }
+                remove(contentPanel);
+                remove(controlsPanel);
+                setVisible(false);
             }
         });
 
@@ -66,5 +66,13 @@ public class ManufacturerForm extends AbstractForm {
         } else {
             return new Manufacturer(name.getValue());
         }
+    }
+
+    public JButton getOkButton() {
+        return okButton;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
     }
 }

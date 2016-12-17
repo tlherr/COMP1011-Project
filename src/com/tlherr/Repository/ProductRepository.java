@@ -1,14 +1,20 @@
 package com.tlherr.Repository;
 
 import com.tlherr.Model.Employee.AbstractEmployee;
+import com.tlherr.Model.Manufacturer;
 import com.tlherr.Model.Product;
+import com.tlherr.Service.ConnectionService;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  * Responsible for storing and accessing products as they as saved/edited/removed
  */
-public class ProductRepository {
+public class ProductRepository extends AbstractRepository {
 
     private static ProductRepository instance = new ProductRepository();
 
@@ -18,18 +24,18 @@ public class ProductRepository {
 
     private ProductRepository(){};
 
-    private static ArrayList<Product> products = new ArrayList<Product>();
+    @Override
+    public ResultSet load(Class toLoad) throws SQLException {
+        Connection conn = ConnectionService.getConnection();
+        Statement statement = conn.createStatement();
 
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public Product findByProductName(String productName) {
-        for (Product product : products) {
-            if(product.getProductName().equals(productName)) {
-                return product;
-            }
+        if(toLoad==Product.class) {
+            //Load BasePlusCommissionEmployees into result set and return it
+            return statement.executeQuery("SELECT * FROM Manufacturers");
+        } else {
+            return null;
         }
-        return null;
     }
+
+
 }

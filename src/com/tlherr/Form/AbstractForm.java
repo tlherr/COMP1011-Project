@@ -13,6 +13,17 @@ public abstract class AbstractForm extends JPanel {
     public abstract void build();
     public abstract Object submit();
 
+    public void clear() {
+        if(contentPanel!=null) {
+            remove(contentPanel);
+        }
+
+        if(controlsPanel!=null) {
+            remove(controlsPanel);
+        }
+        setVisible(false);
+    };
+
     /**
      * Check that inputs match expectations before allowing submission to proceed
      * @ref InputService for validation methods

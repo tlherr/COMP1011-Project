@@ -99,7 +99,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
 
     public void updateBasePlusCommissionTable() {
         try {
-            ResultSet bpcRs = EmployeeRepository.loadResultSetOrNull(BasePlusCommissionEmployee.class);
+            ResultSet bpcRs = EmployeeRepository.getInstance().load(BasePlusCommissionEmployee.class);
             if(bpcRs!=null) {
                 GenericTableModel tableModel = new GenericTableModel(bpcRs);
                 basePlusCommissionTable.setModel(tableModel);
@@ -112,7 +112,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
 
     public void updateCommissionSalesTable() {
         try {
-            ResultSet csRs = EmployeeRepository.loadResultSetOrNull(CommissionSalesEmployee.class);
+            ResultSet csRs = EmployeeRepository.getInstance().load(CommissionSalesEmployee.class);
             if(csRs!=null) {
                 GenericTableModel tableModel = new GenericTableModel(csRs);
                 commissionSalesTable.setModel(tableModel);
@@ -125,7 +125,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
 
     public void updateHourlyTable() {
         try {
-            ResultSet hRs = EmployeeRepository.loadResultSetOrNull(HourlyEmployee.class);
+            ResultSet hRs = EmployeeRepository.getInstance().load(HourlyEmployee.class);
             if(hRs!=null) {
                 GenericTableModel tableModel = new GenericTableModel(hRs);
                 hourlyTable.setModel(tableModel);
@@ -138,7 +138,7 @@ public class EmployeeTabbedPanel extends AbstractPanel {
 
     public void updateSalaryTable() {
         try {
-            ResultSet sRs = EmployeeRepository.loadResultSetOrNull(SalaryEmployee.class);
+            ResultSet sRs = EmployeeRepository.getInstance().load(SalaryEmployee.class);
             if(sRs!=null) {
                 GenericTableModel tableModel = new GenericTableModel(sRs);
                 salaryTable.setModel(tableModel);
