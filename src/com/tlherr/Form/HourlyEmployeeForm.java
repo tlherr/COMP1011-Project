@@ -1,6 +1,6 @@
 package com.tlherr.Form;
 
-import com.tlherr.Input.ValidatedFormInput;
+import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Resources.Strings;
@@ -12,8 +12,8 @@ import com.tlherr.Service.InputService;
 public class HourlyEmployeeForm extends AbstractEmployeeForm {
 
 
-    private ValidatedFormInput hourlyRate;
-    private ValidatedFormInput hoursPerWeek;
+    private ValidatedTextFormInput hourlyRate;
+    private ValidatedTextFormInput hoursPerWeek;
 
     public HourlyEmployeeForm() {
         super();
@@ -46,20 +46,20 @@ public class HourlyEmployeeForm extends AbstractEmployeeForm {
         super(empl);
         build();
 
-        firstName.setEditText(empl.getFirstName());
-        lastName.setEditText(empl.getLastName());
-        position.setEditText(empl.getPosition());
-        department.setEditText(empl.getDepartment());
-        hoursPerWeek.setEditText(String.valueOf(empl.getHourlyRate()));
-        hourlyRate.setEditText(String.valueOf(empl.getHoursWorked()));
+        firstName.setValue(empl.getFirstName());
+        lastName.setValue(empl.getLastName());
+        position.setValue(empl.getPosition());
+        department.setValue(empl.getDepartment());
+        hoursPerWeek.setValue(String.valueOf(empl.getHourlyRate()));
+        hourlyRate.setValue(String.valueOf(empl.getHoursWorked()));
     }
 
     @Override
     public void addFormElements() {
-        hourlyRate = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE, InputService.DECIMAL);
-        hoursPerWeek = new ValidatedFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK, InputService.DECIMAL);
+        hourlyRate = new ValidatedTextFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURLY_RATE, InputService.DECIMAL);
+        hoursPerWeek = new ValidatedTextFormInput(Strings.H_EMPLOYEE_FORM_LABEL_HOURS_PER_WEEK, InputService.DECIMAL);
 
-        addValidatedInput(hourlyRate);
-        addValidatedInput(hoursPerWeek);
+        addInput(hourlyRate);
+        addInput(hoursPerWeek);
     }
 }

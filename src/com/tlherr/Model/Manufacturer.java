@@ -21,6 +21,11 @@ public class Manufacturer extends AbstractModel {
         this.name = name;
     }
 
+    public Manufacturer(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Manufacturer(Vector v) {
         this.id = (int) v.get(0);
         this.name = v.get(1).toString();
@@ -62,5 +67,10 @@ public class Manufacturer extends AbstractModel {
             //@TODO: This should log to debug log as per requirements
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

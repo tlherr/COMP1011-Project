@@ -1,17 +1,14 @@
 package com.tlherr.Form;
 
-import com.tlherr.Input.ValidatedFormInput;
+import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Model.Manufacturer;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class ManufacturerForm extends AbstractForm {
 
     private Manufacturer manufacturer;
-    private ValidatedFormInput name;
+    private ValidatedTextFormInput name;
 
     public ManufacturerForm() {
         super();
@@ -24,12 +21,12 @@ public class ManufacturerForm extends AbstractForm {
 
     @Override
     public void build() {
-        name = new ValidatedFormInput(Strings.MANUFACTURER_FORM_NAME, InputService.ALPHANUMERIC_WORDS);
+        name = new ValidatedTextFormInput(Strings.MANUFACTURER_FORM_NAME, InputService.ALPHANUMERIC_WORDS);
         if(this.manufacturer!=null) {
-            name.setEditText(this.manufacturer.getName());
+            name.setValue(this.manufacturer.getName());
         }
 
-        addValidatedInput(name);
+        addInput(name);
     }
 
     @Override

@@ -16,6 +16,8 @@ public class Product extends AbstractModel {
     private Manufacturer manufacturer;
     private String name, modelNumber;
 
+    public Product(){}
+
     public Product(Vector v) {
         this.id = (int) v.get(0);
         this.name = v.get(1).toString();
@@ -45,7 +47,7 @@ public class Product extends AbstractModel {
 
                 statement.setString(1, this.name);
                 statement.setString(2, this.modelNumber);
-                statement.setInt(3, this.manufacturer.id);
+                statement.setInt(3, this.manufacturer.getId());
                 statement.setInt(4, this.id);
 
             } else {
@@ -55,7 +57,7 @@ public class Product extends AbstractModel {
 
                 statement.setString(1, this.name);
                 statement.setString(2, this.modelNumber);
-                statement.setInt(3, this.manufacturer.id);
+                statement.setInt(3, this.manufacturer.getId());
             }
 
             statement.execute();
@@ -65,5 +67,35 @@ public class Product extends AbstractModel {
             //@TODO: This should log to debug log as per requirements
             e.printStackTrace();
         }
+    }
+
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    public void setModelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

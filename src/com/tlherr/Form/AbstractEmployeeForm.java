@@ -1,11 +1,9 @@
 package com.tlherr.Form;
 
-import com.tlherr.Input.ValidatedFormInput;
+import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.InputService;
-
-import java.awt.event.ActionListener;
 
 /**
  * This class is an abstract representation of what an Employee Form should contain
@@ -29,10 +27,10 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
     /**
      * Component references so we can get/set form values
      */
-    protected ValidatedFormInput firstName;
-    protected ValidatedFormInput lastName;
-    protected ValidatedFormInput position;
-    protected ValidatedFormInput department;
+    protected ValidatedTextFormInput firstName;
+    protected ValidatedTextFormInput lastName;
+    protected ValidatedTextFormInput position;
+    protected ValidatedTextFormInput department;
 
     public AbstractEmployeeForm() {
         super();
@@ -54,10 +52,10 @@ public abstract class AbstractEmployeeForm extends AbstractForm {
      * If an employee is set it will set values based on employee data
      */
     private void buildBaseFormElements() {
-        firstName = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_FIRSTNAME, InputService.CHARACTERS_ONLY);
-        lastName = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_LASTNAME, InputService.CHARACTERS_ONLY);
-        position = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_POSITION, InputService.CHARACTERS_ONLY);
-        department = new ValidatedFormInput(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT, InputService.CHARACTERS_ONLY);
+        firstName = new ValidatedTextFormInput(Strings.EMPLOYEE_FORM_LABEL_FIRSTNAME, InputService.CHARACTERS_ONLY);
+        lastName = new ValidatedTextFormInput(Strings.EMPLOYEE_FORM_LABEL_LASTNAME, InputService.CHARACTERS_ONLY);
+        position = new ValidatedTextFormInput(Strings.EMPLOYEE_FORM_LABEL_POSITION, InputService.CHARACTERS_ONLY);
+        department = new ValidatedTextFormInput(Strings.EMPLOYEE_FORM_LABEL_DEPARTMENT, InputService.CHARACTERS_ONLY);
 
         this.contentPanel.add(firstName);
         this.contentPanel.add(lastName);

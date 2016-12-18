@@ -1,6 +1,6 @@
 package com.tlherr.Form;
 
-import com.tlherr.Input.ValidatedFormInput;
+import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Model.Employee.AbstractEmployee;
 import com.tlherr.Model.Employee.SalaryEmployee;
 import com.tlherr.Resources.Strings;
@@ -11,7 +11,7 @@ import com.tlherr.Service.InputService;
  */
 public class SalaryEmployeeForm extends AbstractEmployeeForm {
 
-    private ValidatedFormInput salary;
+    private ValidatedTextFormInput salary;
 
     public SalaryEmployeeForm() {
         super();
@@ -43,17 +43,17 @@ public class SalaryEmployeeForm extends AbstractEmployeeForm {
         super(empl);
         build();
 
-        firstName.setEditText(empl.getFirstName());
-        lastName.setEditText(empl.getLastName());
-        position.setEditText(empl.getPosition());
-        department.setEditText(empl.getDepartment());
-        salary.setEditText(empl.getSalary().toString());
+        firstName.setValue(empl.getFirstName());
+        lastName.setValue(empl.getLastName());
+        position.setValue(empl.getPosition());
+        department.setValue(empl.getDepartment());
+        salary.setValue(empl.getSalary().toString());
     }
 
     @Override
     public void addFormElements() {
-        salary = new ValidatedFormInput(Strings.S_EMPLOYEE_FORM_LABEL_SALARY, InputService.DECIMAL);
+        salary = new ValidatedTextFormInput(Strings.S_EMPLOYEE_FORM_LABEL_SALARY, InputService.DECIMAL);
 
-        addValidatedInput(salary);
+        addInput(salary);
     }
 }

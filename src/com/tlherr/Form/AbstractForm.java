@@ -1,6 +1,6 @@
 package com.tlherr.Form;
 
-import com.tlherr.Input.ValidatedFormInput;
+import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Resources.Strings;
 
 import javax.swing.*;
@@ -35,8 +35,8 @@ public abstract class AbstractForm extends JPanel {
         add(controlsPanel, BorderLayout.SOUTH);
     }
 
-    public void addValidatedInput(ValidatedFormInput validatedFormInput) {
-        this.contentPanel.add(validatedFormInput);
+    public void addInput(JComponent inputElement) {
+        this.contentPanel.add(inputElement);
     }
 
     public JButton getOkButton() {
@@ -73,8 +73,8 @@ public abstract class AbstractForm extends JPanel {
         //Iterate over all components and check validated fields to see if values are ok
 
         for (Component component : this.contentPanel.getComponents()) {
-            if (component.getClass() == ValidatedFormInput.class) {
-                if (!((ValidatedFormInput) component).validateInput()) {
+            if (component.getClass() == ValidatedTextFormInput.class) {
+                if (!((ValidatedTextFormInput) component).validateInput()) {
                     isValid = false;
                 }
             }

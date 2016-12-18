@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 //Set the input text and get the input value
 //Validate the input text
 //Show an error message when not validated
-public class ValidatedFormInput extends JPanel {
+public class ValidatedTextFormInput extends AbstractFormInput {
 
     private JTextField input;
     private JLabel errorLabel;
@@ -22,36 +22,13 @@ public class ValidatedFormInput extends JPanel {
 
     private String validator;
 
-    private GridBagConstraints labelConstraints;
-    private GridBagConstraints textFieldConstrains;
-
-
-    public ValidatedFormInput(String inputLabelText, String validatorString) {
-        super(new GridBagLayout());
-
-        //Set Grid Bag Constraints
-        labelConstraints = new GridBagConstraints();
-        //Fill Space Horizontally
-        labelConstraints.fill = GridBagConstraints.HORIZONTAL;
-        //Labels should always start left of row
-        labelConstraints.anchor = GridBagConstraints.NORTHWEST;
-        //Give low weight to prioritize the width of other components that need more space
-        labelConstraints.weightx = 0;
-        //This component takes up 1 grid space
-        labelConstraints.gridwidth = 1;
-
-        //Copy previous settings, only add weight and take up all remaining space in the row
-        textFieldConstrains = (GridBagConstraints) labelConstraints.clone();
-        textFieldConstrains.weightx = 1.0;
-        textFieldConstrains.gridwidth = GridBagConstraints.REMAINDER;
+    public ValidatedTextFormInput(String inputLabelText, String validatorString) {
+        super(inputLabelText);
 
         validator = validatorString;
 
-        JLabel inputLabel = new JLabel(inputLabelText);
-        addLabel(inputLabel);
-
         input = new JTextField(10);
-        addTextField(input);
+        addInputField(input);
 
         errorLabel = new JLabel(Strings.EMPLOYEE_FORM_LABEL_ERROR);
         errorLabel.setVisible(false);
@@ -61,7 +38,7 @@ public class ValidatedFormInput extends JPanel {
         error.setVisible(false);
         error.setEditable(false);
 
-        addTextField(error);
+        addInputField(error);
     }
 
     public boolean validateInput() {
@@ -94,7 +71,7 @@ public class ValidatedFormInput extends JPanel {
         return input.getText();
     }
 
-    public void setEditText(String text) {
+    public void setValue(String text) {
         input.setText(text);
     }
 
@@ -107,28 +84,6 @@ public class ValidatedFormInput extends JPanel {
         }
 
         return toReturn;
-    }
-
-    /**
-     * Apply GridBagConstants to a label component and add it to the content panel
-     *
-     * @param c JLabel Label component to be styled/positioned
-     */
-    private void addLabel(JLabel c) {
-        GridBagLayout gbl = (GridBagLayout) this.getLayout();
-        gbl.setConstraints(c, labelConstraints);
-        this.add(c);
-    }
-
-    /**
-     * Apply GridBagConstants to a textfield component and add it to the content panel
-     *
-     * @param c JTextField TextField component to be styled
-     */
-    private void addTextField(JTextField c) {
-        GridBagLayout gbl = (GridBagLayout) this.getLayout();
-        gbl.setConstraints(c, textFieldConstrains);
-        this.add(c);
     }
 
 

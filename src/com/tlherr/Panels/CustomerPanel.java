@@ -106,7 +106,6 @@ public class CustomerPanel extends AbstractPanel {
     }
 
     private void updateCustomerTable() {
-        //Get manufacturers from DB and output to new table model
         try {
             ResultSet rs = CustomerRepository.getInstance().load(Customer.class);
 

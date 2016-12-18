@@ -76,6 +76,20 @@ public class Strings {
     public static final String CUSTOMER_FORM_LABEL_EMAIL = "Email Address: ";
     public static final String CUSTOMER_FORM_LABEL_COMPANY = "Company: ";
 
+    /**
+     * Product Form
+     */
+    public static final String PRODUCT_FORM_LABEL_NAME = "Name: ";
+    public static final String PRODUCT_FORM_LABEL_MODEL_NUMBER = "Model Number: ";
+    public static final String PRODUCT_FORM_LABEL_MANUFACTURER = "Manufacturer: ";
+
+
+    /**
+     * Sale Form
+     */
+    public static final String SALE_FORM_LABEL_PRODUCT = "Product ";
+    public static final String SALE_FORM_LABEL_EMPLOYEE = "Employee: ";
+    public static final String SALE_FORM_LABEL_SALE_PRICE = "Sale Price: ";
 
     /**
      * Generic Form Controls
