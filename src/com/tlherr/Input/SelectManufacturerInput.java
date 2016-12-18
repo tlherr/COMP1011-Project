@@ -24,4 +24,8 @@ public class SelectManufacturerInput extends AbstractFormInput {
     public Manufacturer getValue() {
         return (Manufacturer) manufacturerComboBox.getSelectedItem();
     }
+
+    public void setValue(Manufacturer manufacturer) {
+        model.setSelectedItem(manufacturer);
+    }
 }

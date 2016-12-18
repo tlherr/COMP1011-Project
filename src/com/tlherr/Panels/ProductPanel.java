@@ -9,11 +9,15 @@ import com.tlherr.Service.LoginService;
 import com.tlherr.Table.GenericTableModel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * Product panel contains table, add/edit/delete buttons
@@ -40,32 +44,38 @@ public class ProductPanel extends AbstractPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 productForm = new ProductForm();
-                productForm.getOkButton().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
-                        if(dialogResult == JOptionPane.YES_OPTION){
-                            if(productForm.validateForm()) {
-                                productForm.submit().save();
-                                updateProductTable();
-                                productForm.clear();
-                            }
-                        }
-                    }
-                });
-                productForm.getCancelButton().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
-                        if(dialogResult == JOptionPane.YES_OPTION){
-                            productForm.clear();
-                        }
-                    }
-                });
+                productForm.getOkButton().addActionListener(new okButtonListener());
+                productForm.getCancelButton().addActionListener(new cancelButtonListener());
 
                 productForm.build();
                 add(productForm, BorderLayout.SOUTH);
                 repack();
+            }
+        });
+
+        productsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+
+                    try {
+                        Vector vectorResult = (Vector) model.getDataVector().elementAt(productsTable.getSelectedRow());
+                        Product product = new Product(vectorResult);
+
+                        addProductButton.setEnabled(false);
+                        deleteProductButton.setEnabled(false);
+
+                        productForm = new ProductForm(product);
+                        productForm.build();
+                        productForm.setOkButtonActionListener(new okButtonListener());
+                        productForm.setCancelButtonActionListener(new cancelButtonListener());
+                        add(productForm, BorderLayout.SOUTH);
+                        repack();
+                    } catch (ArrayIndexOutOfBoundsException exception) {
+                        //@TODO: Logging method should handle this as stated in requirements
+                    }
+                }
             }
         });
 
@@ -100,6 +110,32 @@ public class ProductPanel extends AbstractPanel {
         } catch (SQLException e) {
             //@TODO: Handle with loggin class as stated in requirements
             e.printStackTrace();
+        }
+    }
+
+    private class okButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                if(productForm.validateForm()) {
+                    productForm.submit().save();
+                    updateProductTable();
+                    productForm.clear();
+                }
+            }
+        }
+    }
+
+    private class cancelButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Warning", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                productForm.clear();
+            }
         }
     }
 

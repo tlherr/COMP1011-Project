@@ -14,11 +14,24 @@ public class ProductForm extends AbstractForm {
     private ValidatedTextFormInput modelNumber;
     private SelectManufacturerInput manufacturerSelect;
 
+    public ProductForm(){};
+
+    public ProductForm(Product product) {
+        this.product = product;
+    }
+
+
     @Override
     public void build() {
         name = new ValidatedTextFormInput(Strings.PRODUCT_FORM_LABEL_NAME, InputService.CHARACTERS_ONLY);
         modelNumber = new ValidatedTextFormInput(Strings.PRODUCT_FORM_LABEL_MODEL_NUMBER, InputService.ALPHANUMERIC_WORDS);
         manufacturerSelect = new SelectManufacturerInput(Strings.PRODUCT_FORM_LABEL_MANUFACTURER);
+
+        if(this.product!=null) {
+            name.setValue(this.product.getName());
+            modelNumber.setValue(this.product.getModelNumber());
+            manufacturerSelect.setValue(this.product.getManufacturer());
+        }
 
         addInput(name);
         addInput(modelNumber);
