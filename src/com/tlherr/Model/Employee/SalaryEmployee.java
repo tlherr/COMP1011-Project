@@ -34,11 +34,6 @@ public class SalaryEmployee extends AbstractEmployee {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + String.format(" Salary: %1$f", this.getSalary());
-    }
-
-    @Override
     public BigDecimal calculatePay() {
         return salary;
     }

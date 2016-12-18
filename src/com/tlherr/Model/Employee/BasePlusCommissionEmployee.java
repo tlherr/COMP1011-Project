@@ -38,12 +38,6 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + String.format(" Commission Rate: %1$f, Sales: %2$f, Base Salary: %3$f", this.getCommissionRate(),
-                this.getSales(), this.getBaseSalary());
-    }
-
-    @Override
     public BigDecimal calculatePay() {
         return baseSalary.add(super.getSales().multiply(super.getCommissionRate()));
     }

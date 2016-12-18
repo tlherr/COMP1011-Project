@@ -1,5 +1,7 @@
 package com.tlherr.Form;
 
+import com.tlherr.Input.SelectEmployeeInput;
+import com.tlherr.Input.SelectProductInput;
 import com.tlherr.Input.ValidatedTextFormInput;
 import com.tlherr.Model.Customer;
 import com.tlherr.Model.Employee.AbstractEmployee;
@@ -14,9 +16,9 @@ public class SaleForm extends AbstractForm {
 
     private Sale sale;
 
-    private JComboBox<Product> product;
-    private JComboBox<AbstractEmployee> employee;
+    private SelectProductInput product;
     private ValidatedTextFormInput salePrice;
+    private SelectEmployeeInput employee;
 
     public SaleForm() {
         super();
@@ -28,14 +30,20 @@ public class SaleForm extends AbstractForm {
 
     @Override
     public void build() {
-        salePrice = new ValidatedTextFormInput(Strings.CUSTOMER_FORM_LABEL_FIRSTNAME, InputService.DECIMAL);
-
+        salePrice = new ValidatedTextFormInput(Strings.SALE_FORM_LABEL_SALE_PRICE, InputService.DECIMAL);
+        product = new SelectProductInput(Strings.SALE_FORM_LABEL_PRODUCT);
+        employee = new SelectEmployeeInput(Strings.SALE_FORM_LABEL_EMPLOYEE);
 
         if(this.sale!=null) {
             //Set Values
+            salePrice.setValue(sale.getSalePrice().toString());
+            product.setValue(sale.getProduct());
+            employee.setValue(sale.getEmployee());
         }
 
-        //addValidatedInput(firstName);
+        addInput(salePrice);
+        addInput(product);
+        addInput(employee);
 
     }
 

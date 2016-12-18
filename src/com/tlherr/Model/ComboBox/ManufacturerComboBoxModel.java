@@ -1,5 +1,6 @@
-package com.tlherr.Model;
+package com.tlherr.Model.ComboBox;
 
+import com.tlherr.Model.Manufacturer;
 import com.tlherr.Repository.ManufacturerRepository;
 
 import javax.swing.*;

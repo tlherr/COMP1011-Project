@@ -37,11 +37,6 @@ public class CommissionSalesEmployee extends AbstractEmployee {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + String.format(" Commission Rate: %1$f, Sales: %2$f", this.getCommissionRate(), this.getSales());
-    }
-
-    @Override
     public BigDecimal calculatePay() {
         return (sales.multiply(commissionRate));
     }

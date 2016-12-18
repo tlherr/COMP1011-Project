@@ -62,4 +62,14 @@ public class EmployeeRepository extends AbstractRepository {
             return null;
         }
     }
+
+    public ResultSet loadAll() throws SQLException {
+        Connection conn = ConnectionService.getConnection();
+        Statement statement = conn.createStatement();
+
+        return statement.executeQuery("SELECT bpc.id,bpc.firstName, 1 as emp_type from basepluscommissionemployee bpc UNION\n" +
+                "SELECT c.id,c.firstName, 2 as emp_type from commissionemployee c UNION\n" +
+                "SELECT h.id,h.firstName, 3 as emp_type from hourlyemployee h UNION\n" +
+                "SELECT s.id,s.firstName, 4 as emp_type from salaryemployee s;");
+    }
 }

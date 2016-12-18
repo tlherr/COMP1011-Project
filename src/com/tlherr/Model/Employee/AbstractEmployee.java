@@ -26,8 +26,7 @@ public abstract class AbstractEmployee extends AbstractModel {
 
     @Override
     public String toString() {
-        return String.format("Name: %1$s,%2$s Id: %3$d Department: %4$s Position: %5$s",
-                this.getFirstName(), this.getLastName(), this.getId(), this.getDepartment(), this.getPosition());
+        return this.getFirstName();
     }
 
     /**
