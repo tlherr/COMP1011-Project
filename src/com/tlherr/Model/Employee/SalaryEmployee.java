@@ -81,7 +81,20 @@ public class SalaryEmployee extends AbstractEmployee {
     @Override
     public void delete() {
 
+        try {
+            Connection conn = ConnectionService.getConnection();
+            PreparedStatement statement;
+            //Check for an ID, if it has one this is an update
+            statement = conn.prepareStatement("DELETE FROM SalaryEmployee WHERE id=? ");
+            statement.setInt(1, this.getId());
 
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            //TODO: Handle this
+            e.printStackTrace();
+        }
     }
 
 

@@ -90,16 +90,12 @@ public class HumanResourcesPanel extends AbstractPanel {
                                 clearForm();
                                 employeeTabbedPanel.updateBasePlusCommissionTable();
                             } else {
-                                //Select something first (SHow a message?)
                                 JOptionPane.showMessageDialog(null, "Please select a base plus commission employee to delete");
                             }
                             break;
 
-                        //IMplement delete methods on employee objects (Under Model/Employee)
-                        //Do same as above
 
                         case 1:
-                            System.out.println("commission");
                             if(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow()!=-1) {
                                 DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
                                 Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow());
@@ -114,7 +110,6 @@ public class HumanResourcesPanel extends AbstractPanel {
                             break;
 
                         case 2:
-                            System.out.println("hourly");
                             if(employeeTabbedPanel.getHourlyTable().getSelectedRow()!=-1) {
                                 DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
                                 Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getHourlyTable().getSelectedRow());
@@ -129,7 +124,6 @@ public class HumanResourcesPanel extends AbstractPanel {
                             break;
 
                         case 3:
-                            System.out.println("salary");
                             if(employeeTabbedPanel.getSalaryTable().getSelectedRow()!=-1) {
                                 DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
                                 Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getSalaryTable().getSelectedRow());
