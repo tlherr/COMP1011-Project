@@ -40,7 +40,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
     public BigDecimal calculatePay() {
         return (sales.multiply(commissionRate));
     }
-
+    //save/update CommissionEmployee table based on changes made, check for connection first
     @Override
     public void save() {
         //Get a connection
@@ -80,7 +80,7 @@ public class CommissionSalesEmployee extends AbstractEmployee {
             e.printStackTrace();
         }
     }
-
+    //delete selected item from CommissionEmployee
     @Override
     public void delete() {
         try {

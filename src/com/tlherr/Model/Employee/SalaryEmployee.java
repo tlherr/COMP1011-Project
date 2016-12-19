@@ -12,13 +12,13 @@ import java.util.Vector;
  * This type of employee is simply paid a salary regardless of time worked
  */
 public class SalaryEmployee extends AbstractEmployee {
-
+    //declare necessary variable for this class(salary)
     private BigDecimal salary;
 
     public SalaryEmployee() {
         super();
     }
-
+    //create SalaryEmp vector to hold values
     public SalaryEmployee(Vector v) {
         this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());
@@ -27,17 +27,17 @@ public class SalaryEmployee extends AbstractEmployee {
         this.setDepartment(v.get(4).toString());
         this.setSalary(new BigDecimal(v.get(5).toString()));
     }
-
+    //create SalaryEMployee object
     public SalaryEmployee(String firstName, String lastName, String position, String department, BigDecimal baseSalary) {
         super(firstName, lastName, position, department);
         this.salary = baseSalary;
     }
-
+    //override calculate pay method, this class calculates pay based upon salary solely
     @Override
     public BigDecimal calculatePay() {
         return salary;
     }
-
+    //save/update SalaryEmployee table based on changes made, check for connection first
     @Override
     public void save() {
 
@@ -77,7 +77,7 @@ public class SalaryEmployee extends AbstractEmployee {
             e.printStackTrace();
         }
     }
-
+    //Delete from Salary table where id = selected index based upon id
     @Override
     public void delete() {
 

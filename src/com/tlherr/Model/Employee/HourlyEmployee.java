@@ -44,7 +44,7 @@ public class HourlyEmployee extends AbstractEmployee {
             return new BigDecimal("0.00");
         }
     }
-
+    //save/update HourlyEmployee table based on changes made, check for connection first
     @Override
     public void save() {
         //Get a connection
@@ -86,7 +86,7 @@ public class HourlyEmployee extends AbstractEmployee {
         }
 
     }
-
+    //Delete from Hourly Employee table where id = selected index based upon id
     @Override
     public void delete() {
         try {

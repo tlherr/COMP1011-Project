@@ -12,13 +12,13 @@ import java.util.Vector;
  * This type of employee works on a base salary as well as commission rates
  */
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
-
+    //declare var baseSalary
     private BigDecimal baseSalary;
 
     public BasePlusCommissionEmployee() {
         super();
     }
-
+    //BasePlusCommisionEmployee vector declaration
     public BasePlusCommissionEmployee(Vector v) {
         super();
         this.id = (int) v.get(0);
@@ -30,18 +30,18 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
         this.setSales(new BigDecimal(v.get(6).toString()));
         this.setBaseSalary(new BigDecimal(v.get(7).toString()));
     }
-
+    //create BasePlusCommissionEmployee Object, Super in necessary attributes
     public BasePlusCommissionEmployee(String firstName, String lastName, String position, String department,
                                       BigDecimal commissionRates, BigDecimal sales, BigDecimal baseSalary) {
         super(firstName, lastName, position, department, commissionRates, sales);
         this.baseSalary = baseSalary;
     }
-
+    //calculate pay using required info
     @Override
     public BigDecimal calculatePay() {
         return baseSalary.add(super.getSales().multiply(super.getCommissionRate()));
     }
-
+    //save/update basePlusCOMmissionEmployee table based on changes made, check for connection first
     @Override
     public void save() {
         //Get a connection
@@ -84,15 +84,15 @@ public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
             e.printStackTrace();
         }
     }
-
+    //get Base Salary
     public BigDecimal getBaseSalary() {
         return baseSalary;
     }
-
+    //set Base Salary
     public void setBaseSalary(BigDecimal baseSalary) {
         this.baseSalary = baseSalary;
     }
-
+    //Delete from BasePlusCommissionEmployee table where id=current index
     @Override
     public void delete() {
         //Get a connection
