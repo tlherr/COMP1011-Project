@@ -35,6 +35,11 @@ public class Product extends AbstractModel {
         this.modelNumber = modelNumber;
     }
 
+    public Product(int id, String name, Manufacturer manufacturer, String modelNumber) {
+        this(name, manufacturer, modelNumber);
+        this.id=id;
+    }
+
     @Override
     public void save() {
         //Get a connection

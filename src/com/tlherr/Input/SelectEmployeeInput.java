@@ -16,7 +16,7 @@ public class SelectEmployeeInput extends AbstractFormInput {
         employeeComboBox = new JComboBox<>();
         model = new EmployeeComboBoxModel();
         employeeComboBox.setModel(model);
-
+        employeeComboBox.setLightWeightPopupEnabled(false);
         addInputField(employeeComboBox);
     }
 

@@ -17,13 +17,13 @@ public class SelectProductInput extends AbstractFormInput {
         productComboBox = new JComboBox<>();
         model = new ProductComboBoxModel();
         productComboBox.setModel(model);
-
+        productComboBox.setLightWeightPopupEnabled(false);
         addInputField(productComboBox);
     }
 
     @Override
-    public Manufacturer getValue() {
-        return (Manufacturer) productComboBox.getSelectedItem();
+    public Product getValue() {
+        return (Product) productComboBox.getSelectedItem();
     }
 
     public void setValue(Product product) {

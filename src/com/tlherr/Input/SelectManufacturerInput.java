@@ -16,7 +16,7 @@ public class SelectManufacturerInput extends AbstractFormInput {
         manufacturerComboBox = new JComboBox<>();
         model = new ManufacturerComboBoxModel();
         manufacturerComboBox.setModel(model);
-
+        manufacturerComboBox.setLightWeightPopupEnabled(false);
         addInputField(manufacturerComboBox);
     }
 

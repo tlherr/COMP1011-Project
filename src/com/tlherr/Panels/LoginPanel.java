@@ -74,6 +74,7 @@ public class LoginPanel extends AbstractPanel {
                 nameLabel.setText("");
                 loginPanel.setVisible(true);
                 loggedInPanel.setVisible(false);
+                repack();
             }
         });
 

@@ -19,10 +19,7 @@ public class ProductRepository extends AbstractRepository {
         return instance;
     }
 
-    private ProductRepository() {
-    }
-
-    ;
+    private ProductRepository() {}
 
     @Override
     public ResultSet load(Class toLoad) throws SQLException {
@@ -30,7 +27,7 @@ public class ProductRepository extends AbstractRepository {
         Statement statement = conn.createStatement();
 
         if (toLoad == Product.class) {
-            return statement.executeQuery("SELECT prod.id,prod.name as 'Product Name',prod.modelNumber as 'Model Number', manu.id as 'Manufacturer ID', manu.name as 'Manufacturer' \n" +
+            return statement.executeQuery("SELECT prod.id as `Product ID`,prod.name as 'Product Name',prod.modelNumber as 'Model Number', manu.id as 'Manufacturer ID', manu.name as 'Manufacturer Name' \n" +
                     "FROM products prod INNER JOIN manufacturers manu on prod.manufacturer_ID=manu.id;");
         } else {
             return null;

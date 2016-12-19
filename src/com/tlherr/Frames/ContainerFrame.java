@@ -99,6 +99,7 @@ public class ContainerFrame extends JFrame {
         tabbedPane.add(Strings.HUMAN_RESOURCES_TAB, new HumanResourcesPanel());
         tabbedPane.add(Strings.INVENTORY_TAB, new InventoryPanel());
         tabbedPane.add(Strings.CUSTOMERS_TAB, new CustomerPanel());
+        tabbedPane.add(Strings.SALES_TAB, new SalePanel());
         tabbedPane.add(Strings.SEARCH_TAB, new SearchPanel());
         middlePanel.add(tabbedPane, BorderLayout.NORTH);
 

@@ -21,8 +21,10 @@ public class ProductComboBoxModel extends AbstractListModel implements ComboBoxM
             ResultSet rs = ProductRepository.getInstance().load(Product.class);
 
             while(rs.next()) {
-                Manufacturer manufacturer = new Manufacturer(rs.getInt("Manufacturer ID"), rs.getString("Manufacturer"));
-                productArrayList.add(new Product(rs.getString("Product Name"), manufacturer, rs.getString("Model Number")));
+                Manufacturer manufacturer = new Manufacturer(rs.getInt("Manufacturer ID"), rs.getString("Manufacturer Name"));
+                Product product = new Product(rs.getInt("Product ID"), rs.getString("Product Name"), manufacturer, rs.getString("Model Number"));
+                System.out.println(product.toString());
+                productArrayList.add(product);
             }
 
             rs.close();

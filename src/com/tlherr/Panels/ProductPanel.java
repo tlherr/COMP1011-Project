@@ -33,7 +33,6 @@ public class ProductPanel extends AbstractPanel {
         setLayout(new BorderLayout());
 
         productsTable = new JTable();
-        productsTable.setFillsViewportHeight(true);
         add(new JScrollPane(productsTable), BorderLayout.NORTH);
 
         productsOperationButtons = new JPanel(new FlowLayout());

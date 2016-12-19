@@ -53,7 +53,10 @@ public class SaleForm extends AbstractForm {
             this.sale = new Sale();
         }
 
-        //this.sale.set(firstName.getValue());
+        this.sale.setSalePrice(salePrice.getDecimalValue());
+        this.sale.setEmployee(employee.getValue());
+        this.sale.setProduct(product.getValue());
+
         return this.sale;
     }
 }

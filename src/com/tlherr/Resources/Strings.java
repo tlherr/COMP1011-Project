@@ -21,6 +21,10 @@ public class Strings {
      */
     public static final String WELCOME_MESSAGE = "Welcome";
 
+    /**
+     * Insufficient Permissions
+     */
+    public static final String INSUFFICIENT_PERMISSIONS = "You do not have permission to do that";
 
     /**
      * Tabs
@@ -28,6 +32,7 @@ public class Strings {
     public static final String HUMAN_RESOURCES_TAB = "Human Resources";
     public static final String INVENTORY_TAB = "Inventory";
     public static final String CUSTOMERS_TAB = "Customers";
+    public static final String SALES_TAB = "Sales";
     public static final String SEARCH_TAB = "Search";
 
     /**
@@ -60,7 +65,6 @@ public class Strings {
     public static final String PRODUCTS_TAB_TITLE = "Products";
     public static final String ADD_PRODUCTS_BUTTON = "Add";
     public static final String DELETE_PRODUCTS_BUTTON = "Delete";
-    public static final String EDIT_PRODUCTS_BUTTON = "Edit";
 
     /**
      * Customer Panel
@@ -83,6 +87,11 @@ public class Strings {
     public static final String PRODUCT_FORM_LABEL_MODEL_NUMBER = "Model Number: ";
     public static final String PRODUCT_FORM_LABEL_MANUFACTURER = "Manufacturer: ";
 
+    /**
+     * Sale Panel
+     */
+    public static final String SALE_PANEL_ADD_SALE = "Add";
+    public static final String SALE_PANEL_DELETE_SALE = "Delete";
 
     /**
      * Sale Form
