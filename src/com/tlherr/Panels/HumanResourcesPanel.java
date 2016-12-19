@@ -219,7 +219,7 @@ public class HumanResourcesPanel extends AbstractPanel {
                         } catch (ArrayIndexOutOfBoundsException exception) {
                             //@TODO: Logging method should handle this as stated in requirements
                         }
-                    }
+                    }//
                 }
             }
         });
