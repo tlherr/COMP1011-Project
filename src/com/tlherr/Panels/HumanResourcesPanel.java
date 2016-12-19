@@ -171,25 +171,26 @@ public class HumanResourcesPanel extends AbstractPanel {
         employeeTabbedPanel.getBasePlusCommissionTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
 
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
+                            BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
-                        BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
+                            addEmployeeButton.setEnabled(false);
+                            employeeTypeSelector.setEnabled(false);
 
-                        addEmployeeButton.setEnabled(false);
-                        employeeTypeSelector.setEnabled(false);
-
-                        clearForm();
-                        bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
-                        bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
-                        bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
-                        employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            clearForm();
+                            bpcComissionEmployeeForm = new BasePlusCommissionEmployeeForm(empl);
+                            bpcComissionEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                            bpcComissionEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                            employeeFormPanel.add(bpcComissionEmployeeForm, BorderLayout.CENTER);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
             }
@@ -198,25 +199,26 @@ public class HumanResourcesPanel extends AbstractPanel {
         employeeTabbedPanel.getCommissionSalesTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
 
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow());
+                            CommissionSalesEmployee empl = new CommissionSalesEmployee(vectorResult);
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow());
-                        CommissionSalesEmployee empl = new CommissionSalesEmployee(vectorResult);
+                            addEmployeeButton.setEnabled(false);
+                            employeeTypeSelector.setEnabled(false);
 
-                        addEmployeeButton.setEnabled(false);
-                        employeeTypeSelector.setEnabled(false);
-
-                        clearForm();
-                        commissionSalesEmployeeForm = new CommissionSalesEmployeeForm(empl);
-                        commissionSalesEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
-                        commissionSalesEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
-                        employeeFormPanel.add(commissionSalesEmployeeForm, BorderLayout.CENTER);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            clearForm();
+                            commissionSalesEmployeeForm = new CommissionSalesEmployeeForm(empl);
+                            commissionSalesEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                            commissionSalesEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                            employeeFormPanel.add(commissionSalesEmployeeForm, BorderLayout.CENTER);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
             }
@@ -225,25 +227,26 @@ public class HumanResourcesPanel extends AbstractPanel {
         employeeTabbedPanel.getHourlyTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
 
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getHourlyTable().getSelectedRow());
+                            HourlyEmployee empl = new HourlyEmployee(vectorResult);
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getHourlyTable().getSelectedRow());
-                        HourlyEmployee empl = new HourlyEmployee(vectorResult);
+                            addEmployeeButton.setEnabled(false);
+                            employeeTypeSelector.setEnabled(false);
 
-                        addEmployeeButton.setEnabled(false);
-                        employeeTypeSelector.setEnabled(false);
-
-                        clearForm();
-                        hourlyEmployeeForm = new HourlyEmployeeForm(empl);
-                        hourlyEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
-                        hourlyEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
-                        employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            clearForm();
+                            hourlyEmployeeForm = new HourlyEmployeeForm(empl);
+                            hourlyEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                            hourlyEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                            employeeFormPanel.add(hourlyEmployeeForm, BorderLayout.CENTER);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
             }
@@ -252,25 +255,26 @@ public class HumanResourcesPanel extends AbstractPanel {
         employeeTabbedPanel.getSalaryTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
 
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getSalaryTable().getSelectedRow());
+                            SalaryEmployee empl = new SalaryEmployee(vectorResult);
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getSalaryTable().getSelectedRow());
-                        SalaryEmployee empl = new SalaryEmployee(vectorResult);
+                            addEmployeeButton.setEnabled(false);
+                            employeeTypeSelector.setEnabled(false);
 
-                        addEmployeeButton.setEnabled(false);
-                        employeeTypeSelector.setEnabled(false);
-
-                        clearForm();
-                        salaryEmployeeForm = new SalaryEmployeeForm(empl);
-                        salaryEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
-                        salaryEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
-                        employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            clearForm();
+                            salaryEmployeeForm = new SalaryEmployeeForm(empl);
+                            salaryEmployeeForm.setOkButtonActionListener(new OkEmployeeTabbedPanelButtonListener());
+                            salaryEmployeeForm.setCancelButtonActionListener(new CancelEmployeeButtonListener());
+                            employeeFormPanel.add(salaryEmployeeForm, BorderLayout.CENTER);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
             }
