@@ -48,12 +48,12 @@ public class HumanResourcesPanel extends AbstractPanel {
 
     public HumanResourcesPanel() {
         setLayout(new BorderLayout());
-
+        //Make a new sub tab panel that will contain all employee type tables
         employeeTabbedPanel = new EmployeeTabbedPanel();
         JScrollPane tablePanel = new JScrollPane(employeeTabbedPanel);
         tablePanel.setPreferredSize(new Dimension(400, 200));
         add(tablePanel, BorderLayout.NORTH);
-
+        //Group up the buttons into a panel
         employeeOperationsButtons = new JPanel(new FlowLayout());
         addEmployeeButton = new JButton(Strings.ADD_EMPLOYEE);
         String[] options = new String[]{"Base + Commission", "Commission", "Hourly", "Salary"};
@@ -72,6 +72,16 @@ public class HumanResourcesPanel extends AbstractPanel {
 
         employeeFormPanel = new JPanel(new BorderLayout());
         add(employeeFormPanel, BorderLayout.SOUTH);
+
+        /**
+         * Add action listener to delete button
+         * This basically checks
+         *
+         * Does the current user have permissions to do a delete?
+         * which tab are they currently looking at?
+         * Does that tab have a selected element
+         * If it does get the object and call its delete method
+         */
 
         deleteEmployeeButton.addActionListener(new ActionListener() {
             @Override
@@ -139,11 +149,6 @@ public class HumanResourcesPanel extends AbstractPanel {
                     }
 
                 }
-
-
-                //Check which employee has been selected in the JTable
-
-
             }
         });
 
@@ -167,7 +172,16 @@ public class HumanResourcesPanel extends AbstractPanel {
                 repack();
             }
         });
-        //Handle user selecting table items
+
+        /**
+         * Table Listener events
+         *
+         * All of these do the same thing just on different tables
+         * They check does the user have permission to edit an employee?
+         * If they do it gets the selected employee and loads it into a form for editing
+         * Then it adds the buttons etc and ads the new form to the HR panel
+         */
+
         employeeTabbedPanel.getBasePlusCommissionTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -283,6 +297,10 @@ public class HumanResourcesPanel extends AbstractPanel {
 
     }
 
+    /**
+     * Button listener for adding a new employee
+     * Basically checks what type was selected and builds/adds the approcpriate form
+     */
     private class AddEmployeeButtonListener implements ActionListener {
 
         @Override

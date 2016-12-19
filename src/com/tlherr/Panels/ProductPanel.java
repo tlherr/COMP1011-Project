@@ -7,6 +7,7 @@ import com.tlherr.Repository.ProductRepository;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
 import com.tlherr.Table.GenericTableModel;
+import com.tlherr.Users.AdminUser;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -51,28 +52,33 @@ public class ProductPanel extends AbstractPanel {
                 repack();
             }
         });
-
+        /**
+         * Respond to a table row being selected
+         */
         productsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+                if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(productsTable.getSelectedRow());
-                        Product product = new Product(vectorResult);
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
 
-                        addProductButton.setEnabled(false);
-                        deleteProductButton.setEnabled(false);
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(productsTable.getSelectedRow());
+                            Product product = new Product(vectorResult);
 
-                        productForm = new ProductForm(product);
-                        productForm.build();
-                        productForm.setOkButtonActionListener(new okButtonListener());
-                        productForm.setCancelButtonActionListener(new cancelButtonListener());
-                        add(productForm, BorderLayout.SOUTH);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            addProductButton.setEnabled(false);
+                            deleteProductButton.setEnabled(false);
+
+                            productForm = new ProductForm(product);
+                            productForm.build();
+                            productForm.setOkButtonActionListener(new okButtonListener());
+                            productForm.setCancelButtonActionListener(new cancelButtonListener());
+                            add(productForm, BorderLayout.SOUTH);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
             }

@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.net.PasswordAuthentication;
 import java.sql.SQLException;
 
+/**
+ * Login panel accepts a username and password in appropriate inputs
+ */
 public class LoginPanel extends AbstractPanel {
     private JPanel loginPanel;
     private JPanel loggedInPanel;

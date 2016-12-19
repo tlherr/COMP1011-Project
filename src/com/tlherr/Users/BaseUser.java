@@ -7,6 +7,10 @@ import com.tlherr.Permissions.ProductPermission;
 
 import java.security.Permissions;
 
+/**
+ * Generic user with all base properties
+ * Using Permission Class to track permissions
+ */
 public abstract class BaseUser {
 
     protected Permissions permissions;

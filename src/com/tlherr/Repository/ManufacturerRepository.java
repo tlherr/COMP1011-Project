@@ -34,6 +34,12 @@ public class ManufacturerRepository extends AbstractRepository {
         }
     }
 
+    /**
+     * Load a manufactuer based on a given ID
+     * @param id Manufacturer ID
+     * @return ResultSet
+     * @throws SQLException
+     */
     public ResultSet loadById(int id) throws SQLException {
         Connection conn = ConnectionService.getConnection();
         PreparedStatement statement = conn.prepareStatement("SELECT * FROM Manufacturer WHERE id=?");

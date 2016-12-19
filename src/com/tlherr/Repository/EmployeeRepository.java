@@ -63,6 +63,11 @@ public class EmployeeRepository extends AbstractRepository {
         }
     }
 
+    /**
+     * Loads all Employees from DB, have to use UNIONS because they are in different tables
+     * @return ResultSet
+     * @throws SQLException
+     */
     public ResultSet loadAll() throws SQLException {
         Connection conn = ConnectionService.getConnection();
         Statement statement = conn.createStatement();

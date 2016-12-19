@@ -28,7 +28,7 @@ public class ProductRepository extends AbstractRepository {
 
         if (toLoad == Product.class) {
             return statement.executeQuery("SELECT prod.id as `Product ID`,prod.name as 'Product Name',prod.modelNumber as 'Model Number', manu.id as 'Manufacturer ID', manu.name as 'Manufacturer Name' \n" +
-                    "FROM products prod INNER JOIN manufacturers manu on prod.manufacturer_ID=manu.id;");
+                    "FROM Products prod INNER JOIN Manufacturers manu on prod.manufacturer_ID=manu.id;");
         } else {
             return null;
         }
