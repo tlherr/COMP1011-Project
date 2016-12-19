@@ -47,4 +47,9 @@ public class Sale extends AbstractModel {
     public void save() {
 
     }
+
+    @Override
+    public void delete() {
+
+    }
 }

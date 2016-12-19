@@ -33,6 +33,11 @@ public class GenericEmployee extends AbstractModel {
     }
 
     @Override
+    public void delete() {
+
+    }
+
+    @Override
     public String toString() {
         return this.firstName+"("+this.id+")";
     }

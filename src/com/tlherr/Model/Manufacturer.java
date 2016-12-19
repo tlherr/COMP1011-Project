@@ -70,6 +70,11 @@ public class Manufacturer extends AbstractModel {
     }
 
     @Override
+    public void delete() {
+
+    }
+
+    @Override
     public String toString() {
         return this.getName();
     }

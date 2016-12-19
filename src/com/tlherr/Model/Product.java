@@ -69,6 +69,11 @@ public class Product extends AbstractModel {
         }
     }
 
+    @Override
+    public void delete() {
+
+    }
+
 
     public Manufacturer getManufacturer() {
         return manufacturer;

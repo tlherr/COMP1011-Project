@@ -28,10 +28,7 @@ public class LoginService {
     private static LoginService instance = new LoginService();
     EventListenerList listenerList = new EventListenerList();
 
-    private LoginService() {
-    }
-
-    ;
+    private LoginService() {}
 
     public static LoginService getInstance() {
         return instance;
@@ -63,6 +60,10 @@ public class LoginService {
                 ((AuthenticationListener) listeners[i + 1]).loggedOut(new ActionEvent(this.activeUser, LoginService.EVENT_LOGGED_OUT, LoginService.COMMAND_LOGGED_OUT));
             }
         }
+    }
+
+    public BaseUser getActiveUser() {
+        return activeUser;
     }
 
     public void processLogin(PasswordAuthentication credentials) throws SQLException {

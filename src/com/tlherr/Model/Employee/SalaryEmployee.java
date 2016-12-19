@@ -78,6 +78,12 @@ public class SalaryEmployee extends AbstractEmployee {
         }
     }
 
+    @Override
+    public void delete() {
+
+
+    }
+
 
     public BigDecimal getSalary() {
         return salary;

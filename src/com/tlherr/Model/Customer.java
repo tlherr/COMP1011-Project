@@ -99,4 +99,10 @@ public class Customer extends AbstractModel {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void delete() {
+
+
+    }
 }

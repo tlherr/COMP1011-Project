@@ -81,6 +81,11 @@ public class CommissionSalesEmployee extends AbstractEmployee {
         }
     }
 
+    @Override
+    public void delete() {
+
+    }
+
     public BigDecimal getCommissionRate() {
         return commissionRate;
     }

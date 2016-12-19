@@ -9,8 +9,10 @@ import com.tlherr.Model.Employee.BasePlusCommissionEmployee;
 import com.tlherr.Model.Employee.CommissionSalesEmployee;
 import com.tlherr.Model.Employee.HourlyEmployee;
 import com.tlherr.Model.Employee.SalaryEmployee;
+import com.tlherr.Permissions.EmployeePermission;
 import com.tlherr.Resources.Strings;
 import com.tlherr.Service.LoginService;
+import com.tlherr.Users.AdminUser;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -70,6 +72,86 @@ public class HumanResourcesPanel extends AbstractPanel {
 
         employeeFormPanel = new JPanel(new BorderLayout());
         add(employeeFormPanel, BorderLayout.SOUTH);
+
+        deleteEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    //Check which tab is active
+                    switch(employeeTabbedPanel.getActiveTab()) {
+                        case 0:
+                            //BasePlusCommission selected
+
+                            if(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow()!=-1) {
+                                DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getBasePlusCommissionTable().getModel();
+                                Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getBasePlusCommissionTable().getSelectedRow());
+                                BasePlusCommissionEmployee empl = new BasePlusCommissionEmployee(vectorResult);
+                                empl.delete();
+                                clearForm();
+                                employeeTabbedPanel.updateBasePlusCommissionTable();
+                            } else {
+                                //Select something first (SHow a message?)
+                                JOptionPane.showMessageDialog(null, "Please select a base plus commission employee to delete");
+                            }
+                            break;
+
+                        //IMplement delete methods on employee objects (Under Model/Employee)
+                        //Do same as above
+
+                        case 1:
+                            System.out.println("commission");
+                            if(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow()!=-1) {
+                                DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getCommissionSalesTable().getModel();
+                                Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getCommissionSalesTable().getSelectedRow());
+                                CommissionSalesEmployee empl = new CommissionSalesEmployee(vectorResult);
+                                empl.delete();
+                                clearForm();
+                                employeeTabbedPanel.updateCommissionSalesTable();
+                            } else {
+                                //Select something first Show a message if nothing is selected
+                                JOptionPane.showMessageDialog(null, "Please select a commission employee to delete");
+                            }
+                            break;
+
+                        case 2:
+                            System.out.println("hourly");
+                            if(employeeTabbedPanel.getHourlyTable().getSelectedRow()!=-1) {
+                                DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getHourlyTable().getModel();
+                                Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getHourlyTable().getSelectedRow());
+                                HourlyEmployee empl = new HourlyEmployee(vectorResult);
+                                empl.delete();
+                                clearForm();
+                                employeeTabbedPanel.updateHourlyTable();
+                            } else {
+                                //Select something first Show a message if nothing is selected
+                                JOptionPane.showMessageDialog(null, "Please select an hourly employee to delete");
+                            }
+                            break;
+
+                        case 3:
+                            System.out.println("salary");
+                            if(employeeTabbedPanel.getSalaryTable().getSelectedRow()!=-1) {
+                                DefaultTableModel model = (DefaultTableModel) employeeTabbedPanel.getSalaryTable().getModel();
+                                Vector vectorResult = (Vector) model.getDataVector().elementAt(employeeTabbedPanel.getSalaryTable().getSelectedRow());
+                                SalaryEmployee empl = new SalaryEmployee(vectorResult);
+                                empl.delete();
+                                clearForm();
+                                employeeTabbedPanel.updateSalaryTable();
+                            } else {
+                                //Select something first Show a message if nothing is selected
+                                JOptionPane.showMessageDialog(null, "Please select a salaried employee to delete");
+                            }
+                            break;
+                    }
+
+                }
+
+
+                //Check which employee has been selected in the JTable
+
+
+            }
+        });
 
         //Disable components until we have a logged in user
         enableComponents(employeeOperationsButtons, false);
@@ -308,7 +390,7 @@ public class HumanResourcesPanel extends AbstractPanel {
     }
 
     private class OkEmployeeTabbedPanelButtonListener implements ActionListener {
-
+        //Needs one
         @Override
         public void actionPerformed(ActionEvent e) {
 

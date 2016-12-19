@@ -87,6 +87,11 @@ public class HourlyEmployee extends AbstractEmployee {
 
     }
 
+    @Override
+    public void delete() {
+
+    }
+
     public BigDecimal getHoursWorked() {
         return hoursWorked;
     }
