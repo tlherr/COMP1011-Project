@@ -6,6 +6,7 @@ import com.tlherr.Service.InputService;
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 //This class represents a text input panel containing
 //a label, and input and an error message
@@ -78,9 +79,9 @@ public class ValidatedTextFormInput extends AbstractFormInput {
     public BigDecimal getDecimalValue() {
         BigDecimal toReturn;
         try {
-            toReturn = new BigDecimal(input.getText());
+            toReturn = new BigDecimal(input.getText()).setScale(2, RoundingMode.HALF_UP);
         } catch (NumberFormatException numException) {
-            toReturn = new BigDecimal(0);
+            toReturn = new BigDecimal(0).setScale(2, RoundingMode.HALF_UP);
         }
 
         return toReturn;

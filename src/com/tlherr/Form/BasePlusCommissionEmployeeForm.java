@@ -61,7 +61,7 @@ public class BasePlusCommissionEmployeeForm extends AbstractEmployeeForm {
     public void addFormElements() {
         //This adds any extra form elements beyond the base ones provided by abstract employee form
 
-        commissionRate = new ValidatedTextFormInput(Strings.C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE, InputService.NUMERIC_ONLY);
+        commissionRate = new ValidatedTextFormInput(Strings.C_EMPLOYEE_FORM_LABEL_COMMISSION_RATE, InputService.DECIMAL);
         sales = new ValidatedTextFormInput(Strings.C_EMPLOYEE_FORM_LABEL_SALES, InputService.DECIMAL);
         salary = new ValidatedTextFormInput(Strings.BPC_EMPLOYEE_FORM_LABEL_SALARY, InputService.DECIMAL);
 

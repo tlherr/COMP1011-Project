@@ -34,7 +34,7 @@ CREATE TABLE if not exists CommissionEmployee(
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
     `department` VARCHAR(200) NOT NULL ,
-    `commissionRate` DOUBLE(3,2) NOT NULL ,
+    `commissionRate` DECIMAL(4,2) NOT NULL ,
     `sales` DECIMAL(9,2) NOT NULL,
     PRIMARY KEY(id)
 ) ENGINE=INNODB;
@@ -45,7 +45,7 @@ CREATE TABLE if not exists BasePlusCommissionEmployee(
     `lastName` VARCHAR(200) NOT NULL ,
     `position` VARCHAR(200) NOT NULL ,
     `department` VARCHAR(200) NOT NULL ,
-    `commissionRate` DOUBLE(3,2) NOT NULL ,
+    `commissionRate` DECIMAL(4,2) NOT NULL ,
     `sales` DECIMAL(9,2) NOT NULL,
     `salary` DECIMAL (15,2) NOT NULL,
     PRIMARY KEY(id)
