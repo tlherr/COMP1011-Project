@@ -13,11 +13,13 @@ import java.util.Vector;
  */
 public class Product extends AbstractModel {
 
+    //declare necessary variables for this class
     private Manufacturer manufacturer;
     private String name, modelNumber;
 
     public Product(){}
 
+    //converts a database object into a Product
     public Product(Vector v) {
         this.id = (int) v.get(0);
         this.name = v.get(1).toString();
@@ -40,6 +42,7 @@ public class Product extends AbstractModel {
         this.id=id;
     }
 
+    //save/update Product table based on changes made, check for connection first
     @Override
     public void save() {
         //Get a connection

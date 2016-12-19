@@ -12,13 +12,14 @@ import java.util.Vector;
  * This type of employee is simply paid a salary regardless of time worked
  */
 public class SalaryEmployee extends AbstractEmployee {
-    //declare necessary variable for this class(salary)
+    //declare variables used by this class to calculate the pay for this type of Employee
     private BigDecimal salary;
 
     public SalaryEmployee() {
         super();
     }
-    //create SalaryEmp vector to hold values
+
+    //converts a database object into a SalaryEmployee
     public SalaryEmployee(Vector v) {
         this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());

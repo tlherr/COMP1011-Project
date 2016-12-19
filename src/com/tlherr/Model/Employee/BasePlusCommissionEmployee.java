@@ -12,13 +12,13 @@ import java.util.Vector;
  * This type of employee works on a base salary as well as commission rates
  */
 public class BasePlusCommissionEmployee extends CommissionSalesEmployee {
-    //declare var baseSalary
+    //declare variables used by this class to calculate the pay for this type of Employee
     private BigDecimal baseSalary;
 
     public BasePlusCommissionEmployee() {
         super();
     }
-    //BasePlusCommisionEmployee vector declaration
+    //converts a database object into a BasePlusCommissionEmployee
     public BasePlusCommissionEmployee(Vector v) {
         super();
         this.id = (int) v.get(0);

@@ -21,6 +21,7 @@ import java.util.Vector;
 
 public class CustomerPanel extends AbstractPanel {
 
+    //class-based
     private JTable customerTable;
     private CustomerForm customerForm;
     private JButton createCustomerButton;
@@ -81,27 +82,29 @@ public class CustomerPanel extends AbstractPanel {
         customerTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (e.getValueIsAdjusting()) {
-                    DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+               // if (LoginService.getInstance().getActiveUser().getPermissions().implies(AdminUser.employeePermission)) {
+                    if (e.getValueIsAdjusting()) {
+                        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
 
-                    try {
-                        Vector vectorResult = (Vector) model.getDataVector().elementAt(customerTable.getSelectedRow());
-                        Customer customer = new Customer(vectorResult);
+                        try {
+                            Vector vectorResult = (Vector) model.getDataVector().elementAt(customerTable.getSelectedRow());
+                            Customer customer = new Customer(vectorResult);
 
-                        createCustomerButton.setEnabled(false);
-                        deleteCustomerButton.setEnabled(false);
+                            createCustomerButton.setEnabled(false);
+                            deleteCustomerButton.setEnabled(false);
 
-                        customerForm = new CustomerForm(customer);
-                        customerForm.build();
-                        customerForm.setOkButtonActionListener(new okCustomerButtonListener());
-                        customerForm.setCancelButtonActionListener(new cancelCustomerButtonListener());
-                        add(customerForm, BorderLayout.SOUTH);
-                        repack();
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-                        //@TODO: Logging method should handle this as stated in requirements
+                            customerForm = new CustomerForm(customer);
+                            customerForm.build();
+                            customerForm.setOkButtonActionListener(new okCustomerButtonListener());
+                            customerForm.setCancelButtonActionListener(new cancelCustomerButtonListener());
+                            add(customerForm, BorderLayout.SOUTH);
+                            repack();
+                        } catch (ArrayIndexOutOfBoundsException exception) {
+                            //@TODO: Logging method should handle this as stated in requirements
+                        }
                     }
                 }
-            }
+            //}
         });
     }
 

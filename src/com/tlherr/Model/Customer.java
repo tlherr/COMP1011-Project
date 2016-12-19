@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Customer extends AbstractModel {
-
+    //variable declaration for Customer class
     private String firstName;
     private String lastName;
     private String emailAddress;
@@ -17,6 +17,7 @@ public class Customer extends AbstractModel {
     public Customer() {
     }
 
+    //Create a Customer object and set the properties
     public Customer(String firstName, String lastName, String emailAddress, String company) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,7 @@ public class Customer extends AbstractModel {
         this.company = company;
     }
 
+    //converts a database object into a Customer
     public Customer(Vector v) {
         this.id = (int) v.get(0);
         this.firstName = v.get(1).toString();
@@ -64,6 +66,8 @@ public class Customer extends AbstractModel {
         this.company = company;
     }
 
+
+    //save/Update Customer table based on changes made, check for connection first
     @Override
     public void save() {
         //Get a connection

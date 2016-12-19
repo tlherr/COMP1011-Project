@@ -12,7 +12,7 @@ import java.util.Vector;
  * This type of employee is simply paid a flat rate per hour worked
  */
 public class HourlyEmployee extends AbstractEmployee {
-
+    //declare variables used by this class to calculate the pay for this type of Employee
     private BigDecimal hoursWorked;
     private BigDecimal hourlyRate;
 
@@ -20,6 +20,7 @@ public class HourlyEmployee extends AbstractEmployee {
         super();
     }
 
+    //converts a database object into a HourlyEmployee
     public HourlyEmployee(Vector v) {
         this.id = (int) v.get(0);
         this.setFirstName(v.get(1).toString());

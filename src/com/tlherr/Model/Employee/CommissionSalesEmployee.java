@@ -12,13 +12,14 @@ import java.util.Vector;
  * This type of employee works on commission (percentage of sales they receive as compensation)
  */
 public class CommissionSalesEmployee extends AbstractEmployee {
-
+    //declare variables used by this class to calculate the pay for this type of Employee
     private BigDecimal commissionRate, sales;
 
     public CommissionSalesEmployee() {
         super();
     }
 
+    //converts a database object into a CommissionSalesEmployee
     public CommissionSalesEmployee(Vector v) {
         super();
         this.id = (int) v.get(0);

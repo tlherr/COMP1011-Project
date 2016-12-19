@@ -11,21 +11,23 @@ import java.util.Vector;
  * Manufacturer model. Contains a name and a list of products they produce.
  */
 public class Manufacturer extends AbstractModel {
-
+    //declare String var used by this class
     private String name;
 
     public Manufacturer() {
     }
-
+    //set name to this.name
     public Manufacturer(String name) {
         this.name = name;
     }
 
+    //Setting properties on the Manufacturer object
     public Manufacturer(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    //converts a database object into a Manufacturer
     public Manufacturer(Vector v) {
         this.id = (int) v.get(0);
         this.name = v.get(1).toString();
@@ -39,6 +41,7 @@ public class Manufacturer extends AbstractModel {
         this.name = name;
     }
 
+    //save/update Manufacturers table
     @Override
     public void save() {
         //Get a connection
