@@ -72,9 +72,9 @@ public class EmployeeRepository extends AbstractRepository {
         Connection conn = ConnectionService.getConnection();
         Statement statement = conn.createStatement();
 
-        return statement.executeQuery("SELECT bpc.id,bpc.firstName, 1 as emp_type from basepluscommissionemployee bpc UNION\n" +
-                "SELECT c.id,c.firstName, 2 as emp_type from commissionemployee c UNION\n" +
-                "SELECT h.id,h.firstName, 3 as emp_type from hourlyemployee h UNION\n" +
-                "SELECT s.id,s.firstName, 4 as emp_type from salaryemployee s;");
+        return statement.executeQuery("SELECT bpc.id,bpc.firstName, 1 as emp_type from BasePlusCommissionEmployee bpc UNION\n" +
+                "SELECT c.id,c.firstName, 2 as emp_type from CommissionEmployee c UNION\n" +
+                "SELECT h.id,h.firstName, 3 as emp_type from HourlyEmployee h UNION\n" +
+                "SELECT s.id,s.firstName, 4 as emp_type from SalaryEmployee s;");
     }
 }
